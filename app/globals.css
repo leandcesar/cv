@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===============================
+   Base Variables (Light & Dark)
+   =============================== */
+@layer base {
+  :root {
+    /* Light Theme (Core Colors) */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 11%;
+
+    --card: 0 0% 99%;
+    --card-foreground: 0 0% 11%;
+
+    --popover: 0 0% 99%;
+    --popover-foreground: 0 0% 11%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 99%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 11%;
+
+    --muted: 0 0% 88%;
+    --muted-foreground: 0 0% 35%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 210 90% 70%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark Theme */
+    --background: 0 0% 11%;
+    --foreground: 0 0% 90%;
+
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 90%;
+
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 90%;
+
+    --primary: 0 0% 90%;
+    --primary-foreground: 0 0% 11%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 90%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 90%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+  }
+}
+
+/* ===============================
+   Base Styles
+   =============================== */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  a {
+    @apply text-blue-400 hover:text-blue-500 transition-colors;
+  }
+}
+
+/* ===============================
+   Components
+   =============================== */
+
+/* KBar Button */
+.kbar-button {
+  background: linear-gradient(145deg, #e0e0e0, #fafafa);
+  box-shadow:
+    0 0 15px rgba(50, 50, 50, 0.3),
+    0 0 30px rgba(50, 50, 50, 0.1),
+    inset 0 0 10px rgba(50, 50, 50, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.dark .kbar-button {
+  background: linear-gradient(145deg, #2a2a2a, #333333);
+  box-shadow:
+    0 0 15px rgba(200, 200, 200, 0.3),
+    0 0 30px rgba(200, 200, 200, 0.1),
+    inset 0 0 10px rgba(200, 200, 200, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
