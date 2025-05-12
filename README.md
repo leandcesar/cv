@@ -1,6 +1,8 @@
 # Resume
 
-A modern, minimalist, and responsive personal resume website.
+A modern, minimalist, and responsive personal website for showcasing your resume.
+
+[Live Demo](https://leandcesar.vercel.app).
 
 ## Features
 
@@ -19,7 +21,7 @@ A modern, minimalist, and responsive personal resume website.
 
 ## Getting Started
 
-### 1. Clone the repository
+1. Clone the repository
 ```bash
 git clone https://github.com/leandcesar/resume.git
 cd resume
