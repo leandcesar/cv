@@ -12,6 +12,7 @@
     "@icons-pack/react-simple-icons": "^12.7.0",
     "cmdk": "1.0.4",
     "geist": "latest",
+    "html2pdf.js": "^0.10.3",
     "kbar": "latest",
     "lucide-react": "^0.454.0",
     "next": "^15.2.4",

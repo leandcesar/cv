@@ -46,7 +46,7 @@ export const pt: Content = {
       {
         title: "Líder Técnico",
         company: "Ex Machina UNIFEI",
-        period: "Fev de 2019 - Jun de 2019",
+        period: "Mar de 2017 - Dez de 2019",
         description: "",  // TODO: add description
         url: "https://proex.unifei.edu.br/extensao-tecnologica-e-empresarial/competicao-tecnologica/ex-machina/",
       },
@@ -135,6 +135,12 @@ export const pt: Content = {
         name: "Alternar idioma",
         section: "Configurações",
         keywords: "idioma linguagem language português english inglês",
+      },
+      {
+        type: "PDF",
+        name: "Baixar como PDF",
+        section: "Baixar",
+        keywords: "pdf download cv resume",
       },
       {
         type: "Email",

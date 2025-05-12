@@ -92,7 +92,7 @@
    =============================== */
 
 /* KBar Button */
-.kbar-button {
+.button {
   background: linear-gradient(145deg, #e0e0e0, #fafafa);
   box-shadow:
     0 0 15px rgba(50, 50, 50, 0.3),
@@ -104,7 +104,7 @@
   z-index: 1;
 }
 
-.dark .kbar-button {
+.dark .button {
   background: linear-gradient(145deg, #2a2a2a, #333333);
   box-shadow:
     0 0 15px rgba(200, 200, 200, 0.3),

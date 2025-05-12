@@ -1,11 +1,12 @@
 export type ActionType =
-  | "Theme"
-  | "Language"
-  | "Github"
   | "Email"
   | "Facebook"
+  | "Github"
   | "Instagram"
+  | "Language"
   | "Linkedin"
+  | "PDF"
+  | "Theme"
   | "Threads"
   | "X";
 

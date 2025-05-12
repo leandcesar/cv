@@ -9,11 +9,12 @@ export const Shortcuts = {
   theme: ["T"],
   language: ["L"],
   kbar: ["ctrl", "K"],
+  pdf: ["P", "D", "F"],
 };
 
 export function Key({ children }: { children: React.ReactNode }) {
   return (
-    <kbd className="px-2 py-1 text-xs rounded bg-muted text-muted-foreground">
+    <kbd className="px-2 py-1 text-xs rounded bg-muted text-muted-foreground hide-for-pdf">
       {children}
     </kbd>
   );

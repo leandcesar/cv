@@ -46,7 +46,7 @@ export const en: Content = {
       {
         title: "Tech Lead",
         company: "Ex Machina UNIFEI",
-        period: "Feb 2019 - Jun 2019",
+        period: "Mar 2017 - Dec 2019",
         description: "",  // TODO: add description
         url: "https://proex.unifei.edu.br/extensao-tecnologica-e-empresarial/competicao-tecnologica/ex-machina/",
       },
@@ -135,6 +135,12 @@ export const en: Content = {
         name: "Toggle language",
         section: "Settings",
         keywords: "idioma linguagem language português english inglês",
+      },
+      {
+        type: "PDF",
+        name: "Download PDF",
+        section: "Download",
+        keywords: "pdf download cv resume",
       },
       {
         type: "Email",

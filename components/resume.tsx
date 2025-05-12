@@ -9,6 +9,7 @@ import {
   KBarCommand,
   KBarCommandResults,
 } from "@/components/kbar";
+import { PDFDownloadButton, handlePDFDownload } from "@/components/pdf";
 import { Icons } from "@/constants/icons";
 import { Keys, Shortcuts } from "@/constants/shortcuts";
 import { Locale, contents } from "@/locales";
@@ -56,6 +57,8 @@ function ResumeContent() {
           ? toggleTheme
           : action.type === "Language"
           ? toggleLanguage
+          : action.type === "PDF"
+          ? handlePDFDownload
           : () => window.open(action.url, "_blank"),
     }));
   }, [content, toggleTheme, toggleLanguage]);
@@ -67,7 +70,8 @@ function ResumeContent() {
   if (!mounted) return null;
 
   return (
-    <main className="min-h-screen max-w-2xl mx-auto px-4 py-12 md:py-20">
+    <main id="resume" className="min-h-screen max-w-2xl mx-auto px-4 py-12 md:py-20">
+      <PDFDownloadButton />
       <KBarCommand />
       <KBarCommandResults />
       <Header content={content} />
@@ -91,7 +95,7 @@ function Header({ content }: { content: Content }) {
         <p className="text-xl text-center text-muted-foreground font-light mb-4">
           {content.role}
         </p>
-        <p className="text-center text-muted-foreground mb-4">
+        <p className="text-center text-muted-foreground mb-4 hide-for-pdf">
           {content.actions.label} <Keys keys={Shortcuts.kbar} />
         </p>
       </header>
@@ -304,7 +308,7 @@ function Contact({ content }: { content: Content }) {
 
 function Footer({ content }: { content: Content }) {
   return (
-    <section className="mt-20">
+    <section className="mt-20 hide-for-pdf">
       <p className="text-sm text-muted-foreground text-center">
         {new Date().getFullYear()} © {content.name}.{" "}
         <a

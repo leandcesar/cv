@@ -16,10 +16,10 @@ export { KBarProvider };
 export function KBarCommand() {
   const { query } = useKBar();
   return (
-    <div className="fixed bottom-4 right-4 flex items-center">
+    <div className="fixed bottom-4 right-4 flex items-center hide-for-pdf">
       <button
         onClick={() => query.toggle()}
-        className="kbar-button p-3 rounded-full text-foreground shadow-md hover:opacity-90 transition-all duration-300"
+        className="button p-3 rounded-full text-foreground shadow-md hover:opacity-90 transition-all duration-300"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

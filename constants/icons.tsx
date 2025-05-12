@@ -5,7 +5,7 @@ import {
   SiThreads,
   SiX,
 } from "@icons-pack/react-simple-icons";
-import { Mail, Sun, Linkedin, Languages } from "lucide-react";
+import { Mail, Sun, Linkedin, Languages, Download } from "lucide-react";
 
 export const Icons = {
   github: <SiGithub className="w-4 h-4" />,
@@ -17,4 +17,5 @@ export const Icons = {
   x: <SiX className="w-4 h-4" />,
   theme: <Sun className="w-4 h-4" />,
   language: <Languages className="w-4 h-4" />,
+  pdf: <Download className="w-4 h-4" />,
 };
