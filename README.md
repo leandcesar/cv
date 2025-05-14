@@ -1,6 +1,6 @@
-# Resume
+# CV
 
-A modern, minimalist, and responsive personal website for showcasing your resume.
+A modern, minimalist, and responsive personal website for showcasing your CV/resume.
 
 [Live Demo](https://leandcesar.vercel.app).
 
@@ -11,6 +11,7 @@ A modern, minimalist, and responsive personal website for showcasing your resume
 - 🌗 **Dark/Light Mode** – Toggle between themes effortlessly
 - 🌍 **Internationalization** – Supports English (EN) and Portuguese (PT)
 - 📱 **Responsive Design** – Looks great on all devices
+- 📄 **PDF Download** – Export your CV/resume as a PDF file
 
 ## Tech Stack
 
@@ -18,13 +19,14 @@ A modern, minimalist, and responsive personal website for showcasing your resume
 - [TypeScript](https://www.typescriptlang.org/) – Static typing
 - [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS
 - [kbar](https://kbar.vercel.app/) – Command palette interface
+- [html2pdf.js](https://github.com/eKoopmans/html2pdf) – Generate PDF from HTML
 
 ## Getting Started
 
 1. Clone the repository
 ```bash
-git clone https://github.com/leandcesar/resume.git
-cd resume
+git clone https://github.com/leandcesar/cv.git
+cd cv
 ```
 
 2. Install dependencies:
@@ -47,4 +49,4 @@ pnpm dev
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-5. To customize your resume, edit `/locales/en.ts` and `/locales/pt.ts`.
+5. To customize your CV/resume, edit `/locales/en.ts` and `/locales/pt.ts`.

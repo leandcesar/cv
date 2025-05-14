@@ -8,20 +8,7 @@ import { contents } from "@/locales";
 
 const content = contents["default"];
 
-export const metadata: Metadata = {
-  title: `${content.name} – ${content.role}`,
-  description: content.description,
-  keywords: content.keywords,
-  authors: { name: content.name },
-  creator: content.name,
-  metadataBase: new URL(content.site),
-  icons: { icon: "/favicon.ico" },
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-  },
-};
+export const metadata: Metadata = content.metadata;
 
 export default function RootLayout({
   children,
@@ -36,7 +23,7 @@ export default function RootLayout({
           defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange={false}
-          storageKey="resume-theme"
+          storageKey="cv-theme"
         >
           {children}
         </ThemeProvider>

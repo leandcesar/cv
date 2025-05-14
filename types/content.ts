@@ -1,80 +1,12 @@
-export type ActionType =
-  | "Email"
-  | "Facebook"
-  | "Github"
-  | "Instagram"
-  | "Language"
-  | "Linkedin"
-  | "PDF"
-  | "Theme"
-  | "Threads"
-  | "X";
+import type { Metadata } from "next";
+
+import { Action } from "./action";
+import { Section } from "./section";
 
 export interface Content {
-  name: string;
-  role: string;
-  description: string;
-  site: string;
-  keywords: string[];
-  about: {
-    label: string;
-    value: string;
-  };
-  experiences: {
-    label: string;
-    value: {
-      title: string;
-      description: string;
-      period: string;
-      company: string;
-      url?: string;
-    }[];
-  };
-  education: {
-    label: string;
-    value: {
-      title: string;
-      description: string;
-      period: string;
-      institution: string;
-      url?: string;
-    }[];
-  };
-  projects: {
-    label: string;
-    value: {
-      title: string;
-      description: string;
-      url?: string;
-    }[];
-  };
-  skills: {
-    label: string;
-    value: string[];
-  };
-  languages: {
-    label: string;
-    value: {
-      language: string;
-      level: string;
-    }[];
-  };
-  contact: {
-    label: string;
-    value: string;
-  };
-  source: {
-    label: string;
-    value: string;
-  };
-  actions: {
-    label: string;
-    value: {
-      type: ActionType;
-      section: string;
-      keywords?: string;
-      name?: string;
-      url?: string;
-    }[];
-  };
+  metadata: Metadata;
+  header?: { title: string; subtitle: string; };
+  sections: Section[];
+  footer?: { text: string; url: string; };
+  actions: Action[];
 }

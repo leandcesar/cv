@@ -1,5 +1,5 @@
-import Resume from "@/components/resume";
+import CV from "@/components/cv";
 
 export default function Home() {
-  return <Resume />;
+  return <CV />;
 }

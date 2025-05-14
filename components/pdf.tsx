@@ -1,7 +1,7 @@
 "use client";
 
 export const handlePDFDownload = async () => {
-  const element = document.getElementById("resume");
+  const element = document.getElementById("cv");
   if (!element) return;
 
   const html2pdf = (await import("html2pdf.js")).default;
@@ -9,7 +9,7 @@ export const handlePDFDownload = async () => {
   await html2pdf()
     .set({
       margin: 0,
-      filename: "resume.pdf",
+      filename: "cv.pdf",
       image: { type: "png", quality: 1.0 },
       html2canvas: {
         scale: 2,
