@@ -140,21 +140,27 @@ function Paragraph({ paragraph }: { paragraph: ParagraphContent }) {
           paragraph.title
         )}
       </h3>
-      <p className="grid grid-cols-2 text-muted-foreground mb-2">
-        {paragraph.subtitleUrl ? (
-          <a
-            href={paragraph.subtitleUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {paragraph.subtitle}
-          </a>
-        ) : (
-          paragraph.subtitle
+      <p className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 text-muted-foreground mb-2">
+        <span className="min-w-0 break-words">
+          {paragraph.subtitleUrl ? (
+            <a
+              href={paragraph.subtitleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {paragraph.subtitle}
+            </a>
+          ) : (
+            paragraph.subtitle
+          )}
+        </span>
+        {paragraph.period && (
+          <span className="whitespace-nowrap text-right">
+            {paragraph.period}
+          </span>
         )}
-        {paragraph.period}
       </p>
-      <p className="text-muted-foreground leading-relaxed">
+      <p className="text-muted-foreground leading-relaxed text-justify">
         {paragraph.description}
       </p>
       {paragraph.list && (
