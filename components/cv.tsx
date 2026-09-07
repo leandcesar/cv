@@ -1,21 +1,22 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useTheme } from "next-themes";
 import {
   KBarProvider,
   KBarCommand,
   KBarCommandResults,
+  useRegisterActions,
+  type CommandAction,
 } from "@/components/kbar";
-import { useRegisterActions, Action } from "kbar";
 import { PDFDownloadButton, handlePDFDownload } from "@/components/pdf";
 import { Icons } from "@/constants/icons";
 import { Keys, Shortcuts } from "@/constants/shortcuts";
-import { Locale, contents } from "@/locales";
-import { Content } from "@/types/content";
-import {
-  Section as SectionContent,
+import { contents, locales, type Locale } from "@/locales";
+import type { Content } from "@/types/content";
+import type {
   Paragraph as ParagraphContent,
+  Section as SectionContent,
 } from "@/types/section";
 
 export default function CV() {
@@ -28,7 +29,6 @@ export default function CV() {
 
 function CVContent() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [locale, setLocale] = useState<Locale>("pt");
   const content = contents[locale];
 
@@ -37,41 +37,34 @@ function CVContent() {
   }, [theme, setTheme]);
 
   const toggleLanguage = useCallback(() => {
-    const locales = Object.keys(contents).filter(
-      (l) => l !== "default"
-    ) as Locale[];
     setLocale((prev) => {
       const currentIndex = locales.indexOf(prev);
       return locales[(currentIndex + 1) % locales.length];
     });
   }, []);
 
-  const actions = useMemo<Action[]>(
+  const actions = useMemo<CommandAction[]>(
     () =>
       content.actions.map((action) => ({
         id: action.type,
         name: action.name ?? action.type,
         section: action.section,
-        shortcut:
-          Shortcuts[action.type.toLowerCase() as keyof typeof Shortcuts],
+        shortcut: Shortcuts[action.type],
         keywords: action.keywords,
-        icon: Icons[action.type.toLowerCase() as keyof typeof Icons],
+        icon: Icons[action.type],
         perform:
           action.type === "Theme"
             ? toggleTheme
             : action.type === "Language"
-            ? toggleLanguage
-            : action.type === "PDF"
-            ? handlePDFDownload
-            : () => window.open(action.url, "_blank"),
+              ? toggleLanguage
+              : action.type === "PDF"
+                ? handlePDFDownload
+                : () => window.open(action.url, "_blank"),
       })),
     [content, toggleTheme, toggleLanguage]
   );
 
-  useEffect(() => setMounted(true), []);
-  useRegisterActions(actions, [actions]);
-
-  if (!mounted) return null;
+  useRegisterActions(actions);
 
   return (
     <main
@@ -86,7 +79,7 @@ function CVContent() {
         <Section
           key={section.section}
           section={section}
-          keys={Shortcuts[section.shortcut?.toLowerCase() as keyof typeof Shortcuts]}
+          keys={section.shortcut ? Shortcuts[section.shortcut] : undefined}
         />
       ))}
       {content.footer && <Footer content={content} />}
@@ -105,7 +98,7 @@ function Header({ content }: { content: Content }) {
           {content.header?.subtitle}
         </p>
         <p className="text-center text-muted-foreground mb-4 hide-for-pdf">
-          <Keys keys={Shortcuts.kbar} />
+          <Keys keys={Shortcuts.Kbar} />
         </p>
       </header>
     </div>

@@ -1,21 +1,6 @@
 import { Content } from "@/types/content";
 
 export const pt: Content = {
-  metadata: {
-    title: "Leandro César",
-    description:
-      "Leandro César's CV. Tech lead, backend developer, specialist in automations and AI-powered solutions.",
-    keywords: ["Leandro César"],
-    authors: { name: "Leandro César" },
-    creator: "Leandro César",
-    metadataBase: new URL("https://github.com/leandcesar"),
-    icons: { icon: "/favicon.ico" },
-    robots: {
-      index: true,
-      follow: true,
-      nocache: false,
-    },
-  },
   header: {
     title: "Leandro César",
     subtitle: "Engenheiro. Desenvolvedor. Líder.",
@@ -36,14 +21,14 @@ export const pt: Content = {
       paragraph: [
         {
           title: "Líder Técnico",
-          subtitle: "Cloudiabot",
+          subtitle: "Cloudia",
           subtitleUrl: "https://www.cloudia.com.br/",
           description: "",
           period: "Jan de 2022 - Presente",
         },
         {
           title: "Desenvolvedor Python",
-          subtitle: "Cloudiabot",
+          subtitle: "Cloudia",
           subtitleUrl: "https://www.cloudia.com.br/",
           description: "",
           period: "Jan de 2021 - Dez de 2021",

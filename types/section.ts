@@ -1,4 +1,4 @@
-import { ActionType } from "@/types/action";
+import type { ActionType } from "@/types/action";
 
 export type Paragraph = {
   title?: string;
@@ -8,10 +8,10 @@ export type Paragraph = {
   description?: string;
   list?: string[];
   period?: string;
-}
+};
 
 export type Section = {
   section: string;
   paragraph: Paragraph[];
   shortcut?: ActionType;
-}
+};

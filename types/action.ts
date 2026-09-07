@@ -16,4 +16,4 @@ export type Action = {
   name?: string;
   url?: string;
   keywords?: string;
-}
+};

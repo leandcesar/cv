@@ -6,16 +6,18 @@ import {
   SiX,
 } from "@icons-pack/react-simple-icons";
 import { Mail, Sun, Linkedin, Languages, Download } from "lucide-react";
+import type { ReactNode } from "react";
+import type { ActionType } from "@/types/action";
 
 export const Icons = {
-  github: <SiGithub className="w-4 h-4" />,
-  email: <Mail className="w-4 h-4" />,
-  facebook: <SiFacebook className="w-4 h-4" />,
-  instagram: <SiInstagram className="w-4 h-4" />,
-  linkedin: <Linkedin className="w-4 h-4" />,
-  threads: <SiThreads className="w-4 h-4" />,
-  x: <SiX className="w-4 h-4" />,
-  theme: <Sun className="w-4 h-4" />,
-  language: <Languages className="w-4 h-4" />,
-  pdf: <Download className="w-4 h-4" />,
-};
+  Github: <SiGithub className="w-4 h-4" />,
+  Email: <Mail className="w-4 h-4" />,
+  Facebook: <SiFacebook className="w-4 h-4" />,
+  Instagram: <SiInstagram className="w-4 h-4" />,
+  Linkedin: <Linkedin className="w-4 h-4" />,
+  Threads: <SiThreads className="w-4 h-4" />,
+  X: <SiX className="w-4 h-4" />,
+  Theme: <Sun className="w-4 h-4" />,
+  Language: <Languages className="w-4 h-4" />,
+  PDF: <Download className="w-4 h-4" />,
+} satisfies Record<ActionType, ReactNode>;

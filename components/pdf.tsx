@@ -9,11 +9,14 @@ export const handlePDFDownload = async () => {
   await html2pdf()
     .set({
       margin: 0,
-      filename: "cv.pdf",
+      filename: "Leandro César.pdf",
       image: { type: "png", quality: 1.0 },
       html2canvas: {
         scale: 2,
         ignoreElements: (el: HTMLElement) => el.classList.contains("hide-for-pdf"),
+        onclone: (clonedDocument: Document) => {
+          clonedDocument.documentElement.classList.remove("dark");
+        },
       },
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
     })
@@ -26,6 +29,7 @@ export function PDFDownloadButton() {
     <div className="fixed bottom-4 right-20 flex items-center hide-for-pdf">
       <button
         onClick={handlePDFDownload}
+        aria-label="Download CV as PDF"
         className="button p-3 rounded-full text-foreground shadow-md hover:opacity-90 transition-all duration-300"
       >
         <svg

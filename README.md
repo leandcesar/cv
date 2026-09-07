@@ -7,7 +7,7 @@ A modern, minimalist, and responsive personal website for showcasing your CV/res
 ## Features
 
 - 🎨 **Modern UI** – Clean and elegant interface
-- ⌨️ **Command Palette** – Press `ctrl + K` to open quick actions
+- ⌨️ **Command Palette** – Press `Ctrl + K` to open quick actions
 - 🌗 **Dark/Light Mode** – Toggle between themes effortlessly
 - 🌍 **Internationalization** – Supports English (EN) and Portuguese (PT)
 - 📱 **Responsive Design** – Looks great on all devices
@@ -18,7 +18,7 @@ A modern, minimalist, and responsive personal website for showcasing your CV/res
 - [Next.js](https://nextjs.org/) – React Framework
 - [TypeScript](https://www.typescriptlang.org/) – Static typing
 - [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS
-- [kbar](https://kbar.vercel.app/) – Command palette interface
+- React – Command palette interface
 - [html2pdf.js](https://github.com/eKoopmans/html2pdf) – Generate PDF from HTML
 
 ## Getting Started

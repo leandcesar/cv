@@ -1,14 +1,9 @@
 import { GeistSans } from "geist/font/sans";
-import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import type React from "react";
 
 import "@/app/globals.css";
-import { contents } from "@/locales";
-
-const content = contents["default"];
-
-export const metadata: Metadata = content.metadata;
+export { metadata } from "@/locales";
 
 export default function RootLayout({
   children,
