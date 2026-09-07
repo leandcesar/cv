@@ -11,44 +11,73 @@ export const en: Content = {
       paragraph: [
         {
           description:
-            "Experienced professional with a strong background in technical leadership, backend development, Artificial Intelligence and automation. Brings strategic focus to high-performance projects through efficient system integration, process optimization, and infrastructure management. Highly analytical, results-driven, and well-organized, with proven ability to build teams, standardize workflows, and deliver high-quality outcomes.",
+            "Experienced professional with a strong background in technical leadership, backend development, Artificial Intelligence, and automation. Brings strategic focus to high-performance projects through efficient system integration, process optimization, and infrastructure management. Highly analytical, results-driven, and organized, with proven ability to build teams, standardize workflows, and deliver high-quality outcomes.",
         },
       ],
+    },
+    {
+      section: "Contact",
+      shortcut: "Email",
+      paragraph: [{ description: "Email: ccleandroc@gmail.com" }],
     },
     {
       section: "Experience",
       shortcut: "Linkedin",
       paragraph: [
         {
-          title: "Tech Lead",
-          subtitle: "Cloudia",
-          subtitleUrl: "https://www.cloudia.com.br/",
-          period: "Jan 2022 - Present",
+          title: "Cloudia",
+          subtitle: "Tech Lead",
+          titleUrl: "https://www.cloudia.com.br/",
+          description:
+            "Leads a team of 6 developers, managing priorities, delivery, and technical execution while contributing to product and architecture decisions. Hands-on development of an AI-powered chatbot for WhatsApp, Facebook, and Instagram, integrated with 30+ scheduling APIs. Own AWS infrastructure, CI/CD, automations, internal tools, code quality, observability, and performance optimization.",
+          period: "Feb 2022 - Present",
         },
         {
-          title: "Python Developer",
-          subtitle: "Cloudia",
-          subtitleUrl: "https://www.cloudia.com.br/",
-          period: "Jan 2021 - Dec 2021",
+          subtitle: "Software Developer",
+          period: "Jun 2021 - Feb 2022",
         },
         {
-          title: "Junior Consultant",
-          subtitle: "BASF",
-          subtitleUrl: "https://www.basf.com/",
-          period: "Jul 2019 - Dec 2019",
+          subtitle: "Software Development Intern",
+          period: "Jan 2021 - Jun 2021",
         },
         {
-          title: "Junior Consultant",
-          subtitle: "Ball Corporation",
-          subtitleUrl: "https://www.ball.com/",
-          period: "Feb 2019 - Jun 2019",
+          title: "BASF",
+          subtitle: "Consultant (Apprentice)",
+          titleUrl: "https://www.basf.com/br/pt",
+          description:
+            "Student consultant in the GEAR/UNIFEI Semester Project (PSU), collaborating with a multidisciplinary team on a real challenge from BASF's Guaratinguetá Chemical Complex.",
+          period: "Aug 2019 - Nov 2019",
         },
         {
-          title: "Tech Lead",
-          subtitle: "Ex Machina UNIFEI",
-          subtitleUrl:
+          title: "UNIFEI (Federal University of Itajubá)",
+          subtitle: "Scholarship Holder",
+          titleUrl: "https://www.unifei.edu.br/",
+          description:
+            "Improved and refactored experiments at UNIFEI's Physics Laboratory.",
+          period: "Jul 2019 - Nov 2019",
+        },
+        {
+          title: "Ball Corporation",
+          subtitle: "Consultant (Apprentice)",
+          titleUrl: "https://www.ball.com/sa",
+          description:
+            "Student consultant through the UNIFEI Semester Project (PSU), collaborating with a multidisciplinary team on a real challenge for Ball Corporation.",
+          period: "Mar 2019 - Jun 2019",
+        },
+        {
+          title: "Ex Machina UNIFEI",
+          subtitle: "Technical Director",
+          titleUrl:
             "https://proex.unifei.edu.br/extensao-tecnologica-e-empresarial/competicao-tecnologica/ex-machina/",
-          period: "Mar 2017 - Dec 2019",
+          period: "Jul 2018 - May 2019",
+        },
+        {
+          subtitle: "Programming Director",
+          period: "Jul 2017 - Jul 2018",
+        },
+        {
+          subtitle: "Programmer",
+          period: "Mar 2017 - Jul 2017",
         },
       ],
     },
@@ -64,14 +93,53 @@ export const en: Content = {
       ],
     },
     {
+      section: "Languages",
+      shortcut: "Language",
+      paragraph: [{ list: ["Portuguese - Native", "English - Advanced"] }],
+    },
+    {
       section: "Projects",
       shortcut: "Github",
       paragraph: [
         {
-          title: "Peak Detection",
+          title: "Enhancer for Letterboxd",
+          titleUrl: "https://enhancer-for-letterboxd.vercel.app/",
+          description:
+            "Enhances the Letterboxd experience with additional features.",
+        },
+        {
+          title: "onthisday.watch",
+          titleUrl: "https://onthisday.watch/",
+          description: "\"What should I watch today?\"",
+        },
+        {
+          title: "PeakDetection",
           titleUrl: "https://github.com/leandcesar/PeakDetection",
           description:
-            "Arduino library for real time peak detection with z-score.",
+            "Arduino library for real-time peak detection in data using z-score.",
+        },
+        {
+          title: "themoviedb",
+          titleUrl: "https://pypi.org/project/themoviedb",
+          description:
+            "Python API wrapper for The Movie Database (TMDb) API v3.",
+        },
+      ],
+    },
+    {
+      section: "Volunteering",
+      paragraph: [
+        {
+          title: "Bota Pra Fazer UNIFEI 2018",
+          titleUrl: "https://www.instagram.com/botaprafazerunifei/",
+          description:
+            "Co-created an organic garden at Lar da Providência de Itajubá to support the institution in growing food for older residents.",
+        },
+        {
+          title: "Bota Pra Fazer UNIFEI 2017",
+          titleUrl: "https://www.instagram.com/botaprafazerunifei/",
+          description:
+            "Developed a math game for children at APAE de Itajubá to support learning of the positional decimal number system. The initiative won 1st place in the Innovation and Creativity category.",
         },
       ],
     },
@@ -88,31 +156,37 @@ export const en: Content = {
             "Cloud Computing",
             "Python",
             "Golang",
-            "n8n",
-            "Make",
-            "AWS",
+            "Git",
+            "GitHub",
+            "GitHub Actions",
             "CI/CD",
+            "Code review",
+            "Deployments",
+            "AWS RDS",
+            "AWS ECS",
+            "AWS EC2",
+            "AWS Lambda",
+            "AWS CloudWatch",
+            "AWS S3",
+            "AWS SQS",
+            "MariaDB",
+            "MySQL",
+            "Postgres",
+            "Redis",
+            "n8n",
+            "RabbitMQ",
+            "LiteLLM",
+            "OpenRouter",
+            "OpenAI",
+            "Gemini",
+            "Make",
             "APIs Restful",
             "GraphQL",
             "Docker",
-            "Git",
-            "MySQL",
-            "Postgres",
             "MongoDB",
-            "Redis",
           ],
         },
       ],
-    },
-    {
-      section: "Languages",
-      shortcut: "Language",
-      paragraph: [{ list: ["Portuguese - Native", "English - Advanced"] }],
-    },
-    {
-      section: "Contact",
-      shortcut: "Email",
-      paragraph: [{ description: "Email: ccleandroc@gmail.com" }],
     },
   ],
   footer: {

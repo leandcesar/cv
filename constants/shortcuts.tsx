@@ -2,17 +2,17 @@ import type { ActionType } from "@/types/action";
 import type { ReactNode } from "react";
 
 export const Shortcuts = {
-  Github: ["g", "h"],
+  Github: ["g"],
   Email: ["e"],
   Facebook: ["f", "b"],
   Instagram: ["i", "g"],
-  Linkedin: ["l", "i"],
-  Threads: ["h", "t"],
+  Linkedin: ["i", "n"],
+  Threads: ["@"],
   X: ["x"],
   Theme: ["t"],
   Language: ["l"],
   Kbar: ["ctrl", "k"],
-  PDF: ["p", "d"],
+  PDF: ["d"],
 } satisfies Record<ActionType, string[]> & { Kbar: string[] };
 
 const shortcutLabels: Record<string, string> = {
