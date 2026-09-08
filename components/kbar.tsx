@@ -299,6 +299,23 @@ export function KBarCommandResults() {
             </div>
           ))}
         </div>
+        <footer className="flex items-center justify-between border-t border-border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <span className="flex items-center gap-1">
+              <kbd className="rounded bg-muted px-1.5 py-0.5">↑</kbd>
+              <kbd className="rounded bg-muted px-1.5 py-0.5">↓</kbd>
+              <span>Select</span>
+            </span>
+            <span className="flex items-center gap-1">
+              <kbd className="rounded bg-muted px-1.5 py-0.5">↵</kbd>
+              <span>Open</span>
+            </span>
+          </div>
+          <span className="flex items-center gap-1">
+            <kbd className="rounded bg-muted px-1.5 py-0.5">Esc</kbd>
+            <span>Close</span>
+          </span>
+        </footer>
       </div>
     </div>,
     document.body
