@@ -154,7 +154,7 @@ export function KBarCommand() {
       <button
         onClick={toggle}
         aria-label="Open command palette"
-        className="button p-3 rounded-full text-foreground shadow-md hover:opacity-90 transition-all duration-300"
+        className="button p-3 rounded-full text-foreground"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

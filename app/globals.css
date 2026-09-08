@@ -91,24 +91,19 @@
    Components
    =============================== */
 
-/* KBar Button */
+/* Floating action buttons */
 .button {
-  background: linear-gradient(145deg, #e0e0e0, #fafafa);
-  box-shadow:
-    0 0 15px rgba(50, 50, 50, 0.3),
-    0 0 30px rgba(50, 50, 50, 0.1),
-    inset 0 0 10px rgba(50, 50, 50, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
+  background: hsl(var(--background) / 0.88);
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+  backdrop-filter: blur(8px);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
 }
 
-.dark .button {
-  background: linear-gradient(145deg, #2a2a2a, #333333);
-  box-shadow:
-    0 0 15px rgba(200, 200, 200, 0.3),
-    0 0 30px rgba(200, 200, 200, 0.1),
-    inset 0 0 10px rgba(200, 200, 200, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.button:hover {
+  background: hsl(var(--accent));
+  border-color: hsl(var(--foreground) / 0.2);
 }
