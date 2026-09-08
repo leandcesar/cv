@@ -5,6 +5,8 @@ export const pt: Content = {
     title: "Leandro César",
     subtitle: "Engenheiro. Desenvolvedor. Líder.",
   },
+  resumeButton: "Ver currículo",
+  homeButton: "Voltar ao início",
   sections: [
     {
       section: "Sobre",
@@ -189,21 +191,27 @@ export const pt: Content = {
   },
   actions: [
     {
-      type: "Theme",
-      name: "Alternar tema",
-      section: "Configurações",
-      keywords: "tema theme escuro dark claro light mode",
-    },
-    {
       type: "Language",
       name: "Alternar idioma",
       section: "Configurações",
       keywords: "idioma linguagem language português english inglês",
     },
     {
+      type: "Theme",
+      name: "Alternar tema",
+      section: "Configurações",
+      keywords: "tema theme escuro dark claro light mode",
+    },
+    {
+      type: "Resume",
+      name: "Ver currículo",
+      section: "Navegação",
+      keywords: "currículo cv início home página inicial",
+    },
+    {
       type: "PDF",
       name: "Baixar como PDF",
-      section: "Baixar",
+      section: "Navegação",
       keywords: "pdf download cv resume",
     },
     {

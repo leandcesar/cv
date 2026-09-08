@@ -5,7 +5,15 @@ import {
   SiThreads,
   SiX,
 } from "@icons-pack/react-simple-icons";
-import { Mail, Sun, Linkedin, Languages, Download } from "lucide-react";
+import {
+  FileText,
+  Home,
+  Mail,
+  Sun,
+  Linkedin,
+  Languages,
+  Download,
+} from "lucide-react";
 import type { ReactNode } from "react";
 import type { ActionType } from "@/types/action";
 
@@ -20,4 +28,6 @@ export const Icons = {
   Theme: <Sun className="w-4 h-4" />,
   Language: <Languages className="w-4 h-4" />,
   PDF: <Download className="w-4 h-4" />,
-} satisfies Record<ActionType, ReactNode>;
+  Resume: <FileText className="w-4 h-4" />,
+  Home: <Home className="w-4 h-4" />,
+} satisfies Record<ActionType, ReactNode> & { Home: ReactNode };

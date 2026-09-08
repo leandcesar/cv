@@ -6,6 +6,7 @@ export type ActionType =
   | "Language"
   | "Linkedin"
   | "PDF"
+  | "Resume"
   | "Theme"
   | "Threads"
   | "X";

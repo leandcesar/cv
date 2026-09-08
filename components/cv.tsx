@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTheme } from "next-themes";
+import { X as CloseIcon } from "lucide-react";
 import {
   KBarProvider,
   KBarCommand,
@@ -30,6 +31,7 @@ export default function CV() {
 function CVContent() {
   const { theme, setTheme } = useTheme();
   const [locale, setLocale] = useState<Locale>("pt");
+  const [showResume, setShowResume] = useState(false);
   const content = contents[locale];
 
   const toggleTheme = useCallback(() => {
@@ -47,11 +49,17 @@ function CVContent() {
     () =>
       content.actions.map((action) => ({
         id: action.type,
-        name: action.name ?? action.type,
+        name:
+          action.type === "Resume" && showResume
+            ? content.homeButton
+            : action.name ?? action.type,
         section: action.section,
         shortcut: Shortcuts[action.type],
         keywords: action.keywords,
-        icon: Icons[action.type],
+        icon:
+          action.type === "Resume" && showResume
+            ? Icons.Home
+            : Icons[action.type],
         perform:
           action.type === "Theme"
             ? toggleTheme
@@ -59,13 +67,27 @@ function CVContent() {
               ? toggleLanguage
               : action.type === "PDF"
                 ? handlePDFDownload
-                : () => window.open(action.url, "_blank"),
+                : action.type === "Resume"
+                  ? () => setShowResume((current) => !current)
+                  : () => window.open(action.url, "_blank"),
       })),
-    [content, toggleTheme, toggleLanguage]
+    [content, showResume, toggleTheme, toggleLanguage]
   );
 
   useRegisterActions(actions);
 
+  return showResume ? (
+    <Resume content={content} />
+  ) : (
+    <main className="min-h-screen flex items-center justify-center px-4 py-12">
+      <KBarCommand />
+      <KBarCommandResults />
+      <Landing content={content} onViewResume={() => setShowResume(true)} />
+    </main>
+  );
+}
+
+function Resume({ content }: { content: Content }) {
   return (
     <main
       id="cv"
@@ -84,6 +106,127 @@ function CVContent() {
       ))}
       {content.footer && <Footer content={content} />}
     </main>
+  );
+}
+
+function Landing({
+  content,
+  onViewResume,
+}: {
+  content: Content;
+  onViewResume: () => void;
+}) {
+  const [isPhotoOpen, setIsPhotoOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isPhotoOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsPhotoOpen(false);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isPhotoOpen]);
+
+  return (
+    <div className="w-full max-w-2xl text-center">
+      <header>
+        <button
+          type="button"
+          onClick={() => setIsPhotoOpen(true)}
+          aria-label="Ampliar foto de Leandro César"
+          className="mx-auto mb-8 block rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <img
+            src="/image-2560x2560.webp"
+            alt="Leandro César"
+            className="h-44 w-44 rounded-full object-cover ring-1 ring-border shadow-2xl md:h-48 md:w-48"
+          />
+        </button>
+        <h1 className="text-4xl font-light mb-2">{content.header?.title}</h1>
+        <p className="text-xl text-muted-foreground font-light mb-4">
+          {content.header?.subtitle}
+        </p>
+        <p className="text-muted-foreground mb-10 hide-for-pdf">
+          <Keys keys={Shortcuts.Kbar} />
+        </p>
+      </header>
+
+      <Navigation content={content} onGoHome={onViewResume} />
+
+      {isPhotoOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Foto ampliada de Leandro César"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setIsPhotoOpen(false);
+          }}
+        >
+          <div className="relative">
+            <img
+              src="/image-2560x2560.webp"
+              alt="Leandro César"
+              className="aspect-square max-h-[min(80vh,720px)] max-w-[min(90vw,720px)] rounded-lg object-cover shadow-2xl"
+            />
+            <button
+              type="button"
+              onClick={() => setIsPhotoOpen(false)}
+              aria-label="Fechar foto ampliada"
+              className="button absolute right-3 top-3 rounded-full p-2 text-foreground"
+            >
+              <CloseIcon className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Navigation({
+  content,
+  isResume = false,
+  onGoHome,
+}: {
+  content: Content;
+  isResume?: boolean;
+  onGoHome: () => void;
+}) {
+  const socialActions = content.actions.filter(
+    (action) =>
+      action.url && ["Linkedin", "Github"].includes(action.type)
+  );
+
+  return (
+    <nav
+      aria-label="Navegação e redes sociais"
+      className="mx-auto mb-14 flex w-full max-w-[168px] flex-wrap justify-center gap-3 hide-for-pdf"
+    >
+      <button
+        type="button"
+        onClick={onGoHome}
+        aria-label={isResume ? content.homeButton : content.resumeButton}
+        title={isResume ? content.homeButton : content.resumeButton}
+        className="button flex h-12 w-12 items-center justify-center rounded-xl text-foreground [&>svg]:h-5 [&>svg]:w-5"
+      >
+        {isResume ? Icons.Home : Icons.Resume}
+      </button>
+      {socialActions.map((action) => (
+        <a
+          key={action.type}
+          href={action.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={action.type}
+          className="button flex h-12 w-12 items-center justify-center rounded-xl text-foreground [&>svg]:h-5 [&>svg]:w-5"
+        >
+          {Icons[action.type]}
+        </a>
+      ))}
+    </nav>
   );
 }
 

@@ -13,6 +13,7 @@ export const Shortcuts = {
   Language: ["l"],
   Kbar: ["ctrl", "k"],
   PDF: ["d"],
+  Resume: ["r"],
 } satisfies Record<ActionType, string[]> & { Kbar: string[] };
 
 const shortcutLabels: Record<string, string> = {
