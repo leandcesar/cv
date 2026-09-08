@@ -44,24 +44,18 @@ export const pt: Content = {
           title: "BASF",
           subtitle: "Consultor (Aprendiz)",
           titleUrl: "https://www.basf.com/br/pt",
-          description:
-            "Consultor estudantil no Projeto GEAR/Projeto Semestral UNIFEI (PSU), colaborando com uma equipe multidisciplinar em um desafio real do Complexo Químico da BASF em Guaratinguetá.",
           period: "Ago de 2019 - Nov de 2019",
         },
         {
           title: "UNIFEI (Universidade Federal de Itajubá)",
           subtitle: "Bolsista",
           titleUrl: "https://www.unifei.edu.br/",
-          description:
-            "Aprimoramento e refatoração de experimentos no Laboratório de Física da UNIFEI.",
           period: "Jul de 2019 - Nov de 2019",
         },
         {
           title: "Ball Corporation",
           subtitle: "Consultor (Aprendiz)",
           titleUrl: "https://www.ball.com/sa",
-          description:
-            "Consultor estudantil no Projeto Semestral UNIFEI (PSU), colaborando com uma equipe multidisciplinar em um desafio real para a Ball Corporation.",
           period: "Mar de 2019 - Jun de 2019",
         },
         {

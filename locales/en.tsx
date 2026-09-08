@@ -44,24 +44,18 @@ export const en: Content = {
           title: "BASF",
           subtitle: "Consultant (Apprentice)",
           titleUrl: "https://www.basf.com/br/pt",
-          description:
-            "Student consultant in the GEAR/UNIFEI Semester Project (PSU), collaborating with a multidisciplinary team on a real challenge from BASF's Guaratinguetá Chemical Complex.",
           period: "Aug 2019 - Nov 2019",
         },
         {
           title: "UNIFEI (Federal University of Itajubá)",
           subtitle: "Scholarship Holder",
           titleUrl: "https://www.unifei.edu.br/",
-          description:
-            "Improved and refactored experiments at UNIFEI's Physics Laboratory.",
           period: "Jul 2019 - Nov 2019",
         },
         {
           title: "Ball Corporation",
           subtitle: "Consultant (Apprentice)",
           titleUrl: "https://www.ball.com/sa",
-          description:
-            "Student consultant through the UNIFEI Semester Project (PSU), collaborating with a multidisciplinary team on a real challenge for Ball Corporation.",
           period: "Mar 2019 - Jun 2019",
         },
         {
