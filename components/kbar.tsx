@@ -18,6 +18,7 @@ export type CommandAction = {
   name: string;
   section: string;
   shortcut?: string[];
+  shortcutAlternatives?: string[][];
   keywords?: string;
   icon?: ReactNode;
   perform?: () => void | Promise<void>;
@@ -69,11 +70,20 @@ export function KBarProvider({ children }: { children: ReactNode }) {
         ...shortcutSequence.current,
         event.key.toLowerCase(),
       ];
-      const matchingActions = actions.filter((action) =>
-        action.shortcut?.every(
-          (shortcut, index) => shortcut.toLowerCase() === sequence[index]
-        ) && action.shortcut.length >= sequence.length
-      );
+      const matchingActions = actions.filter((action) => {
+        const shortcuts = [
+          ...(action.shortcut ? [action.shortcut] : []),
+          ...(action.shortcutAlternatives ?? []),
+        ];
+
+        return shortcuts.some(
+          (shortcut) =>
+            shortcut.length >= sequence.length &&
+            shortcut.every(
+              (key, index) => key.toLowerCase() === sequence[index]
+            )
+        );
+      });
 
       if (matchingActions.length === 0) {
         shortcutSequence.current = [];
@@ -81,7 +91,11 @@ export function KBarProvider({ children }: { children: ReactNode }) {
       }
 
       const action = matchingActions.find(
-        (candidate) => candidate.shortcut?.length === sequence.length
+        (candidate) =>
+          [
+            ...(candidate.shortcut ? [candidate.shortcut] : []),
+            ...(candidate.shortcutAlternatives ?? []),
+          ].some((shortcut) => shortcut.length === sequence.length)
       );
 
       event.preventDefault();
@@ -283,9 +297,9 @@ export function KBarCommandResults() {
                   {action.icon && <span className="text-lg">{action.icon}</span>}
                   <span>{action.name}</span>
                 </span>
-                {action.shortcut && (
+                {(action.shortcut?.length || action.shortcutAlternatives?.length) ? (
                   <span className="flex gap-1">
-                    {action.shortcut.map((shortcut, shortcutIndex) => (
+                    {action.shortcut?.map((shortcut, shortcutIndex) => (
                       <kbd
                         key={`${shortcut}-${shortcutIndex}`}
                         className="px-2 py-1 text-xs rounded bg-muted"
@@ -293,8 +307,30 @@ export function KBarCommandResults() {
                         {formatShortcut(shortcut)}
                       </kbd>
                     ))}
+                    {action.shortcutAlternatives?.map(
+                      (alternative, alternativeIndex) => (
+                        <span
+                          key={`alternative-${alternativeIndex}`}
+                          className="flex items-center gap-1"
+                        >
+                          {alternativeIndex > 0 && (
+                            <span className="px-1 text-xs text-muted-foreground">
+                              or
+                            </span>
+                          )}
+                          {alternative.map((shortcut, shortcutIndex) => (
+                            <kbd
+                              key={`${shortcut}-${shortcutIndex}`}
+                              className="px-2 py-1 text-xs rounded bg-muted"
+                            >
+                              {formatShortcut(shortcut)}
+                            </kbd>
+                          ))}
+                        </span>
+                      )
+                    )}
                   </span>
-                )}
+                ) : null}
               </button>
             </div>
           ))}

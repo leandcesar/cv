@@ -12,7 +12,11 @@ import {
 } from "@/components/kbar";
 import { PDFDownloadButton, handlePDFDownload } from "@/components/pdf";
 import { Icons } from "@/constants/icons";
-import { Keys, Shortcuts } from "@/constants/shortcuts";
+import {
+  Keys,
+  ShortcutAlternatives,
+  Shortcuts,
+} from "@/constants/shortcuts";
 import { contents, locales, type Locale } from "@/locales";
 import type { Content } from "@/types/content";
 import type {
@@ -55,6 +59,7 @@ function CVContent() {
             : action.name ?? action.type,
         section: action.section,
         shortcut: Shortcuts[action.type],
+        shortcutAlternatives: ShortcutAlternatives[action.type],
         keywords: action.keywords,
         icon:
           action.type === "Resume" && showResume

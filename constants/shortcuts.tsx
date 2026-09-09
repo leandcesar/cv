@@ -4,17 +4,21 @@ import type { ReactNode } from "react";
 export const Shortcuts = {
   Github: ["g"],
   Email: ["e"],
-  Facebook: ["f", "b"],
-  Instagram: ["i", "g"],
+  Facebook: [],
+  Instagram: [],
   Linkedin: ["i", "n"],
-  Threads: ["@"],
-  X: ["x"],
+  Threads: [],
+  X: [],
   Theme: ["t"],
   Language: ["l"],
   Kbar: ["ctrl", "k"],
   PDF: ["d"],
-  Resume: ["r"],
+  Resume: [],
 } satisfies Record<ActionType, string[]> & { Kbar: string[] };
+
+export const ShortcutAlternatives: Partial<Record<ActionType, string[][]>> = {
+  Resume: [["arrowleft"], ["arrowright"]],
+};
 
 const shortcutLabels: Record<string, string> = {
   ctrl: "Ctrl",
@@ -22,6 +26,8 @@ const shortcutLabels: Record<string, string> = {
   shift: "Shift",
   enter: "Enter",
   esc: "Esc",
+  arrowleft: "←",
+  arrowright: "→",
 };
 
 export function formatShortcut(key: string) {
