@@ -1,4 +1,5 @@
 import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import { ThemeProvider } from "next-themes";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -31,7 +32,7 @@ export default async function LocaleLayout({ children, params }: {
   if (!isLocale(locale)) notFound();
   return (
     <html lang={languageTags[locale]} suppressHydrationWarning>
-      <body className={GeistSans.className}>
+      <body className={`${GeistSans.className} ${GeistMono.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange storageKey="cv-theme">
           {children}
         </ThemeProvider>
