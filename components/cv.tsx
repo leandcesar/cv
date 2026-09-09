@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { PDFDownloadButton } from "@/components/pdf";
+import { CopyEmail } from "@/components/copy-email";
 import type { Content } from "@/types/content";
 import type { Paragraph, Section } from "@/types/section";
 import type { UI } from "@/locales/ui";
@@ -83,7 +84,12 @@ export default function Resume({ content, ui }: { content: Content; ui: UI }) {
       <p className="headline">{ui.headline}</p>
       <address className="resume-contact">
         {content.actions.filter((action) => ["Email", "Linkedin", "Github"].includes(action.type)).map((action) =>
-          <a key={action.type} href={action.url}>{action.url?.replace(/^mailto:/, "").replace(/^https:\/\//, "")}</a>)}
+          action.type === "Email" && action.url ? <span key={action.type} className="resume-email">
+            <a href={action.url}>{action.url.replace(/^mailto:/, "")}</a>
+            <CopyEmail email={action.url.replace(/^mailto:/, "")}
+              copyLabel={ui.copyEmail} copiedLabel={ui.emailCopied} errorLabel={ui.emailCopyError} />
+          </span>
+            : <a key={action.type} href={action.url}>{action.url?.replace(/^https:\/\//, "")}<ArrowUpRight size={14} aria-hidden="true" /></a>)}
       </address>
       <PDFDownloadButton label={ui.pdf} fallback={ui.printFallback} />
     </header>

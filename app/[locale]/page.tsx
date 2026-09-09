@@ -4,7 +4,7 @@ import { getContent } from "@/locales";
 import { getUI } from "@/locales/ui";
 import { isLocale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/site";
-import { SiteHeader, SiteFooter } from "@/components/site-shell";
+import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { Portrait } from "@/components/portrait";
 import { StructuredData } from "@/components/structured-data";
 

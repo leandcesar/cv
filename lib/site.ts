@@ -24,7 +24,7 @@ export function pageMetadata(locale: Locale, resume = false): Metadata {
       languages: { "pt-BR": `/pt${suffix}`, en: `/en${suffix}`, "x-default": `/pt${suffix}` },
     },
     openGraph: {
-      type: "profile", title, description, url: path, siteName: personName,
+      type: "profile", title, description, url: `${siteUrl}${path}`, siteName: personName,
       locale: locale === "pt" ? "pt_BR" : "en_US",
       alternateLocale: locale === "pt" ? "en_US" : "pt_BR",
       firstName: "Leandro", lastName: "César", images: [image],

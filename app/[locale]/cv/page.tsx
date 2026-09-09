@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Resume from "@/components/cv";
-import { SiteHeader, SiteFooter } from "@/components/site-shell";
+import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { StructuredData } from "@/components/structured-data";
 import { getContent } from "@/locales";
 import { getUI } from "@/locales/ui";
