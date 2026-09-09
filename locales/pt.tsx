@@ -5,10 +5,12 @@ export const pt: Content = {
     title: "Leandro César",
     subtitle: "Engenheiro. Desenvolvedor. Líder.",
   },
-  resumeButton: "Ver currículo",
+  resumeButton: "Currículo",
   homeButton: "Voltar ao início",
+  shortcutAlternativeLabel: "ou",
   sections: [
     {
+      id: "about",
       section: "Sobre",
       paragraph: [
         {
@@ -18,11 +20,13 @@ export const pt: Content = {
       ],
     },
     {
+      id: "contact",
       section: "Contato",
       shortcut: "Email",
       paragraph: [{ description: "E-mail: ccleandroc@gmail.com" }],
     },
     {
+      id: "experience",
       section: "Experiências",
       shortcut: "Linkedin",
       paragraph: [
@@ -33,32 +37,43 @@ export const pt: Content = {
           description:
             "Lidera 6 desenvolvedores, gerenciando prioridades, entregas e execução técnica, além de contribuir para decisões de produto e arquitetura. Desenvolve chatbot com IA para WhatsApp, Facebook e Instagram, integrado a 30+ APIs de agendamento. Responsável por AWS, CI/CD, automações, ferramentas internas, qualidade, observabilidade e performance.",
           period: "Fev de 2022 - Presente",
+          startDate: "2022-02",
         },
         {
           subtitle: "Desenvolvedor de Software",
           period: "Jun de 2021 - Fev de 2022",
+          startDate: "2021-06",
+          endDate: "2022-02",
         },
         {
           subtitle: "Estagiário em Desenvolvimento de Software",
           period: "Jan de 2021 - Jun de 2021",
+          startDate: "2021-01",
+          endDate: "2021-06",
         },
         {
           title: "BASF",
           subtitle: "Consultor (Aprendiz)",
           titleUrl: "https://www.basf.com/br/pt",
           period: "Ago de 2019 - Nov de 2019",
+          startDate: "2019-08",
+          endDate: "2019-11",
         },
         {
           title: "UNIFEI (Universidade Federal de Itajubá)",
           subtitle: "Bolsista",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jul de 2019 - Nov de 2019",
+          startDate: "2019-07",
+          endDate: "2019-11",
         },
         {
           title: "Ball Corporation",
           subtitle: "Consultor (Aprendiz)",
           titleUrl: "https://www.ball.com/sa",
           period: "Mar de 2019 - Jun de 2019",
+          startDate: "2019-03",
+          endDate: "2019-06",
         },
         {
           title: "Ex Machina UNIFEI",
@@ -66,18 +81,25 @@ export const pt: Content = {
           titleUrl:
             "https://proex.unifei.edu.br/extensao-tecnologica-e-empresarial/competicao-tecnologica/ex-machina/",
           period: "Jul de 2018 - Mai de 2019",
+          startDate: "2018-07",
+          endDate: "2019-05",
         },
         {
           subtitle: "Diretor de Programação",
           period: "Jul de 2017 - Jul de 2018",
+          startDate: "2017-07",
+          endDate: "2018-07",
         },
         {
           subtitle: "Programador",
           period: "Mar de 2017 - Jul de 2017",
+          startDate: "2017-03",
+          endDate: "2017-07",
         },
       ],
     },
     {
+      id: "education",
       section: "Formação",
       paragraph: [
         {
@@ -85,15 +107,19 @@ export const pt: Content = {
           subtitle: "Graduação em Engenharia de Controle e Automação",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jan de 2016 - Dez de 2020",
+          startDate: "2016-01",
+          endDate: "2020-12",
         },
       ],
     },
     {
+      id: "languages",
       section: "Idiomas",
       shortcut: "Language",
       paragraph: [{ list: ["Português - Nativo", "Inglês - Avançado"] }],
     },
     {
+      id: "projects",
       section: "Projetos",
       shortcut: "Github",
       paragraph: [
@@ -123,6 +149,7 @@ export const pt: Content = {
       ],
     },
     {
+      id: "volunteering",
       section: "Voluntariado",
       paragraph: [
         {
@@ -140,6 +167,7 @@ export const pt: Content = {
       ],
     },
     {
+      id: "skills",
       section: "Habilidades",
       paragraph: [
         {
@@ -204,7 +232,7 @@ export const pt: Content = {
     },
     {
       type: "Resume",
-      name: "Ver currículo",
+      name: "Currículo",
       section: "Navegação",
       keywords: "currículo cv início home página inicial",
     },

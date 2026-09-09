@@ -1,360 +1,114 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type KeyboardEvent as ReactKeyboardEvent,
-  type ReactNode,
-} from "react";
-import { createPortal } from "react-dom";
-import { formatShortcut, useIsMac } from "@/constants/shortcuts";
+import { useEffect, useRef, useState } from "react";
+import { Command, Search } from "lucide-react";
+import { Dialog } from "@/components/ui/dialog";
+import type { UI } from "@/locales/ui";
 
 export type CommandAction = {
   id: string;
   name: string;
   section: string;
-  shortcut?: string[];
-  shortcutAlternatives?: string[][];
   keywords?: string;
-  icon?: ReactNode;
-  perform?: () => void | Promise<void>;
+  href?: string;
+  perform?: () => void;
 };
 
-type CommandPaletteContextValue = {
-  actions: CommandAction[];
-  isOpen: boolean;
-  toggle: () => void;
-  close: () => void;
-  registerActions: (actions: CommandAction[]) => void;
-};
+const normalize = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
-const CommandPaletteContext = createContext<CommandPaletteContextValue | null>(
-  null
-);
-
-export function KBarProvider({ children }: { children: ReactNode }) {
-  const [actions, setActions] = useState<CommandAction[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const shortcutSequence = useRef<string[]>([]);
-  const shortcutTimeout = useRef<number | undefined>(undefined);
-
-  useEffect(() => {
-    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        setIsOpen((open) => !open);
-      }
-
-      if (event.key === "Escape") {
-        setIsOpen(false);
-        shortcutSequence.current = [];
-        return;
-      }
-
-      const target = event.target;
-      if (
-        target instanceof HTMLInputElement ||
-        target instanceof HTMLTextAreaElement ||
-        (target instanceof HTMLElement && target.isContentEditable)
-      ) {
-        return;
-      }
-
-      if (event.ctrlKey || event.metaKey || event.altKey) return;
-
-      const sequence = [
-        ...shortcutSequence.current,
-        event.key.toLowerCase(),
-      ];
-      const matchingActions = actions.filter((action) => {
-        const shortcuts = [
-          ...(action.shortcut ? [action.shortcut] : []),
-          ...(action.shortcutAlternatives ?? []),
-        ];
-
-        return shortcuts.some(
-          (shortcut) =>
-            shortcut.length >= sequence.length &&
-            shortcut.every(
-              (key, index) => key.toLowerCase() === sequence[index]
-            )
-        );
-      });
-
-      if (matchingActions.length === 0) {
-        shortcutSequence.current = [];
-        return;
-      }
-
-      const action = matchingActions.find(
-        (candidate) =>
-          [
-            ...(candidate.shortcut ? [candidate.shortcut] : []),
-            ...(candidate.shortcutAlternatives ?? []),
-          ].some((shortcut) => shortcut.length === sequence.length)
-      );
-
-      event.preventDefault();
-      if (action) {
-        shortcutSequence.current = [];
-        if (shortcutTimeout.current !== undefined) {
-          window.clearTimeout(shortcutTimeout.current);
-        }
-        setIsOpen(false);
-        void action.perform?.();
-        return;
-      }
-
-      shortcutSequence.current = sequence;
-      if (shortcutTimeout.current !== undefined) {
-        window.clearTimeout(shortcutTimeout.current);
-      }
-      shortcutTimeout.current = window.setTimeout(() => {
-        shortcutSequence.current = [];
-      }, 1000);
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      if (shortcutTimeout.current !== undefined) {
-        window.clearTimeout(shortcutTimeout.current);
-      }
-    };
-  }, [actions]);
-
-  const value = useMemo(
-    () => ({
-      actions,
-      isOpen,
-      toggle: () => setIsOpen((open) => !open),
-      close: () => setIsOpen(false),
-      registerActions: setActions,
-    }),
-    [actions, isOpen]
-  );
-
-  return (
-    <CommandPaletteContext.Provider value={value}>
-      {children}
-    </CommandPaletteContext.Provider>
-  );
-}
-
-function useCommandPalette() {
-  const context = useContext(CommandPaletteContext);
-  if (!context) {
-    throw new Error("Command palette components must be inside KBarProvider");
-  }
-  return context;
-}
-
-export function useRegisterActions(actions: CommandAction[]) {
-  const { registerActions } = useCommandPalette();
-
-  useEffect(() => {
-    registerActions(actions);
-  }, [actions, registerActions]);
-}
-
-export function KBarCommand() {
-  const { toggle } = useCommandPalette();
-  return (
-    <div className="fixed bottom-4 right-4 flex items-center hide-for-pdf">
-      <button
-        onClick={toggle}
-        aria-label="Open command palette"
-        className="button flex h-11 w-11 items-center justify-center rounded-full p-0 text-foreground"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-command"
-        >
-          <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
-        </svg>
-      </button>
-    </div>
-  );
-}
-
-export function KBarCommandResults() {
-  const { actions, isOpen, close } = useCommandPalette();
-  const isMac = useIsMac();
+export function CommandPalette({ actions, ui }: { actions: CommandAction[]; ui: UI }) {
+  const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [active, setActive] = useState(0);
+  const [isMac, setIsMac] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const query = normalize(search).trim();
+  const filtered = actions.filter((action) => query.split(/\s+/).every((word) =>
+    normalize(`${action.name} ${action.keywords ?? ""} ${action.section}`).includes(word)));
+  const groups = Array.from(new Set(filtered.map((action) => action.section)));
+  const ordered = groups.flatMap((group) => filtered.filter((action) => action.section === group));
+  const activeIndex = Math.min(active, ordered.length - 1);
 
-  const filteredActions = useMemo(() => {
-    const query = search.trim().toLowerCase();
-    if (!query) return actions;
-
-    return actions.filter((action) =>
-      `${action.name} ${action.keywords ?? ""}`.toLowerCase().includes(query)
-    );
-  }, [actions, search]);
-
-  useEffect(() => {
-    if (isOpen) {
-      setSearch("");
-      setActiveIndex(0);
-      searchRef.current?.focus();
-    }
-  }, [isOpen]);
+  function openPalette() {
+    setSearch("");
+    setActive(0);
+    setOpen(true);
+  }
 
   useEffect(() => {
-    setActiveIndex((index) =>
-      filteredActions.length === 0
-        ? 0
-        : Math.min(index, filteredActions.length - 1)
-    );
-  }, [filteredActions.length]);
-
-  if (!isOpen || typeof document === "undefined") return null;
-
-  const runAction = (action: CommandAction) => {
-    close();
-    void action.perform?.();
-  };
-
-  const handleSearchKeyDown = (
-    event: ReactKeyboardEvent<HTMLInputElement>
-  ) => {
-    if (event.key === "ArrowDown") {
+    setIsMac(/Mac|iPhone|iPad/.test(navigator.platform));
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.isComposing || event.repeat || event.altKey || event.shiftKey) return;
+      if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== "k") return;
+      // Do not open a second modal or intercept shortcuts while editing another field.
+      if (document.querySelector("dialog[open]") && !open) return;
+      const target = event.target;
+      if (!open && target instanceof HTMLElement && target.closest("input, textarea, select, [contenteditable='true']")) return;
       event.preventDefault();
-      setActiveIndex((index) =>
-        filteredActions.length === 0
-          ? 0
-          : (index + 1) % filteredActions.length
-      );
-    }
+      if (open) setOpen(false);
+      else { setSearch(""); setActive(0); setOpen(true); }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
-    if (event.key === "ArrowUp") {
-      event.preventDefault();
-      setActiveIndex((index) =>
-        filteredActions.length === 0
-          ? 0
-          : (index - 1 + filteredActions.length) % filteredActions.length
-      );
-    }
+  useEffect(() => {
+    if (open) resultsRef.current?.querySelector('[aria-selected="true"]')?.scrollIntoView({ block: "nearest" });
+  }, [activeIndex, open, search]);
 
-    if (event.key === "Enter" && filteredActions[activeIndex]) {
-      event.preventDefault();
-      runAction(filteredActions[activeIndex]);
-    }
-  };
+  function run(action: CommandAction) {
+    setOpen(false);
+    if (action.href) window.location.assign(action.href);
+    else action.perform?.();
+  }
 
-  return createPortal(
-    <div
-      className="z-50 bg-black/50 fixed inset-0 flex items-center justify-center"
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget) close();
-      }}
-    >
-      <div className="max-w-xl w-full bg-background rounded-lg overflow-hidden shadow-xl">
-        <input
-          ref={searchRef}
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          onKeyDown={handleSearchKeyDown}
-          aria-label="Search commands"
-          className="py-3 px-4 text-base w-full box-border outline-none border-none bg-transparent text-foreground"
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-          spellCheck={false}
-          data-bwignore="true"
-          data-1p-ignore="true"
-          data-lpignore="true"
-        />
-        <div role="listbox">
-          {filteredActions.map((action, index) => (
-            <div key={action.id}>
-              {(index === 0 || filteredActions[index - 1].section !== action.section) && (
-                <div className="px-4 py-2 text-xs uppercase text-muted-foreground">
-                  {action.section}
-                </div>
-              )}
-              <button
-                type="button"
-                role="option"
-                aria-selected={activeIndex === index}
-                onClick={() => runAction(action)}
-                className={`px-4 py-2 flex items-center justify-between cursor-pointer w-full text-left border-0 ${activeIndex === index ? "bg-accent" : "bg-transparent"
-                  }`}
-              >
-                <span className="flex items-center gap-2">
-                  {action.icon && <span className="text-lg">{action.icon}</span>}
-                  <span>{action.name}</span>
-                </span>
-                {(action.shortcut?.length || action.shortcutAlternatives?.length) ? (
-                  <span className="flex gap-1">
-                    {action.shortcut?.map((shortcut, shortcutIndex) => (
-                      <kbd
-                        key={`${shortcut}-${shortcutIndex}`}
-                        className="px-2 py-1 text-xs rounded bg-muted"
-                      >
-                        {formatShortcut(shortcut, isMac)}
-                      </kbd>
-                    ))}
-                    {action.shortcutAlternatives?.map(
-                      (alternative, alternativeIndex) => (
-                        <span
-                          key={`alternative-${alternativeIndex}`}
-                          className="flex items-center gap-1"
-                        >
-                          {alternativeIndex > 0 && (
-                            <span className="px-1 text-xs text-muted-foreground">
-                              or
-                            </span>
-                          )}
-                          {alternative.map((shortcut, shortcutIndex) => (
-                            <kbd
-                              key={`${shortcut}-${shortcutIndex}`}
-                              className="px-2 py-1 text-xs rounded bg-muted"
-                            >
-                              {formatShortcut(shortcut, isMac)}
-                            </kbd>
-                          ))}
-                        </span>
-                      )
-                    )}
-                  </span>
-                ) : null}
-              </button>
-            </div>
-          ))}
-        </div>
-        <footer className="flex items-center justify-between border-t border-border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <span className="flex items-center gap-1">
-              <kbd className="rounded bg-muted px-1.5 py-0.5">↑</kbd>
-              <kbd className="rounded bg-muted px-1.5 py-0.5">↓</kbd>
-              <span>Select</span>
-            </span>
-            <span className="flex items-center gap-1">
-              <kbd className="rounded bg-muted px-1.5 py-0.5">↵</kbd>
-              <span>Open</span>
-            </span>
-          </div>
-          <span className="flex items-center gap-1">
-            <kbd className="rounded bg-muted px-1.5 py-0.5">Esc</kbd>
-            <span>Close</span>
-          </span>
-        </footer>
+  return <>
+    <button type="button" className="utility-button command-trigger" onClick={openPalette}
+      aria-haspopup="dialog" aria-keyshortcuts="Control+k Meta+k" aria-describedby="command-shortcut">
+      <Command size={16} aria-hidden="true" /><span>{ui.commands}</span>
+      <kbd aria-hidden="true">{isMac ? "⌘" : "Ctrl"} K</kbd>
+    </button>
+    <span id="command-shortcut" className="sr-only">Ctrl + K {ui.or} ⌘ + K</span>
+    <Dialog open={open} onClose={() => setOpen(false)} title={ui.commands} closeLabel={ui.close} initialFocus={searchRef}>
+      <div className="command-search">
+        <Search size={18} aria-hidden="true" />
+        <input ref={searchRef} role="combobox" aria-expanded={open} aria-controls="command-results"
+          aria-autocomplete="list" aria-activedescendant={activeIndex >= 0 ? `command-${ordered[activeIndex].id}` : undefined}
+          aria-label={ui.searchLabel} placeholder={ui.search} value={search}
+          onChange={(event) => { setSearch(event.target.value); setActive(0); }}
+          onKeyDown={(event) => {
+            if (event.nativeEvent.isComposing) return;
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+              event.preventDefault();
+              const delta = event.key === "ArrowDown" ? 1 : -1;
+              if (ordered.length) setActive((activeIndex + delta + ordered.length) % ordered.length);
+            }
+            if (event.key === "Enter" && ordered[activeIndex]) {
+              event.preventDefault(); run(ordered[activeIndex]);
+            }
+          }}
+          autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck={false} />
       </div>
-    </div>,
-    document.body
-  );
+      <div ref={resultsRef} id="command-results" className="command-results" role="listbox" aria-label={ui.results}>
+        {groups.map((group, groupIndex) => <div role="group" aria-labelledby={`command-group-${groupIndex}`} key={group}>
+          <div id={`command-group-${groupIndex}`} className="command-group" role="presentation">{group}</div>
+          {ordered.filter((action) => action.section === group).map((action) => {
+            const index = ordered.indexOf(action);
+            return <div id={`command-${action.id}`} key={action.id} role="option" aria-selected={activeIndex === index}
+              className="command-option" onMouseDown={(event) => event.preventDefault()}
+              onClick={() => run(action)}>
+              <span>{action.name}</span><span aria-hidden="true">{action.href?.startsWith("https:") ? "↗" : "↵"}</span>
+            </div>;
+          })}
+        </div>)}
+      </div>
+      <p role="status" className={ordered.length ? "sr-only" : "command-empty"}>
+        {ordered.length ? `${ui.results}: ${ordered.length}` : ui.noResults}
+      </p>
+      <div className="command-help small muted">
+        <span><kbd>↑ ↓</kbd> {ui.navigate}</span><span><kbd>↵</kbd> {ui.open}</span><span><kbd>Esc</kbd> {ui.close}</span>
+      </div>
+    </Dialog>
+  </>;
 }

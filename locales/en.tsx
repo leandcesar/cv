@@ -5,10 +5,12 @@ export const en: Content = {
     title: "Leandro César",
     subtitle: "Engineer. Developer. Leader.",
   },
-  resumeButton: "View resume",
+  resumeButton: "Resume",
   homeButton: "Back to home",
+  shortcutAlternativeLabel: "or",
   sections: [
     {
+      id: "about",
       section: "About",
       paragraph: [
         {
@@ -18,11 +20,13 @@ export const en: Content = {
       ],
     },
     {
+      id: "contact",
       section: "Contact",
       shortcut: "Email",
       paragraph: [{ description: "Email: ccleandroc@gmail.com" }],
     },
     {
+      id: "experience",
       section: "Experience",
       shortcut: "Linkedin",
       paragraph: [
@@ -31,34 +35,45 @@ export const en: Content = {
           subtitle: "Tech Lead",
           titleUrl: "https://www.cloudia.com.br/",
           description:
-            "Leads a team of 6 developers, managing priorities, delivery, and technical execution while contributing to product and architecture decisions. Hands-on development of an AI-powered chatbot for WhatsApp, Facebook, and Instagram, integrated with 30+ scheduling APIs. Own AWS infrastructure, CI/CD, automations, internal tools, code quality, observability, and performance optimization.",
+            "Leads a team of 6 developers, managing priorities, delivery, and technical execution while contributing to product and architecture decisions. Hands-on development of an AI-powered chatbot for WhatsApp, Facebook, and Instagram, integrated with 30+ scheduling APIs. Owns AWS infrastructure, CI/CD, automations, internal tools, code quality, observability, and performance optimization.",
           period: "Feb 2022 - Present",
+          startDate: "2022-02",
         },
         {
           subtitle: "Software Developer",
           period: "Jun 2021 - Feb 2022",
+          startDate: "2021-06",
+          endDate: "2022-02",
         },
         {
           subtitle: "Software Development Intern",
           period: "Jan 2021 - Jun 2021",
+          startDate: "2021-01",
+          endDate: "2021-06",
         },
         {
           title: "BASF",
           subtitle: "Consultant (Apprentice)",
           titleUrl: "https://www.basf.com/br/pt",
           period: "Aug 2019 - Nov 2019",
+          startDate: "2019-08",
+          endDate: "2019-11",
         },
         {
           title: "UNIFEI (Federal University of Itajubá)",
           subtitle: "Scholarship Holder",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jul 2019 - Nov 2019",
+          startDate: "2019-07",
+          endDate: "2019-11",
         },
         {
           title: "Ball Corporation",
           subtitle: "Consultant (Apprentice)",
           titleUrl: "https://www.ball.com/sa",
           period: "Mar 2019 - Jun 2019",
+          startDate: "2019-03",
+          endDate: "2019-06",
         },
         {
           title: "Ex Machina UNIFEI",
@@ -66,34 +81,45 @@ export const en: Content = {
           titleUrl:
             "https://proex.unifei.edu.br/extensao-tecnologica-e-empresarial/competicao-tecnologica/ex-machina/",
           period: "Jul 2018 - May 2019",
+          startDate: "2018-07",
+          endDate: "2019-05",
         },
         {
           subtitle: "Programming Director",
           period: "Jul 2017 - Jul 2018",
+          startDate: "2017-07",
+          endDate: "2018-07",
         },
         {
           subtitle: "Programmer",
           period: "Mar 2017 - Jul 2017",
+          startDate: "2017-03",
+          endDate: "2017-07",
         },
       ],
     },
     {
+      id: "education",
       section: "Education",
       paragraph: [
         {
           title: "UNIFEI (Federal University of Itajubá)",
-          subtitle: "Graduation in Control and Automation Engineering",
+          subtitle: "Degree in Control and Automation Engineering",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jan 2016 - Dec 2020",
+          startDate: "2016-01",
+          endDate: "2020-12",
         },
       ],
     },
     {
+      id: "languages",
       section: "Languages",
       shortcut: "Language",
       paragraph: [{ list: ["Portuguese - Native", "English - Advanced"] }],
     },
     {
+      id: "projects",
       section: "Projects",
       shortcut: "Github",
       paragraph: [
@@ -123,6 +149,7 @@ export const en: Content = {
       ],
     },
     {
+      id: "volunteering",
       section: "Volunteering",
       paragraph: [
         {
@@ -140,6 +167,7 @@ export const en: Content = {
       ],
     },
     {
+      id: "skills",
       section: "Skills",
       paragraph: [
         {
