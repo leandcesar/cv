@@ -26,11 +26,11 @@ export const handlePDFDownload = async () => {
 
 export function PDFDownloadButton() {
   return (
-    <div className="fixed bottom-4 right-20 flex items-center hide-for-pdf">
+    <div className="fixed bottom-4 right-[4.25rem] flex items-center hide-for-pdf">
       <button
         onClick={handlePDFDownload}
         aria-label="Download CV as PDF"
-        className="button p-3 rounded-full text-foreground"
+        className="button flex h-11 w-11 items-center justify-center rounded-full p-0 text-foreground"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

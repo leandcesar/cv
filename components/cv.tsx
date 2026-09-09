@@ -64,7 +64,9 @@ function CVContent() {
         icon:
           action.type === "Resume" && showResume
             ? Icons.Home
-            : Icons[action.type],
+            : action.type === "Theme" && theme !== "dark"
+              ? Icons.Moon
+              : Icons[action.type],
         perform:
           action.type === "Theme"
             ? toggleTheme
@@ -76,19 +78,69 @@ function CVContent() {
                   ? () => setShowResume((current) => !current)
                   : () => window.open(action.url, "_blank"),
       })),
-    [content, showResume, toggleTheme, toggleLanguage]
+    [content, showResume, theme, toggleTheme, toggleLanguage]
   );
 
   useRegisterActions(actions);
 
-  return showResume ? (
-    <Resume content={content} />
-  ) : (
-    <main className="min-h-screen flex items-center justify-center px-4 py-12">
-      <KBarCommand />
-      <KBarCommandResults />
-      <Landing content={content} onViewResume={() => setShowResume(true)} />
-    </main>
+  return (
+    <>
+      <ThemeLanguageControls
+        content={content}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        onToggleLanguage={toggleLanguage}
+      />
+      {showResume ? (
+        <Resume content={content} />
+      ) : (
+        <main className="min-h-screen flex items-center justify-center px-4 py-12">
+          <KBarCommand />
+          <KBarCommandResults />
+          <Landing content={content} onViewResume={() => setShowResume(true)} />
+        </main>
+      )}
+    </>
+  );
+}
+
+function ThemeLanguageControls({
+  content,
+  theme,
+  onToggleTheme,
+  onToggleLanguage,
+}: {
+  content: Content;
+  theme?: string;
+  onToggleTheme: () => void;
+  onToggleLanguage: () => void;
+}) {
+  const themeAction = content.actions.find((action) => action.type === "Theme");
+  const languageAction = content.actions.find(
+    (action) => action.type === "Language"
+  );
+
+  return (
+    <div className="fixed right-4 top-4 z-40 flex max-w-[calc(100vw-2rem)] items-center gap-2 hide-for-pdf">
+      <button
+        type="button"
+        onClick={onToggleTheme}
+        aria-label={themeAction?.name ?? "Toggle theme"}
+        title={themeAction?.name ?? "Toggle theme"}
+        className="button flex h-11 w-11 shrink-0 items-center justify-center rounded-full p-0 text-foreground [&>svg]:h-5 [&>svg]:w-5"
+      >
+        {theme === "dark" ? Icons.Theme : Icons.Moon}
+      </button>
+      <button
+        type="button"
+        onClick={onToggleLanguage}
+        aria-label={languageAction?.name ?? "Toggle language"}
+        title={languageAction?.name ?? "Toggle language"}
+        className="button flex h-11 w-11 shrink-0 items-center justify-center rounded-full p-0 text-foreground [&>svg]:h-5 [&>svg]:w-5"
+      >
+        {Icons.Language}
+      </button>
+    </div>
   );
 }
 
@@ -202,13 +254,16 @@ function Navigation({
 }) {
   const socialActions = content.actions.filter(
     (action) =>
-      action.url && ["Linkedin", "Github"].includes(action.type)
+      action.url &&
+      ["Linkedin", "Github", ...(!isResume ? ["Email"] : [])].includes(
+        action.type
+      )
   );
 
   return (
     <nav
       aria-label="Navegação e redes sociais"
-      className="mx-auto mb-14 flex w-full max-w-[168px] flex-wrap justify-center gap-3 hide-for-pdf"
+      className="mx-auto mb-14 flex w-full max-w-[228px] flex-wrap justify-center gap-3 hide-for-pdf"
     >
       <button
         type="button"

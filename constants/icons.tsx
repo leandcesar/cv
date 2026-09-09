@@ -9,6 +9,7 @@ import {
   FileText,
   Home,
   Mail,
+  Moon,
   Sun,
   Linkedin,
   Languages,
@@ -30,4 +31,8 @@ export const Icons = {
   PDF: <Download className="w-4 h-4" />,
   Resume: <FileText className="w-4 h-4" />,
   Home: <Home className="w-4 h-4" />,
-} satisfies Record<ActionType, ReactNode> & { Home: ReactNode };
+  Moon: <Moon className="w-4 h-4" />,
+} satisfies Record<ActionType, ReactNode> & {
+  Home: ReactNode;
+  Moon: ReactNode;
+};
