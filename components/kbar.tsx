@@ -11,7 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import { createPortal } from "react-dom";
-import { formatShortcut } from "@/constants/shortcuts";
+import { formatShortcut, useIsMac } from "@/constants/shortcuts";
 
 export type CommandAction = {
   id: string;
@@ -191,6 +191,7 @@ export function KBarCommand() {
 
 export function KBarCommandResults() {
   const { actions, isOpen, close } = useCommandPalette();
+  const isMac = useIsMac();
   const [search, setSearch] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -304,7 +305,7 @@ export function KBarCommandResults() {
                         key={`${shortcut}-${shortcutIndex}`}
                         className="px-2 py-1 text-xs rounded bg-muted"
                       >
-                        {formatShortcut(shortcut)}
+                        {formatShortcut(shortcut, isMac)}
                       </kbd>
                     ))}
                     {action.shortcutAlternatives?.map(
@@ -323,7 +324,7 @@ export function KBarCommandResults() {
                               key={`${shortcut}-${shortcutIndex}`}
                               className="px-2 py-1 text-xs rounded bg-muted"
                             >
-                              {formatShortcut(shortcut)}
+                              {formatShortcut(shortcut, isMac)}
                             </kbd>
                           ))}
                         </span>

@@ -238,18 +238,18 @@ export const pt: Content = {
       keywords: "social media instagram ig",
       url: "https://instagram.com/leandcesar",
     },
-    {
-      type: "Facebook",
-      section: "Redes Sociais",
-      keywords: "social media facebook fb",
-      url: "https://facebook.com/leandcesar",
-    },
-    {
-      type: "Threads",
-      section: "Redes Sociais",
-      keywords: "social media threads th",
-      url: "https://threads.com/@leandcesar",
-    },
+    // {
+    //   type: "Facebook",
+    //   section: "Redes Sociais",
+    //   keywords: "social media facebook fb",
+    //   url: "https://facebook.com/leandcesar",
+    // },
+    // {
+    //   type: "Threads",
+    //   section: "Redes Sociais",
+    //   keywords: "social media threads th",
+    //   url: "https://threads.com/@leandcesar",
+    // },
     {
       type: "X",
       section: "Redes Sociais",

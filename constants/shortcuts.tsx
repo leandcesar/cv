@@ -1,5 +1,5 @@
 import type { ActionType } from "@/types/action";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 export const Shortcuts = {
   Github: ["g"],
@@ -30,7 +30,26 @@ const shortcutLabels: Record<string, string> = {
   arrowright: "→",
 };
 
-export function formatShortcut(key: string) {
+function detectMac() {
+  if (typeof navigator === "undefined") return false;
+
+  return /Macintosh|Mac OS X/.test(navigator.userAgent) ||
+    navigator.platform === "MacIntel";
+}
+
+export function useIsMac() {
+  const [isMac, setIsMac] = useState(false);
+
+  useEffect(() => {
+    setIsMac(detectMac());
+  }, []);
+
+  return isMac;
+}
+
+export function formatShortcut(key: string, isMac = false) {
+  if (key.toLowerCase() === "ctrl" && isMac) return "⌘";
+
   return shortcutLabels[key.toLowerCase()] ?? key.toUpperCase();
 }
 
@@ -43,11 +62,13 @@ export function Key({ children }: { children: ReactNode }) {
 }
 
 export function Keys({ keys }: { keys: string[] }) {
+  const isMac = useIsMac();
+
   return (
     <>
       {keys.map((key, index) => (
         <span key={`${key}-${index}`}>
-          <Key>{formatShortcut(key)}</Key>
+          <Key>{formatShortcut(key, isMac)}</Key>
           {index < keys.length - 1 && " "}
         </span>
       ))}
