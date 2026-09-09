@@ -81,9 +81,9 @@ export const pt: Content = {
       section: "Formação",
       paragraph: [
         {
-          title: "Graduação em Engenharia de Controle e Automação",
-          subtitle: "UNIFEI (Universidade Federal de Itajubá)",
-          subtitleUrl: "https://www.unifei.edu.br/",
+          title: "UNIFEI (Universidade Federal de Itajubá)",
+          subtitle: "Graduação em Engenharia de Controle e Automação",
+          titleUrl: "https://www.unifei.edu.br/",
           period: "Jan de 2016 - Dez de 2020",
         },
       ],

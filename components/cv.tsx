@@ -92,7 +92,7 @@ function CVContent() {
         onToggleLanguage={toggleLanguage}
       />
       {showResume ? (
-        <Resume content={content} />
+        <Resume content={content} onHome={() => setShowResume(false)} />
       ) : (
         <main className="min-h-screen flex items-center justify-center px-4 py-12">
           <KBarCommand />
@@ -144,12 +144,29 @@ function ThemeLanguageControls({
   );
 }
 
-function Resume({ content }: { content: Content }) {
+function Resume({
+  content,
+  onHome,
+}: {
+  content: Content;
+  onHome: () => void;
+}) {
   return (
     <main
       id="cv"
       className="min-h-screen max-w-2xl mx-auto px-4 py-12 md:py-20"
     >
+      <div className="fixed left-4 top-4 z-40 flex items-center hide-for-pdf">
+        <button
+          type="button"
+          onClick={onHome}
+          aria-label={content.homeButton}
+          title={content.homeButton}
+          className="button flex h-11 w-11 shrink-0 items-center justify-center rounded-full p-0 text-foreground [&>svg]:h-5 [&>svg]:w-5"
+        >
+          {Icons.Home}
+        </button>
+      </div>
       <PDFDownloadButton />
       <KBarCommand />
       <KBarCommandResults />

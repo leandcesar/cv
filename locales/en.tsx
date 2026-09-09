@@ -81,9 +81,9 @@ export const en: Content = {
       section: "Education",
       paragraph: [
         {
-          title: "Graduation in Control and Automation Engineering",
-          subtitle: "UNIFEI (Federal University of Itajubá)",
-          subtitleUrl: "https://www.unifei.edu.br/",
+          title: "UNIFEI (Federal University of Itajubá)",
+          subtitle: "Graduation in Control and Automation Engineering",
+          titleUrl: "https://www.unifei.edu.br/",
           period: "Jan 2016 - Dec 2020",
         },
       ],
