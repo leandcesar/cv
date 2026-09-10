@@ -100,6 +100,29 @@ test("keyboard navigation, palette search, modal containment and focus restorati
   await expect(portrait).toBeFocused();
 });
 
+test("portrait follows the pointer direction", async ({ page }) => {
+  await page.goto("/pt");
+  const portrait = page.locator(".portrait");
+  const box = await portrait.boundingBox();
+  expect(box).not.toBeNull();
+  if (!box) return;
+
+  const points = [
+    [box.x + box.width / 2, box.y - 120, "/0.webp"],
+    [box.x + box.width + 120, box.y + box.height / 2, "/90.webp"],
+    [box.x + box.width / 2, box.y + box.height + 120, "/180.webp"],
+    [box.x - 120, box.y + box.height / 2, "/270.webp"],
+  ] as const;
+
+  for (const [x, y, source] of points) {
+    await page.mouse.move(x, y);
+    await expect.poll(async () => portrait.locator("img").getAttribute("src")).toContain(encodeURIComponent(source));
+  }
+
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await expect.poll(async () => portrait.locator("img").getAttribute("src")).toContain(encodeURIComponent("/image-2560x2560.webp"));
+});
+
 test("language equivalents, theme persistence, print action and valid links", async ({ page, request }) => {
   await page.goto("/pt/cv");
   await page.getByRole("link", { name: "English", exact: true }).click();
@@ -128,7 +151,7 @@ test("language equivalents, theme persistence, print action and valid links", as
     if (href.startsWith("#")) expect(await page.locator(href).count()).toBe(1);
     else expect(new URL(href, page.url()).protocol).toMatch(/^https?:|mailto:$/);
   }
-  expect((await request.get("/" , { maxRedirects: 0 })).status()).toBe(308);
+  expect((await request.get("/", { maxRedirects: 0 })).status()).toBe(308);
   expect((await request.get("/fr")).status()).toBe(404);
   expect((await request.get("/pt/missing")).status()).toBe(404);
   expect(await (await request.get("/robots.txt")).text()).toContain("Sitemap: https://leandcesar.vercel.app/sitemap.xml");
