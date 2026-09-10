@@ -19,10 +19,10 @@ export default async function ResumePage({ params }: Props) {
   if (!isLocale(locale)) notFound();
   const content = await getContent(locale);
   const ui = getUI(locale);
-  return <>
+  return <div className="resume-page scroll-fade-y">
     <StructuredData content={content} locale={locale} resume />
     <SiteHeader content={content} locale={locale} ui={ui} resume />
     <Resume content={content} ui={ui} />
     <SiteFooter content={content} ui={ui} />
-  </>;
+  </div>;
 }

@@ -12,7 +12,7 @@ export function pageMetadata(locale: Locale, resume = false): Metadata {
   const suffix = resume ? "/cv" : "";
   const title = resume
     ? `${ui.resume} · ${personName} — ${locale === "pt" ? "Líder Técnico" : "Tech Lead"}`
-    : `${personName} — ${locale === "pt" ? "Liderança técnica, backend e IA" : "Leadership, backend & AI"}`;
+    : `${personName} — ${locale === "pt" ? "Liderança. Desenvolvimento. IA." : "Leadership. Development. AI."}`;
   const description = locale === "pt"
     ? `${resume ? "Currículo de" : "Conheça"} Leandro César, Líder Técnico na Cloudia. Experiência em backend, inteligência artificial, automações e AWS. Projetos, formação e contato.`
     : `${resume ? "Resume of" : "Meet"} Leandro César, Tech Lead at Cloudia. Experience in backend development, AI, automation and AWS. Projects, education and contact.`;

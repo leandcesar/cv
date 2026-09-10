@@ -8,14 +8,18 @@ export function StructuredData({ content, locale, resume = false }: { content: C
   const data = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Person", "@id": `${siteUrl}/#person`, name: personName, url: `${siteUrl}/${locale}`,
-        image: `${siteUrl}/image-2560x2560.webp`, jobTitle: currentRole?.subtitle,
+      {
+        "@type": "Person", "@id": `${siteUrl}/#person`, name: personName, url: `${siteUrl}/${locale}`,
+        image: `${siteUrl}/favicon-2560x2560.png`, jobTitle: currentRole?.subtitle,
         description: content.sections.find((section) => section.id === "about")?.paragraph[0].description,
         sameAs: content.actions.filter((action) => action.url?.startsWith("https://")).map((action) => action.url),
       },
-      { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: siteUrl, name: personName,
-        inLanguage: ["pt-BR", "en"], publisher: { "@id": `${siteUrl}/#person` } },
-      { "@type": "ProfilePage", "@id": `${url}#webpage`, url,
+      {
+        "@type": "WebSite", "@id": `${siteUrl}/#website`, url: siteUrl, name: personName,
+        inLanguage: ["pt-BR", "en"], publisher: { "@id": `${siteUrl}/#person` }
+      },
+      {
+        "@type": "ProfilePage", "@id": `${url}#webpage`, url,
         name: `${personName}${resume ? locale === "pt" ? " — Currículo" : " — Resume" : ""}`,
         inLanguage: languageTag(locale), isPartOf: { "@id": `${siteUrl}/#website` },
         mainEntity: { "@id": `${siteUrl}/#person` },

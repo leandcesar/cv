@@ -120,7 +120,7 @@ test("portrait follows the pointer direction", async ({ page }) => {
   }
 
   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-  await expect.poll(async () => portrait.locator("img").getAttribute("src")).toContain(encodeURIComponent("/image-2560x2560.webp"));
+  await expect.poll(async () => portrait.locator("img").getAttribute("src")).toContain(encodeURIComponent("/favicon-2560x2560.png"));
 });
 
 test("language equivalents, theme persistence, print action and valid links", async ({ page, request }) => {

@@ -52,6 +52,13 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  .resume-page {
+    min-height: 0;
+    height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
   ::selection {
     background: var(--accent);
     color: var(--accent-foreground);
@@ -572,6 +579,72 @@ kbd {
   border-block: 1px solid var(--border);
 }
 
+@property --scroll-fade-t {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --scroll-fade-b {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@keyframes scroll-fade-reveal-t {
+  from {
+    --scroll-fade-t: 0px;
+  }
+
+  to {
+    --scroll-fade-t: var(--_scroll-fade-size-t, min(12%, 40px));
+  }
+}
+
+@keyframes scroll-fade-reveal-b {
+  from {
+    --scroll-fade-b: var(--_scroll-fade-size-b, min(12%, 40px));
+  }
+
+  to {
+    --scroll-fade-b: 0px;
+  }
+}
+
+.scroll-fade-y {
+  --_scroll-fade-size-t: var(--scroll-fade-t-size, var(--scroll-fade-size, min(12%, 40px)));
+  --_scroll-fade-size-b: var(--scroll-fade-b-size, var(--scroll-fade-size, min(12%, 40px)));
+  --scroll-fade-block: linear-gradient(to bottom,
+      transparent 0,
+      #000 var(--scroll-fade-t, 0px),
+      #000 calc(100% - var(--scroll-fade-b, 0px)),
+      transparent 100%);
+  -webkit-mask-image: var(--scroll-fade-block);
+  mask-image: var(--scroll-fade-block);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-fade-y {
+    animation:
+      scroll-fade-reveal-t 1ms ease-in-out,
+      scroll-fade-reveal-b 1ms ease-in-out;
+    animation-timeline: scroll(self y), scroll(self y);
+    animation-range:
+      0 var(--scroll-fade-reveal, 96px),
+      calc(100% - var(--scroll-fade-reveal, 96px)) 100%;
+    animation-fill-mode: both;
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .scroll-fade-y {
+    --scroll-fade-t: var(--_scroll-fade-size-t);
+    --scroll-fade-b: var(--_scroll-fade-size-b);
+  }
+}
+
 .contents-nav a {
   display: inline-flex;
   min-height: 44px;
@@ -931,6 +1004,14 @@ kbd {
 
   .contents-nav {
     column-gap: 1.25rem;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .contents-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .entry-heading {
@@ -990,6 +1071,11 @@ kbd {
     font-size: 10pt;
     line-height: 1.45;
     padding: 0;
+  }
+
+  .resume-page {
+    height: auto;
+    overflow: visible;
   }
 
   body {
