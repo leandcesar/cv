@@ -32,7 +32,7 @@ export const pt: Content = {
       paragraph: [
         {
           title: "Cloudia",
-          subtitle: "Líder Técnico",
+          subtitle: "Tech Lead",
           titleUrl: "https://www.cloudia.com.br/",
           description:
             "Lidera 6 desenvolvedores, gerenciando prioridades, entregas e execução técnica, além de contribuir para decisões de produto e arquitetura. Desenvolve chatbot com IA para WhatsApp, Facebook e Instagram, integrado a 30+ APIs de agendamento. Responsável por AWS, CI/CD, automações, ferramentas internas, qualidade, observabilidade e performance.",

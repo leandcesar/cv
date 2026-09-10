@@ -1,4 +1,4 @@
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getContent } from "@/locales";
 import { getUI } from "@/locales/ui";
@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/site";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { Portrait } from "@/components/portrait";
 import { StructuredData } from "@/components/structured-data";
+import { CopyEmail } from "@/components/copy-email";
 
 type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
@@ -29,12 +30,14 @@ export default async function Home({ params }: Props) {
         <Portrait label={ui.photo} title={ui.photoTitle} closeLabel={ui.close} />
         <div className="hero-copy">
           <h1 id="intro-title">{content.header?.title}</h1>
-          <p className="headline">{ui.headline}</p>
           <div className="hero-actions">
             <a className="button button-primary" href={`/${locale}/cv`}>{content.resumeButton}<ArrowRight size={17} aria-hidden="true" /></a>
             {profileActions.map((action) => {
-              const ProfileIcon = action.type === "Email" ? Mail : action.type === "Github" ? Github : Linkedin;
               const label = action.type === "Email" ? "E-mail" : action.type === "Github" ? "GitHub" : "LinkedIn";
+              if (action.type === "Email" && action.url) return <CopyEmail key={action.type}
+                email={action.url.replace(/^mailto:/, "")} copyLabel={label} copiedLabel={ui.emailCopied}
+                errorLabel={ui.emailCopyError} iconOnly className="button button-secondary social-button" />;
+              const ProfileIcon = action.type === "Github" ? Github : Linkedin;
               return <a className="button button-secondary social-button" key={action.type} href={action.url}
                 aria-label={label} title={label}>
                 <ProfileIcon size={17} aria-hidden="true" />

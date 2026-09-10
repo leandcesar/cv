@@ -52,8 +52,8 @@ export function Portrait({ label, title, closeLabel }: { label: string; title: s
 
   return <>
     <button ref={portraitRef} type="button" className="portrait" aria-label={label} aria-haspopup="dialog" onClick={() => setOpen(true)}>
-      <Image src={portraitSource} alt="Leandro César" width={160} height={160}
-        sizes="(max-width: 600px) 96px, 160px" priority />
+      <Image src={portraitSource} alt="Leandro César" width={225} height={225}
+        sizes="(max-width: 600px) 96px, 225px" priority />
     </button>
     <Dialog open={open} onClose={() => setOpen(false)} title={title} closeLabel={closeLabel} className="photo-dialog">
       {open && <Image src={expandedPortrait} alt="Leandro César" width={720} height={720}

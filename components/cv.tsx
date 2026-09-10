@@ -81,11 +81,9 @@ export default function Resume({ content, ui }: { content: Content; ui: UI }) {
   return <main id="content" tabIndex={-1} className="shell resume">
     <header className="resume-header">
       <h1>{content.header?.title}</h1>
-      <p className="headline">{ui.headline}</p>
       <address className="resume-contact">
         {content.actions.filter((action) => ["Email", "Linkedin", "Github"].includes(action.type)).map((action) =>
           action.type === "Email" && action.url ? <span key={action.type} className="resume-email">
-            <a href={action.url}>{action.url.replace(/^mailto:/, "")}</a>
             <CopyEmail email={action.url.replace(/^mailto:/, "")}
               copyLabel={ui.copyEmail} copiedLabel={ui.emailCopied} errorLabel={ui.emailCopyError} />
           </span>

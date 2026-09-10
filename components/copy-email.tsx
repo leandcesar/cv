@@ -1,13 +1,15 @@
 "use client";
 
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export function CopyEmail({ email, copyLabel, copiedLabel, errorLabel }: {
+export function CopyEmail({ email, copyLabel, copiedLabel, errorLabel, className, iconOnly = false }: {
     email: string;
     copyLabel: string;
     copiedLabel: string;
     errorLabel: string;
+    className?: string;
+    iconOnly?: boolean;
 }) {
     const [status, setStatus] = useState<"idle" | "copied" | "error">("idle");
 
@@ -42,9 +44,13 @@ export function CopyEmail({ email, copyLabel, copiedLabel, errorLabel }: {
     };
 
     const label = status === "copied" ? copiedLabel : status === "error" ? errorLabel : copyLabel;
-    const Icon = status === "copied" ? Check : Copy;
-    return <button type="button" className="copy-email" onClick={handleCopy} aria-label={label} title={label}>
-        <Icon size={14} aria-hidden="true" />
-        <span className="sr-only" aria-live="polite">{status === "idle" ? "" : label}</span>
+    const Icon = status === "copied" ? Check : iconOnly ? Mail : Copy;
+    const text = status === "copied" ? copiedLabel : status === "error" ? errorLabel : email;
+    return <button type="button" className={`copy-email${iconOnly ? " copy-email-icon-only" : ""}${className ? ` ${className}` : ""}`} onClick={handleCopy} aria-label={label} title={label}>
+        {iconOnly ? <Icon size={17} aria-hidden="true" /> : <>
+            <span className="copy-email-text" aria-live="polite">{text}</span>
+            <span className="copy-email-width" aria-hidden="true">{email}</span>
+            <Icon size={14} aria-hidden="true" />
+        </>}
     </button>;
 }
