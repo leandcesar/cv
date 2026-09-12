@@ -1,6 +1,6 @@
-import { Content } from "@/types/content";
+import { LocalizedContent } from "@/types/content";
 
-export const en: Content = {
+export const en: LocalizedContent = {
   header: {
     title: "Leandro César",
     subtitle: "Engineer. Developer. Leader.",
@@ -61,7 +61,7 @@ export const en: Content = {
         },
         {
           title: "UNIFEI (Federal University of Itajubá)",
-          subtitle: "Scholarship Holder",
+          subtitle: "Research Scholarship (Physics Laboratory)",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jul 2019 - Nov 2019",
           startDate: "2019-07",
@@ -76,7 +76,7 @@ export const en: Content = {
           endDate: "2019-06",
         },
         {
-          title: "Ex Machina UNIFEI",
+          title: "Ex Machina",
           subtitle: "Technical Director",
           titleUrl:
             "https://proex.unifei.edu.br/extensao-tecnologica-e-empresarial/competicao-tecnologica/ex-machina/",
@@ -124,27 +124,27 @@ export const en: Content = {
       shortcut: "Github",
       paragraph: [
         {
-          title: "Enhancer for Letterboxd",
-          titleUrl: "https://enhancer-for-letterboxd.vercel.app/",
-          description:
-            "Enhances the Letterboxd experience with additional features.",
-        },
-        {
-          title: "onthisday.watch",
-          titleUrl: "https://onthisday.watch/",
-          description: "\"What should I watch today?\"",
-        },
-        {
           title: "PeakDetection",
           titleUrl: "https://github.com/leandcesar/PeakDetection",
           description:
-            "Arduino library for real-time peak detection in data using z-score.",
+            "An Arduino library for real-time peak detection in noisy data using statistical z-score analysis, designed for efficient signal processing on resource-constrained embedded systems.",
+        },
+        {
+          title: "Enhancer for Letterboxd",
+          titleUrl: "https://enhancer-for-letterboxd.vercel.app/",
+          description:
+            "A browser extension that extends Letterboxd with advanced filtering, rating analytics, viewing statistics, film discovery tools, and additional insights, improving the experience for power users and movie enthusiasts.",
         },
         {
           title: "themoviedb",
           titleUrl: "https://pypi.org/project/themoviedb",
           description:
-            "Python API wrapper for The Movie Database (TMDb) API v3.",
+            "A Python client library for the TMDb API v3, providing a structured interface for accessing movie and TV metadata, with support for both synchronous and asynchronous workflows.",
+        },
+        {
+          title: "onthisday.watch",
+          titleUrl: "https://onthisday.watch/",
+          description: "A movie discovery platform built around the question “What should I watch today?”, combining date-based film data and personalized discovery to surface relevant movies based on the current day.",
         },
       ],
     },
@@ -172,20 +172,13 @@ export const en: Content = {
       paragraph: [
         {
           list: [
-            "Backend",
-            "Artificial Intelligence",
-            "Automations",
             "LLM",
             "Chatbots",
-            "Cloud Computing",
             "Python",
+            "JavaScript",
             "Golang",
             "Git",
-            "GitHub",
-            "GitHub Actions",
             "CI/CD",
-            "Code review",
-            "Deployments",
             "AWS RDS",
             "AWS ECS",
             "AWS EC2",
@@ -285,6 +278,52 @@ export const en: Content = {
       url: "https://x.com/leandcesar",
     },
   ],
+  ui: {
+    home: "Home",
+    resume: "Resume",
+    viewResume: "Resume",
+    skip: "Skip to content",
+    navigation: "Main navigation",
+    preferences: "Preferences and commands",
+    theme: "Theme",
+    light: "Use light theme",
+    dark: "Use dark theme",
+    system: "Use system theme",
+    commands: "Commands",
+    search: "Search pages, actions or profiles…",
+    searchLabel: "Search commands",
+    results: "Results",
+    noResults: "No commands found. Try “theme”, “PDF” or “GitHub”.",
+    navigate: "Navigate",
+    open: "Open",
+    close: "Close",
+    or: "or",
+    navigationGroup: "Navigation",
+    settingsGroup: "Appearance and language",
+    profilesGroup: "Contact and profiles",
+    headline: "Leadership. Development. AI.",
+    current: "Currently",
+    at: "at",
+    focus: "Core technologies",
+    selectedProjects: "Selected projects",
+    allProjects: "All projects",
+    contact: "Let’s talk",
+    profiles: "Profiles and contact",
+    source: "Source code",
+    photo: "Enlarge photo of Leandro César",
+    photoTitle: "Photo of Leandro César",
+    pdf: "Save PDF",
+    printFallback: "You can also use your browser’s Print option to save the resume as a PDF.",
+    copyEmail: "Copy email",
+    emailCopied: "Email copied",
+    emailCopyError: "Unable to copy email",
+    contents: "In this resume",
+    backTop: "Back to top",
+    skillDevelopment: "Development",
+    skillAI: "AI and automation",
+    skillCloud: "Infrastructure and delivery",
+    skillData: "Data and messaging",
+  },
 };
 
 export default en;

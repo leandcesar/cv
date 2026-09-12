@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Command, Search } from "lucide-react";
 import { Dialog } from "@/components/ui/dialog";
-import type { UI } from "@/locales/ui";
+import type { UI } from "@/types/content";
 
 export type CommandAction = {
   id: string;

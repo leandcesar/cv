@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { languageTags, type Locale } from "@/lib/i18n";
-import { getUI } from "@/locales/ui";
+import { getContent } from "@/locales";
 
 // This is the published canonical origin, shared by metadata, sitemap and JSON-LD.
 export const siteUrl = "https://leandcesar.vercel.app";
 export const personName = "Leandro César";
 
-export function pageMetadata(locale: Locale, resume = false): Metadata {
-  const ui = getUI(locale);
+export async function pageMetadata(locale: Locale, resume = false): Promise<Metadata> {
+  const { ui } = await getContent(locale);
   const path = `/${locale}${resume ? "/cv" : ""}`;
   const suffix = resume ? "/cv" : "";
   const title = resume

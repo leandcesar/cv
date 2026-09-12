@@ -1,6 +1,6 @@
-import { Content } from "@/types/content";
+import { LocalizedContent } from "@/types/content";
 
-export const pt: Content = {
+export const pt: LocalizedContent = {
   header: {
     title: "Leandro César",
     subtitle: "Engenheiro. Desenvolvedor. Líder.",
@@ -61,7 +61,7 @@ export const pt: Content = {
         },
         {
           title: "UNIFEI (Universidade Federal de Itajubá)",
-          subtitle: "Bolsista",
+          subtitle: "Bolsista de Pesquisa (Laboratório de Física)",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jul de 2019 - Nov de 2019",
           startDate: "2019-07",
@@ -76,7 +76,7 @@ export const pt: Content = {
           endDate: "2019-06",
         },
         {
-          title: "Ex Machina UNIFEI",
+          title: "Ex Machina",
           subtitle: "Diretor Técnico",
           titleUrl:
             "https://proex.unifei.edu.br/extensao-tecnologica-e-empresarial/competicao-tecnologica/ex-machina/",
@@ -124,27 +124,27 @@ export const pt: Content = {
       shortcut: "Github",
       paragraph: [
         {
-          title: "Enhancer for Letterboxd",
-          titleUrl: "https://enhancer-for-letterboxd.vercel.app/",
-          description:
-            "Aprimora a experiência no Letterboxd com recursos adicionais.",
-        },
-        {
-          title: "onthisday.watch",
-          titleUrl: "https://onthisday.watch/",
-          description: "\"O que devo assistir hoje?\"",
-        },
-        {
           title: "PeakDetection",
           titleUrl: "https://github.com/leandcesar/PeakDetection",
           description:
-            "Biblioteca Arduino para detecção de picos em tempo real em dados usando z-score.",
+            "Uma biblioteca de Arduino para detecção de picos em tempo real em dados, utilizando análise estatística baseada em z-score e otimizada para processamento em sistemas embarcados com recursos limitados.",
+        },
+        {
+          title: "Enhancer for Letterboxd",
+          titleUrl: "https://enhancer-for-letterboxd.vercel.app/",
+          description:
+            "Uma extensão de navegador que amplia o Letterboxd com filtros avançados, análises de avaliações, estatísticas de filmes, ferramentas de descoberta e outros recursos para usuários avançados e cinéfilos.",
         },
         {
           title: "themoviedb",
           titleUrl: "https://pypi.org/project/themoviedb",
           description:
-            "Wrapper de API em Python para a API v3 do The Movie Database (TMDb).",
+            "Uma biblioteca cliente em Python para a API v3 do TMDb, que oferece uma interface estruturada para acesso a dados de filmes e séries, com suporte a operações síncronas e assíncronas.",
+        },
+        {
+          title: "onthisday.watch",
+          titleUrl: "https://onthisday.watch/",
+          description: "Uma plataforma de descoberta de filmes baseada na pergunta “O que devo assistir hoje?”, que combina dados relacionados à data com recursos de descoberta para recomendar filmes relevantes para cada dia.",
         },
       ],
     },
@@ -172,20 +172,13 @@ export const pt: Content = {
       paragraph: [
         {
           list: [
-            "Backend",
-            "Inteligência Artificial",
-            "Automações",
             "LLM",
             "Chatbots",
-            "Computação em nuvem",
             "Python",
+            "JavaScript",
             "Golang",
             "Git",
-            "GitHub",
-            "GitHub Actions",
             "CI/CD",
-            "Code review",
-            "Deploys",
             "AWS RDS",
             "AWS ECS",
             "AWS EC2",
@@ -285,6 +278,52 @@ export const pt: Content = {
       url: "https://x.com/leandcesar",
     },
   ],
+  ui: {
+    home: "Início",
+    resume: "Currículo",
+    viewResume: "Currículo",
+    skip: "Pular para o conteúdo",
+    navigation: "Navegação principal",
+    preferences: "Preferências e comandos",
+    theme: "Tema",
+    light: "Usar tema claro",
+    dark: "Usar tema escuro",
+    system: "Usar tema do sistema",
+    commands: "Comandos",
+    search: "Buscar páginas, ações ou perfis…",
+    searchLabel: "Buscar comandos",
+    results: "Resultados",
+    noResults: "Nenhum comando encontrado. Tente “tema”, “PDF” ou “GitHub”.",
+    navigate: "Navegar",
+    open: "Abrir",
+    close: "Fechar",
+    or: "ou",
+    navigationGroup: "Navegação",
+    settingsGroup: "Aparência e idioma",
+    profilesGroup: "Contato e perfis",
+    headline: "Liderança. Desenvolvimento. IA.",
+    current: "Atualmente",
+    at: "na",
+    focus: "Tecnologias em foco",
+    selectedProjects: "Projetos selecionados",
+    allProjects: "Todos os projetos",
+    contact: "Vamos conversar",
+    profiles: "Perfis e contato",
+    source: "Código fonte",
+    photo: "Ampliar foto de Leandro César",
+    photoTitle: "Foto de Leandro César",
+    pdf: "Salvar PDF",
+    printFallback: "Você também pode usar a opção Imprimir do navegador para salvar o currículo em PDF.",
+    copyEmail: "Copiar e-mail",
+    emailCopied: "E-mail copiado",
+    emailCopyError: "Não foi possível copiar o e-mail",
+    contents: "Neste currículo",
+    backTop: "Voltar ao topo",
+    skillDevelopment: "Desenvolvimento",
+    skillAI: "IA e automações",
+    skillCloud: "Infraestrutura e entrega",
+    skillData: "Dados e mensageria",
+  },
 };
 
 export default pt;

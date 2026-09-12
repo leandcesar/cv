@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { SiteControls } from "@/components/site-controls";
 import type { Content } from "@/types/content";
 import type { Locale } from "@/lib/i18n";
-import type { UI } from "@/locales/ui";
+import type { UI } from "@/types/content";
 
 export function SiteHeader({ locale, resume = false, ui, content }: { locale: Locale; resume?: boolean; ui: UI; content: Content }) {
   return <>

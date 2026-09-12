@@ -3,7 +3,6 @@ import Resume from "@/components/cv";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { StructuredData } from "@/components/structured-data";
 import { getContent } from "@/locales";
-import { getUI } from "@/locales/ui";
 import { isLocale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/site";
 
@@ -11,14 +10,14 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return pageMetadata(locale, true);
+  return await pageMetadata(locale, true);
 }
 
 export default async function ResumePage({ params }: Props) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const content = await getContent(locale);
-  const ui = getUI(locale);
+  const ui = content.ui;
   return <div className="resume-page scroll-fade-y">
     <StructuredData content={content} locale={locale} resume />
     <SiteHeader content={content} locale={locale} ui={ui} resume />

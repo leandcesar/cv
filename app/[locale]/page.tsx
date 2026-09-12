@@ -1,7 +1,6 @@
 import { ArrowRight, Github, Linkedin } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getContent } from "@/locales";
-import { getUI } from "@/locales/ui";
 import { isLocale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/site";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
@@ -13,14 +12,14 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return pageMetadata(locale);
+  return await pageMetadata(locale);
 }
 
 export default async function Home({ params }: Props) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const content = await getContent(locale);
-  const ui = getUI(locale);
+  const ui = content.ui;
   const profileActions = content.actions.filter((action) => ["Email", "Linkedin", "Github"].includes(action.type) && action.url);
   return <>
     <StructuredData locale={locale} content={content} />
@@ -30,6 +29,7 @@ export default async function Home({ params }: Props) {
         <Portrait label={ui.photo} title={ui.photoTitle} closeLabel={ui.close} />
         <div className="hero-copy">
           <h1 id="intro-title">{content.header?.title}</h1>
+          <p className="headline">{ui.headline}</p>
           <div className="hero-actions">
             <a className="button button-primary" href={`/${locale}/cv`}>{content.resumeButton}<ArrowRight size={17} aria-hidden="true" /></a>
             {profileActions.map((action) => {

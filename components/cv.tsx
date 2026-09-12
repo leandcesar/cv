@@ -3,7 +3,7 @@ import { PDFDownloadButton } from "@/components/pdf";
 import { CopyEmail } from "@/components/copy-email";
 import type { Content } from "@/types/content";
 import type { Paragraph, Section } from "@/types/section";
-import type { UI } from "@/locales/ui";
+import type { UI } from "@/types/content";
 
 export function Project({ project }: { project: Paragraph }) {
   return <article className="project">
@@ -43,8 +43,8 @@ function Experience({ section }: { section: Section }) {
 function Skills({ section, ui }: { section: Section; ui: UI }) {
   const skills = section.paragraph.flatMap((paragraph) => paragraph.list ?? []);
   const groups = [
-    { label: ui.skillDevelopment, matches: (skill: string) => ["Backend", "Python", "Golang", "APIs Restful", "GraphQL"].includes(skill) },
-    { label: ui.skillAI, matches: (skill: string) => ["Inteligência Artificial", "Artificial Intelligence", "Automações", "Automations", "LLM", "Chatbots", "n8n", "LiteLLM", "OpenRouter", "OpenAI", "Gemini", "Make"].includes(skill) },
+    { label: ui.skillDevelopment, matches: (skill: string) => ["Python", "JavaScript", "Golang", "APIs Restful", "GraphQL"].includes(skill) },
+    { label: ui.skillAI, matches: (skill: string) => ["LLM", "Chatbots", "n8n", "LiteLLM", "OpenRouter", "OpenAI", "Gemini", "Make"].includes(skill) },
     { label: ui.skillData, matches: (skill: string) => ["MariaDB", "MySQL", "Postgres", "Redis", "RabbitMQ", "MongoDB"].includes(skill) },
   ];
   const assigned = new Set(groups.flatMap((group) => skills.filter(group.matches)));

@@ -6,7 +6,7 @@ import { Languages, Moon, Sun } from "lucide-react";
 import { CommandPalette, type CommandAction } from "@/components/kbar";
 import type { Action } from "@/types/action";
 import type { Locale } from "@/lib/i18n";
-import type { UI } from "@/locales/ui";
+import type { UI } from "@/types/content";
 
 export function SiteControls({ locale, resume, ui, profiles }: { locale: Locale; resume: boolean; ui: UI; profiles: Action[] }) {
   const { resolvedTheme, setTheme } = useTheme();
