@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, type KeyboardEvent, type ReactNode, type RefObject } from "react";
 import { X } from "lucide-react";
+import { Tooltip } from "@/components/ui/tooltip";
 
 // Native modal dialogs make the background inert and provide focus containment.
 export function Dialog({ open, onClose, title, closeLabel, children, className = "", initialFocus }: {
@@ -56,9 +57,9 @@ export function Dialog({ open, onClose, title, closeLabel, children, className =
       <div className="dialog-surface">
         <div className="dialog-heading">
           <h2 id={titleId}>{title}</h2>
-          <button className="icon-button" type="button" onClick={onClose} aria-label={closeLabel}>
+          <Tooltip label={closeLabel}><button className="icon-button" type="button" onClick={onClose} aria-label={closeLabel}>
             <X size={20} aria-hidden="true" />
-          </button>
+          </button></Tooltip>
         </div>
         {children}
       </div>

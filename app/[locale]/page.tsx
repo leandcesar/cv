@@ -9,6 +9,7 @@ import { StructuredData } from "@/components/structured-data";
 import { CopyEmail } from "@/components/copy-email";
 import Resume from "@/components/cv";
 import { ScrollToResume } from "@/components/scroll-to-resume";
+import { Tooltip } from "@/components/ui/tooltip";
 
 type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
@@ -38,15 +39,15 @@ export default async function Home({ params }: Props) {
                 {content.resumeButton}<ArrowDown size={17} aria-hidden="true" />
               </ScrollToResume>
               {profileActions.map((action) => {
-                const label = action.type === "Email" ? "E-mail" : action.type === "Github" ? "GitHub" : "LinkedIn";
+                const label = action.type === "Email" ? ui.copyEmail : action.type === "Github" ? "GitHub" : "LinkedIn";
                 if (action.type === "Email" && action.url) return <CopyEmail key={action.type}
-                  email={action.url.replace(/^mailto:/, "")} copyLabel={label} copiedLabel={ui.emailCopied}
+                  email={action.url.replace(/^mailto:/, "")} copyLabel={ui.copyEmail} copiedLabel={ui.emailCopied}
                   errorLabel={ui.emailCopyError} iconOnly className="button button-secondary social-button" />;
                 const ProfileIcon = action.type === "Github" ? Github : Linkedin;
-                return <a className="button button-secondary social-button" key={action.type} href={action.url}
-                  aria-label={label} title={label}>
+                return <Tooltip label={label} key={action.type}><a className="button button-secondary social-button" href={action.url}
+                  aria-label={label}>
                   <ProfileIcon size={17} aria-hidden="true" />
-                </a>;
+                </a></Tooltip>;
               })}
             </div>
           </div>

@@ -2,6 +2,7 @@
 
 import { Check, Copy, Mail } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Tooltip } from "@/components/ui/tooltip";
 
 export function CopyEmail({ email, copyLabel, copiedLabel, errorLabel, className, iconOnly = false }: {
     email: string;
@@ -46,11 +47,12 @@ export function CopyEmail({ email, copyLabel, copiedLabel, errorLabel, className
     const label = status === "copied" ? copiedLabel : status === "error" ? errorLabel : copyLabel;
     const Icon = status === "copied" ? Check : iconOnly ? Mail : Copy;
     const text = status === "copied" ? copiedLabel : status === "error" ? errorLabel : email;
-    return <button type="button" className={`copy-email${iconOnly ? " copy-email-icon-only" : ""}${className ? ` ${className}` : ""}`} onClick={handleCopy} aria-label={label} title={label}>
+    const button = <button type="button" className={`copy-email${iconOnly ? " copy-email-icon-only" : ""}${className ? ` ${className}` : ""}`} onClick={handleCopy} aria-label={label}>
         {iconOnly ? <Icon size={17} aria-hidden="true" /> : <>
             <span className="copy-email-text" aria-live="polite">{text}</span>
             <span className="copy-email-width" aria-hidden="true">{email}</span>
             <Icon size={14} aria-hidden="true" />
         </>}
     </button>;
+    return iconOnly ? <Tooltip label={label}>{button}</Tooltip> : button;
 }

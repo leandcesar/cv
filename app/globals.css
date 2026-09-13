@@ -334,15 +334,23 @@ kbd {
   background: var(--foreground);
   color: var(--background);
   border: 1px solid var(--foreground);
-  animation: resume-nudge 3s ease-in-out infinite;
+  animation: resume-nudge 2.5s ease-in-out infinite;
 }
 
 @keyframes resume-nudge {
 
   0%,
-  88%,
+  84%,
   100% {
     transform: translateX(0) rotate(0);
+  }
+
+  86% {
+    transform: translateX(-3px) rotate(-1.5deg);
+  }
+
+  88% {
+    transform: translateX(3px) rotate(1.5deg);
   }
 
   90% {
@@ -354,10 +362,14 @@ kbd {
   }
 
   94% {
-    transform: translateX(-1px) rotate(-.5deg);
+    transform: translateX(-1px) rotate(-0.5deg);
   }
 
   96% {
+    transform: translateX(1px) rotate(0.5deg);
+  }
+
+  98% {
     transform: translateX(0) rotate(0);
   }
 }
@@ -380,6 +392,29 @@ kbd {
 .social-button {
   min-width: 44px;
   padding-inline: .75rem;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip-content {
+  position: absolute;
+  z-index: 20;
+  left: 50%;
+  bottom: calc(100% + .5rem);
+  max-width: min(16rem, calc(100vw - 2rem));
+  padding: .3rem .5rem;
+  border: 1px solid var(--control-border);
+  border-radius: .25rem;
+  background: var(--foreground);
+  color: var(--background);
+  font-size: .75rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-50%);
 }
 
 .site-footer a {
@@ -676,6 +711,7 @@ kbd {
 }
 
 @supports (animation-timeline: scroll()) {
+
   .scroll-fade-y::before,
   .scroll-fade-y::after {
     animation-fill-mode: both;
