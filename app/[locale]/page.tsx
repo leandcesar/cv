@@ -34,6 +34,7 @@ export default async function Home({ params }: Props) {
           <div className="hero-copy">
             <h1 id="intro-title">{content.header?.title}</h1>
             <p className="headline">{ui.headline}</p>
+            <p className="specialization">{ui.specialization}</p>
             <div className="hero-actions">
               <ScrollToResume label={content.resumeButton}>
                 {content.resumeButton}<ArrowDown size={17} aria-hidden="true" />

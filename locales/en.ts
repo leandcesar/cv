@@ -12,7 +12,7 @@ export const en: LocalizedContent = {
       paragraph: [
         {
           description:
-            "Experienced professional with a strong background in technical leadership, backend development, Artificial Intelligence, and automation. Brings strategic focus to high-performance projects through efficient system integration, process optimization, and infrastructure management. Highly analytical, results-driven, and organized, with proven ability to build teams, standardize workflows, and deliver high-quality outcomes.",
+            "I'm a Tech Lead and backend engineer. I lead teams without stepping away from implementation. I work with AI, automation, and systems for conversational applications, from architecture to production. I especially enjoy reducing costs and optimizing performance — curious, considering I chose Python as my main language.",
         },
       ],
     },
@@ -31,7 +31,7 @@ export const en: LocalizedContent = {
           subtitle: "Tech Lead",
           titleUrl: "https://www.cloudia.com.br/",
           description:
-            "Leads a team of 6 developers, managing priorities, delivery, and technical execution while contributing to product and architecture decisions. Hands-on development of an AI-powered chatbot for WhatsApp, Facebook, and Instagram, integrated with 30+ scheduling APIs. Owns AWS infrastructure, CI/CD, automations, internal tools, code quality, observability, and performance optimization.",
+            "I lead a team of 6 developers, managing priorities, delivery, and technical execution while contributing to product and architecture decisions. I develop an AI-powered chatbot for WhatsApp, Facebook, and Instagram, integrated with 30+ scheduling APIs. I own AWS infrastructure, CI/CD, automations, internal tools, code quality, observability, and performance optimization.",
           period: "Feb 2022 - Present",
           startDate: "2022-02",
         },
@@ -123,31 +123,28 @@ export const en: LocalizedContent = {
       section: "Projects",
       paragraph: [
         {
+          title: "themoviedb",
+          brand: "themoviedb",
+          titleUrl: "https://pypi.org/project/themoviedb",
+          description: "Typed Python client for the TMDb API with synchronous and asynchronous interfaces. Distributed on PyPI for movie and TV metadata across Python 3.8-3.14.",
+        },
+        {
           title: "PeakDetection",
           brand: "peak-detection",
           titleUrl: "https://github.com/leandcesar/PeakDetection",
-          description:
-            "An Arduino library for real-time peak detection in noisy data using statistical z-score analysis, designed for efficient signal processing on resource-constrained embedded systems.",
+          description: "Real-time peak detection for noisy sensor data on Arduino. Z-score analysis with moving averages for signal processing on resource-constrained hardware.",
         },
         {
           title: "Enhancer for Letterboxd",
           brand: "enhancer-for-letterboxd",
           titleUrl: "https://enhancer-for-letterboxd.vercel.app/",
-          description:
-            "A browser extension that extends Letterboxd with advanced filtering, rating analytics, viewing statistics, film discovery tools, and additional insights, improving the experience for power users and movie enthusiasts.",
-        },
-        {
-          title: "themoviedb",
-          brand: "themoviedb",
-          titleUrl: "https://pypi.org/project/themoviedb",
-          description:
-            "A Python client library for the TMDb API v3, providing a structured interface for accessing movie and TV metadata, with support for both synchronous and asynchronous workflows.",
+          description: "Browser extension that turns Letterboxd into a richer analysis and discovery tool. Filtering, rating analytics, viewing statistics, and film discovery for power users.",
         },
         {
           title: "onthisday.watch",
           brand: "onthisday-watch",
           titleUrl: "https://onthisday.watch/",
-          description: "A movie discovery platform built around the question “What should I watch today?”, combining date-based film data and personalized discovery to surface relevant movies based on the current day.",
+          description: "Date-driven movie discovery for answering “What should I watch today?”. Uses the current day to surface relevant film recommendations.",
         },
       ],
     },
@@ -173,38 +170,53 @@ export const en: LocalizedContent = {
     },
     {
       id: "skills",
-      section: "Skills",
+      section: "Expertise",
       paragraph: [
         {
+          title: "Backend",
           list: [
-            "LLM",
-            "Chatbots",
             "Python",
+            "FastAPI",
+            "Flask",
+            "SQLAlchemy",
+            "REST",
+            "GraphQL",
             "JavaScript",
             "Golang",
-            "Git",
-            "CI/CD",
-            "AWS RDS",
-            "AWS ECS",
-            "AWS EC2",
-            "AWS Lambda",
-            "AWS CloudWatch",
-            "AWS S3",
-            "AWS SQS",
-            "MariaDB",
-            "MySQL",
-            "Postgres",
-            "Redis",
-            "n8n",
-            "RabbitMQ",
+          ],
+        },
+        {
+          title: "AI & Automation",
+          list: [
+            "Chatbots",
+            "LLMs",
+            "RAG",
+            "LangChain",
             "LiteLLM",
             "OpenRouter",
-            "OpenAI",
-            "Gemini",
+            "n8n",
             "Make",
-            "APIs Restful",
-            "GraphQL",
+          ],
+        },
+        {
+          title: "Cloud & Infrastructure",
+          list: [
+            "AWS (ECS, EC2, Lambda, RDS, S3, SQS)",
             "Docker",
+            "Git",
+            "GitHub Actions",
+            "CI/CD",
+          ],
+        },
+        {
+          title: "Data & Messaging",
+          list: [
+            "MariaDB",
+            "MySQL",
+            "PostgreSQL",
+            "Redis",
+            "RabbitMQ",
+            "AmazonMQ",
             "MongoDB",
           ],
         },
@@ -304,7 +316,8 @@ export const en: LocalizedContent = {
     navigationGroup: "Navigation",
     settingsGroup: "Appearance and language",
     profilesGroup: "Contact and profiles",
-    headline: "Leadership. Development. AI.",
+    headline: "Tech Lead & Engineer",
+    specialization: "Backend · AI · Automation",
     source: "Source code",
     photo: "Enlarge photo of Leandro César",
     photoTitle: "Photo of Leandro César",
@@ -315,10 +328,6 @@ export const en: LocalizedContent = {
     emailCopyError: "Unable to copy email",
     contents: "In this resume",
     backTop: "Back to top",
-    skillDevelopment: "Development",
-    skillAI: "AI and automation",
-    skillCloud: "Infrastructure and delivery",
-    skillData: "Data and messaging",
   },
 };
 

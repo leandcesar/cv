@@ -31,6 +31,7 @@ export interface UI {
   settingsGroup: string;
   profilesGroup: string;
   headline: string;
+  specialization: string;
   source: string;
   photo: string;
   photoTitle: string;
@@ -41,10 +42,6 @@ export interface UI {
   emailCopyError: string;
   contents: string;
   backTop: string;
-  skillDevelopment: string;
-  skillAI: string;
-  skillCloud: string;
-  skillData: string;
 }
 
 export interface LocalizedContent extends Content {

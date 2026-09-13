@@ -12,7 +12,7 @@ export const pt: LocalizedContent = {
       paragraph: [
         {
           description:
-            "Profissional experiente com sólida atuação em liderança técnica, desenvolvimento backend, inteligência artificial e automações. Conduz projetos de alta performance com foco estratégico, integrando sistemas de forma eficiente, otimizando processos e gerenciando infraestrutura. Perfil analítico, orientado a resultados e organizado, com comprovada habilidade em formar equipes, padronizar fluxos de trabalho e garantir entregas de alta qualidade.",
+            "Sou Tech Lead e engenheiro backend. Lidero equipes sem me afastar da implementação. Trabalho com IA, automações e sistemas para aplicações conversacionais, da arquitetura à produção. Gosto especialmente de reduzir custos e otimizar performance — curioso já que escolhi Python como linguagem principal.",
         },
       ],
     },
@@ -31,7 +31,7 @@ export const pt: LocalizedContent = {
           subtitle: "Tech Lead",
           titleUrl: "https://www.cloudia.com.br/",
           description:
-            "Lidera 6 desenvolvedores, gerenciando prioridades, entregas e execução técnica, além de contribuir para decisões de produto e arquitetura. Desenvolve chatbot com IA para WhatsApp, Facebook e Instagram, integrado a 30+ APIs de agendamento. Responsável por AWS, CI/CD, automações, ferramentas internas, qualidade, observabilidade e performance.",
+            "Lidero uma equipe de 6 desenvolvedores, gerenciando prioridades, entregas e execução técnica, além de contribuir para decisões de produto e arquitetura. Desenvolvo um chatbot com IA para WhatsApp, Facebook e Instagram, integrado a mais de 30 APIs de agendamento. Sou responsável pela infraestrutura AWS, CI/CD, automações, ferramentas internas, qualidade de código, observabilidade e otimização de performance.",
           period: "Fev de 2022 - Presente",
           startDate: "2022-02",
         },
@@ -123,31 +123,28 @@ export const pt: LocalizedContent = {
       section: "Projetos",
       paragraph: [
         {
+          title: "themoviedb",
+          brand: "themoviedb",
+          titleUrl: "https://pypi.org/project/themoviedb",
+          description: "Cliente Python tipado para a API do TMDb, com interfaces síncrona e assíncrona. Distribuído pelo PyPI para dados de filmes e séries em Python 3.8-3.14.",
+        },
+        {
           title: "PeakDetection",
           brand: "peak-detection",
           titleUrl: "https://github.com/leandcesar/PeakDetection",
-          description:
-            "Uma biblioteca de Arduino para detecção de picos em tempo real em dados, utilizando análise estatística baseada em z-score e otimizada para processamento em sistemas embarcados com recursos limitados.",
+          description: "Detecção de picos em tempo real para dados no Arduino. Análise por z-score e médias móveis para processamento de sinais em hardware limitado.",
         },
         {
           title: "Enhancer for Letterboxd",
           brand: "enhancer-for-letterboxd",
           titleUrl: "https://enhancer-for-letterboxd.vercel.app/",
-          description:
-            "Uma extensão de navegador que amplia o Letterboxd com filtros avançados, análises de avaliações, estatísticas de filmes, ferramentas de descoberta e outros recursos para usuários avançados e cinéfilos.",
-        },
-        {
-          title: "themoviedb",
-          brand: "themoviedb",
-          titleUrl: "https://pypi.org/project/themoviedb",
-          description:
-            "Uma biblioteca cliente em Python para a API v3 do TMDb, que oferece uma interface estruturada para acesso a dados de filmes e séries, com suporte a operações síncronas e assíncronas.",
+          description: "Extensão que transforma o Letterboxd em uma ferramenta de análise e descoberta. Filtros, avaliações, estatísticas e descoberta de filmes.",
         },
         {
           title: "onthisday.watch",
           brand: "onthisday-watch",
           titleUrl: "https://onthisday.watch/",
-          description: "Uma plataforma de descoberta de filmes baseada na pergunta “O que devo assistir hoje?”, que combina dados relacionados à data com recursos de descoberta para recomendar filmes relevantes para cada dia.",
+          description: "Descoberta de filmes orientada pela data para responder “O que devo assistir hoje?”. Usa o dia atual para destacar recomendações relevantes de filmes.",
         },
       ],
     },
@@ -173,38 +170,53 @@ export const pt: LocalizedContent = {
     },
     {
       id: "skills",
-      section: "Habilidades",
+      section: "Especialidades",
       paragraph: [
         {
+          title: "Backend",
           list: [
-            "LLM",
-            "Chatbots",
             "Python",
+            "FastAPI",
+            "Flask",
+            "SQLAlchemy",
+            "REST",
+            "GraphQL",
             "JavaScript",
             "Golang",
-            "Git",
-            "CI/CD",
-            "AWS RDS",
-            "AWS ECS",
-            "AWS EC2",
-            "AWS Lambda",
-            "AWS CloudWatch",
-            "AWS S3",
-            "AWS SQS",
-            "MariaDB",
-            "MySQL",
-            "Postgres",
-            "Redis",
-            "n8n",
-            "RabbitMQ",
+          ],
+        },
+        {
+          title: "IA e Automações",
+          list: [
+            "Chatbots",
+            "LLMs",
+            "RAG",
+            "LangChain",
             "LiteLLM",
             "OpenRouter",
-            "OpenAI",
-            "Gemini",
+            "n8n",
             "Make",
-            "APIs Restful",
-            "GraphQL",
+          ],
+        },
+        {
+          title: "Cloud e Infraestrutura",
+          list: [
+            "AWS (ECS, EC2, Lambda, RDS, S3, SQS)",
             "Docker",
+            "Git",
+            "GitHub Actions",
+            "CI/CD",
+          ],
+        },
+        {
+          title: "Dados e Mensageria",
+          list: [
+            "MariaDB",
+            "MySQL",
+            "PostgreSQL",
+            "Redis",
+            "RabbitMQ",
+            "AmazonMQ",
             "MongoDB",
           ],
         },
@@ -304,7 +316,8 @@ export const pt: LocalizedContent = {
     navigationGroup: "Navegação",
     settingsGroup: "Aparência e idioma",
     profilesGroup: "Contato e perfis",
-    headline: "Liderança. Desenvolvimento. IA.",
+    headline: "Tech Lead e Engenheiro",
+    specialization: "Backend · IA · Automações",
     source: "Código fonte",
     photo: "Ampliar foto de Leandro César",
     photoTitle: "Foto de Leandro César",
@@ -315,10 +328,6 @@ export const pt: LocalizedContent = {
     emailCopyError: "Não foi possível copiar o e-mail",
     contents: "Neste currículo",
     backTop: "Voltar ao topo",
-    skillDevelopment: "Desenvolvimento",
-    skillAI: "IA e automações",
-    skillCloud: "Infraestrutura e entrega",
-    skillData: "Dados e mensageria",
   },
 };
 

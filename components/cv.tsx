@@ -40,34 +40,31 @@ function Experience({ section }: { section: Section }) {
   </ol>;
 }
 
-function Skills({ section, ui }: { section: Section; ui: UI }) {
-  const skills = section.paragraph.flatMap((paragraph) => paragraph.list ?? []);
-  const groups = [
-    { label: ui.skillDevelopment, matches: (skill: string) => ["Python", "JavaScript", "Golang", "APIs Restful", "GraphQL"].includes(skill) },
-    { label: ui.skillAI, matches: (skill: string) => ["LLM", "Chatbots", "n8n", "LiteLLM", "OpenRouter", "OpenAI", "Gemini", "Make"].includes(skill) },
-    { label: ui.skillData, matches: (skill: string) => ["MariaDB", "MySQL", "Postgres", "Redis", "RabbitMQ", "MongoDB"].includes(skill) },
-  ];
-  const assigned = new Set(groups.flatMap((group) => skills.filter(group.matches)));
+function Skills({ section }: { section: Section }) {
   return <div className="skills-grid">
-    {[...groups.map((group) => ({ label: group.label, skills: skills.filter(group.matches) })),
-    { label: ui.skillCloud, skills: skills.filter((skill) => !assigned.has(skill)) }].map((group) =>
-      <div key={group.label} className="skill-group"><h3>{group.label}</h3>
-        <ul className="inline-list">{group.skills.map((skill) => <li key={skill}>{skill}</li>)}</ul>
-      </div>)}
+    {section.paragraph.map((group) => <article key={group.title} className="skill-group">
+      <h3>{group.title}</h3>
+      {group.list && <ul className="inline-list">{group.list.map((skill) => <li key={skill}>{skill}</li>)}</ul>}
+    </article>)}
   </div>;
 }
 
-function ResumeSection({ section, ui }: { section: Section; ui: UI }) {
+function ResumeSection({ section }: { section: Section }) {
   return <section id={section.id} aria-labelledby={`${section.id}-title`} className="resume-section">
     <h2 id={`${section.id}-title`} className="section-label">{section.section}</h2>
     <div className="section-body">
       {section.id === "experience" ? <Experience section={section} />
-        : section.id === "skills" ? <Skills section={section} ui={ui} />
-          : section.id === "projects" ? <div className="projects-grid">{section.paragraph.map((project) => <Project key={project.title} project={project} />)}</div>
+        : section.id === "skills" ? <Skills section={section} />
+            : section.id === "projects" ? <div className="projects-grid">{section.paragraph.map((project) => <Project key={project.title} project={project} />)}</div>
             : section.paragraph.map((paragraph, index) => <div className="entry" key={paragraph.title ?? index}>
               {paragraph.title && <h3>{paragraph.titleUrl ? <InlineLink href={paragraph.titleUrl} brand={paragraph.brand}>{paragraph.title}</InlineLink> : paragraph.title}</h3>}
-              {paragraph.subtitle && <p className="entry-subtitle">{paragraph.subtitle}</p>}
-              <Period paragraph={paragraph} />
+              {section.id === "education" ? <div className="entry-heading">
+                {paragraph.subtitle && <h4 className="entry-subtitle">{paragraph.subtitle}</h4>}
+                <Period paragraph={paragraph} />
+              </div> : <>
+                {paragraph.subtitle && <p className="entry-subtitle">{paragraph.subtitle}</p>}
+                <Period paragraph={paragraph} />
+              </>}
               {paragraph.description && <p className="description">{paragraph.description}</p>}
               {paragraph.list && <ul className="plain-list">{paragraph.list.map((item) => <li key={item}>{item}</li>)}</ul>}
             </div>)}
@@ -94,7 +91,7 @@ export default function Resume({ content, ui, id = "content" }: { content: Conte
     <nav className="contents-nav no-print" aria-label={ui.contents}>
       {sections.filter((section) => section.id !== "about").map((section) => <a href={`#${section.id}`} key={section.id}>{section.section}</a>)}
     </nav>
-    <div id="cv">{sections.map((section) => <ResumeSection key={section.id} section={section} ui={ui} />)}</div>
+    <div id="cv">{sections.map((section) => <ResumeSection key={section.id} section={section} />)}</div>
     <a href="#top" className="back-top no-print">{ui.backTop} ↑</a>
   </main>;
 }

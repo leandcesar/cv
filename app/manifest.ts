@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
     return {
         name: "Leandro César",
         short_name: "Leandro César",
-        description: "Leandro César — liderança técnica, backend e inteligência artificial.",
+        description: "Leandro César — Tech Lead e Engenheiro.",
         start_url: "/pt",
         display: "standalone",
         background_color: "#faf9f6",

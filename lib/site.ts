@@ -9,7 +9,7 @@ export const personName = "Leandro César";
 export async function pageMetadata(locale: Locale): Promise<Metadata> {
   const { ui } = await getContent(locale);
   const path = `/${locale}`;
-  const title = `${personName} — ${locale === "pt" ? "Liderança. Desenvolvimento. IA." : "Leadership. Development. AI."}`;
+  const title = `${personName} — ${locale === "pt" ? "Tech Lead e Engenheiro" : "Tech Lead & Engineer"}`;
   const description = locale === "pt"
     ? `Conheça Leandro César, Líder Técnico na Cloudia. Experiência em backend, inteligência artificial, automações e AWS. Projetos, formação e contato.`
     : `Meet Leandro César, Tech Lead at Cloudia. Experience in backend development, AI, automation and AWS. Projects, education and contact.`;

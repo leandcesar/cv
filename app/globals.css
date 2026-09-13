@@ -291,6 +291,14 @@ kbd {
   font-weight: 400;
 }
 
+.specialization {
+  margin-top: .35rem;
+  color: var(--muted-foreground);
+  font-family: Geist Mono, monospace;
+  font-size: .8125rem;
+  letter-spacing: .02em;
+}
+
 .hero {
   display: flex;
   flex-direction: column;
@@ -469,6 +477,10 @@ kbd {
 .skills-grid .inline-list,
 .period {
   font-family: Geist Mono, monospace;
+}
+
+.skills-grid .inline-list li:not(:last-child)::after {
+  content: "·";
 }
 
 .projects-grid {
@@ -835,9 +847,9 @@ kbd {
 }
 
 .skill-group h3 {
-  font-size: .875rem;
-  font-weight: 500;
-  margin-bottom: .5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: .4rem;
 }
 
 .plain-list {
@@ -1198,6 +1210,11 @@ kbd {
   .headline {
     font-size: 13pt;
     margin-top: 2mm;
+  }
+
+  .specialization {
+    margin-top: 1mm;
+    font-size: 8pt;
   }
 
   .resume-contact {
