@@ -3,11 +3,8 @@ import { LocalizedContent } from "@/types/content";
 export const pt: LocalizedContent = {
   header: {
     title: "Leandro César",
-    subtitle: "Engenheiro. Desenvolvedor. Líder.",
   },
   resumeButton: "Currículo",
-  homeButton: "Voltar ao início",
-  shortcutAlternativeLabel: "ou",
   sections: [
     {
       id: "about",
@@ -22,13 +19,11 @@ export const pt: LocalizedContent = {
     {
       id: "contact",
       section: "Contato",
-      shortcut: "Email",
       paragraph: [{ description: "E-mail: ccleandroc@gmail.com" }],
     },
     {
       id: "experience",
       section: "Experiências",
-      shortcut: "Linkedin",
       paragraph: [
         {
           title: "Cloudia",
@@ -115,13 +110,11 @@ export const pt: LocalizedContent = {
     {
       id: "languages",
       section: "Idiomas",
-      shortcut: "Language",
       paragraph: [{ list: ["Português - Nativo", "Inglês - Avançado"] }],
     },
     {
       id: "projects",
       section: "Projetos",
-      shortcut: "Github",
       paragraph: [
         {
           title: "PeakDetection",
@@ -288,7 +281,6 @@ export const pt: LocalizedContent = {
     theme: "Tema",
     light: "Usar tema claro",
     dark: "Usar tema escuro",
-    system: "Usar tema do sistema",
     commands: "Comandos",
     search: "Buscar páginas, ações ou perfis…",
     searchLabel: "Buscar comandos",
@@ -302,13 +294,6 @@ export const pt: LocalizedContent = {
     settingsGroup: "Aparência e idioma",
     profilesGroup: "Contato e perfis",
     headline: "Liderança. Desenvolvimento. IA.",
-    current: "Atualmente",
-    at: "na",
-    focus: "Tecnologias em foco",
-    selectedProjects: "Projetos selecionados",
-    allProjects: "Todos os projetos",
-    contact: "Vamos conversar",
-    profiles: "Perfis e contato",
     source: "Código fonte",
     photo: "Ampliar foto de Leandro César",
     photoTitle: "Foto de Leandro César",

@@ -2,8 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 for (const locale of ["pt", "en"]) {
-  for (const suffix of ["", "/cv"]) {
-    const path = `/${locale}${suffix}`;
+  for (const path of [`/${locale}`]) {
     test(`${path}: server HTML, metadata, layout and accessibility in both themes`, async ({ page, request, browser }) => {
       const errors: string[] = [];
       page.on("pageerror", (error) => errors.push(error.message));
@@ -12,7 +11,7 @@ for (const locale of ["pt", "en"]) {
       const html = await response.text();
       expect(html).toContain(`<html lang="${locale === "pt" ? "pt-BR" : "en"}"`);
       expect(html).toContain(`rel="canonical" href="https://leandcesar.vercel.app${path}"`);
-      expect(html).toContain(`hrefLang="x-default" href="https://leandcesar.vercel.app/pt${suffix}"`);
+      expect(html).toContain(`hrefLang="x-default" href="https://leandcesar.vercel.app/pt"`);
       await page.goto(path);
       await expect(page.locator("h1")).toHaveText("Leandro César");
       const structured = await page.locator('script[type="application/ld+json"]').textContent();
@@ -40,13 +39,11 @@ for (const locale of ["pt", "en"]) {
       const staticPage = await context.newPage();
       await staticPage.goto(new URL(path, page.url()).href);
       await expect(staticPage.getByRole("heading", { name: "Leandro César", exact: true })).toBeVisible();
-      if (suffix) {
-        for (const name of ["Cloudia", "BASF", "PeakDetection", "themoviedb"]) {
-          await expect(staticPage.getByRole("heading", { name, exact: true })).toBeVisible();
-        }
-        await expect(staticPage.locator("#skills")).toContainText("RabbitMQ");
-        await expect(staticPage.locator("#education")).toContainText("UNIFEI");
+      for (const name of ["Cloudia", "BASF", "PeakDetection", "themoviedb"]) {
+        await expect(staticPage.getByRole("heading", { name, exact: true })).toBeVisible();
       }
+      await expect(staticPage.locator("#skills")).toContainText("RabbitMQ");
+      await expect(staticPage.locator("#education")).toContainText("UNIFEI");
       await context.close();
     });
   }
@@ -124,12 +121,12 @@ test("portrait follows the pointer direction", async ({ page }) => {
 });
 
 test("language equivalents, theme persistence, print action and valid links", async ({ page, request }) => {
-  await page.goto("/pt/cv");
+  await page.goto("/pt");
   await page.getByRole("link", { name: "English", exact: true }).click();
-  await expect(page).toHaveURL(/\/en\/cv$/);
+  await expect(page).toHaveURL(/\/en$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await page.getByRole("link", { name: "Português", exact: true }).click();
-  await expect(page).toHaveURL(/\/pt\/cv$/);
+  await expect(page).toHaveURL(/\/pt$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "pt-BR");
   await page.evaluate(() => localStorage.setItem("cv-theme", "light"));
   await page.reload();
@@ -138,6 +135,8 @@ test("language equivalents, theme persistence, print action and valid links", as
   await page.reload();
   await expect(page.locator("html")).toHaveClass(/dark/);
   await page.evaluate(() => { window.print = () => { document.body.dataset.printCalled = "true"; }; });
+  await page.keyboard.press("Control+p");
+  await expect(page.locator("body")).toHaveAttribute("data-print-called", "true");
   await page.getByRole("button", { name: "Salvar PDF" }).click();
   await expect(page.locator("body")).toHaveAttribute("data-print-called", "true");
   await page.emulateMedia({ media: "print" });
@@ -154,9 +153,10 @@ test("language equivalents, theme persistence, print action and valid links", as
   expect((await request.get("/", { maxRedirects: 0 })).status()).toBe(308);
   expect((await request.get("/fr")).status()).toBe(404);
   expect((await request.get("/pt/missing")).status()).toBe(404);
+  expect((await request.get("/pt/cv")).status()).toBe(404);
   expect(await (await request.get("/robots.txt")).text()).toContain("Sitemap: https://leandcesar.vercel.app/sitemap.xml");
   const sitemap = await (await request.get("/sitemap.xml")).text();
-  expect((sitemap.match(/<loc>/g) ?? []).length).toBe(4);
+  expect((sitemap.match(/<loc>/g) ?? []).length).toBe(2);
   for (const locale of ["pt", "en"]) {
     const social = await request.get(`/${locale}/opengraph-image`);
     expect(social.status()).toBe(200);

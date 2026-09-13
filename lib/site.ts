@@ -6,22 +6,19 @@ import { getContent } from "@/locales";
 export const siteUrl = "https://leandcesar.vercel.app";
 export const personName = "Leandro César";
 
-export async function pageMetadata(locale: Locale, resume = false): Promise<Metadata> {
+export async function pageMetadata(locale: Locale): Promise<Metadata> {
   const { ui } = await getContent(locale);
-  const path = `/${locale}${resume ? "/cv" : ""}`;
-  const suffix = resume ? "/cv" : "";
-  const title = resume
-    ? `${ui.resume} · ${personName} — ${locale === "pt" ? "Líder Técnico" : "Tech Lead"}`
-    : `${personName} — ${locale === "pt" ? "Liderança. Desenvolvimento. IA." : "Leadership. Development. AI."}`;
+  const path = `/${locale}`;
+  const title = `${personName} — ${locale === "pt" ? "Liderança. Desenvolvimento. IA." : "Leadership. Development. AI."}`;
   const description = locale === "pt"
-    ? `${resume ? "Currículo de" : "Conheça"} Leandro César, Líder Técnico na Cloudia. Experiência em backend, inteligência artificial, automações e AWS. Projetos, formação e contato.`
-    : `${resume ? "Resume of" : "Meet"} Leandro César, Tech Lead at Cloudia. Experience in backend development, AI, automation and AWS. Projects, education and contact.`;
+    ? `Conheça Leandro César, Líder Técnico na Cloudia. Experiência em backend, inteligência artificial, automações e AWS. Projetos, formação e contato.`
+    : `Meet Leandro César, Tech Lead at Cloudia. Experience in backend development, AI, automation and AWS. Projects, education and contact.`;
   const image = { url: `${siteUrl}/${locale}/opengraph-image`, width: 1200, height: 630, alt: `${personName} — ${ui.headline}` };
   return {
     title, description,
     alternates: {
       canonical: path,
-      languages: { "pt-BR": `/pt${suffix}`, en: `/en${suffix}`, "x-default": `/pt${suffix}` },
+      languages: { "pt-BR": "/pt", en: "/en", "x-default": "/pt" },
     },
     openGraph: {
       type: "profile", title, description, url: `${siteUrl}${path}`, siteName: personName,

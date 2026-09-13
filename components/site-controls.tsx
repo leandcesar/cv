@@ -8,20 +8,11 @@ import type { Action } from "@/types/action";
 import type { Locale } from "@/lib/i18n";
 import type { UI } from "@/types/content";
 
-export function SiteControls({ locale, resume, ui, profiles }: { locale: Locale; resume: boolean; ui: UI; profiles: Action[] }) {
+export function SiteControls({ locale, ui, profiles }: { locale: Locale; ui: UI; profiles: Action[] }) {
   const { resolvedTheme, setTheme } = useTheme();
   const otherLocale = locale === "pt" ? "en" : "pt";
   const languageName = otherLocale === "en" ? "English" : "Português";
-  const languageHref = `/${otherLocale}${resume ? "/cv" : ""}`;
-
-  useEffect(() => {
-    if (!resume || new URLSearchParams(window.location.search).get("print") !== "1") return;
-    const timer = window.setTimeout(() => {
-      window.history.replaceState(null, "", `${window.location.pathname}${window.location.hash}`);
-      window.print();
-    }, 150);
-    return () => window.clearTimeout(timer);
-  }, [resume]);
+  const languageHref = `/${otherLocale}`;
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -30,9 +21,9 @@ export function SiteControls({ locale, resume, ui, profiles }: { locale: Locale;
       const target = event.target;
       if (target instanceof HTMLElement && target.closest("input, textarea, select, [contenteditable='true']")) return;
       const key = event.key.toLowerCase();
-      if (!resume && (event.ctrlKey || event.metaKey) && !event.shiftKey && key === "p") {
+      if ((event.ctrlKey || event.metaKey) && !event.shiftKey && key === "p") {
         event.preventDefault();
-        window.location.assign(`/${locale}/cv?print=1`);
+        window.print();
         return;
       }
       if (!event.shiftKey || event.ctrlKey || event.metaKey) return;
@@ -43,14 +34,14 @@ export function SiteControls({ locale, resume, ui, profiles }: { locale: Locale;
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [languageHref, locale, resolvedTheme, resume, setTheme]);
+  }, [languageHref, resolvedTheme, setTheme]);
 
   const actions: CommandAction[] = [
     { id: "home", name: ui.home, section: ui.navigationGroup, href: `/${locale}`, keywords: "home inicio" },
-    { id: "resume", name: ui.viewResume, section: ui.navigationGroup, href: `/${locale}/cv`, keywords: "cv curriculum currículo resume" },
+    { id: "resume", name: ui.viewResume, section: ui.navigationGroup, href: "#resume", keywords: "cv curriculum currículo resume" },
     {
       id: "pdf", name: ui.pdf, section: ui.navigationGroup, keywords: "pdf download imprimir print",
-      ...(resume ? { perform: () => requestAnimationFrame(() => window.print()) } : { href: `/${locale}/cv#pdf` })
+      perform: () => requestAnimationFrame(() => window.print())
     },
     ...profiles.map((action) => ({
       id: action.type, name: action.type === "Email" ? "E-mail" : action.type === "Github" ? "GitHub" : action.type === "Linkedin" ? "LinkedIn" : action.type,

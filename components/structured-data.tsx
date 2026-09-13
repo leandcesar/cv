@@ -2,8 +2,8 @@ import { siteUrl, languageTag, personName } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
 import type { Content } from "@/types/content";
 
-export function StructuredData({ content, locale, resume = false }: { content: Content; locale: Locale; resume?: boolean }) {
-  const url = `${siteUrl}/${locale}${resume ? "/cv" : ""}`;
+export function StructuredData({ content, locale }: { content: Content; locale: Locale }) {
+  const url = `${siteUrl}/${locale}`;
   const currentRole = content.sections.find((section) => section.id === "experience")?.paragraph[0];
   const data = {
     "@context": "https://schema.org",
@@ -20,7 +20,7 @@ export function StructuredData({ content, locale, resume = false }: { content: C
       },
       {
         "@type": "ProfilePage", "@id": `${url}#webpage`, url,
-        name: `${personName}${resume ? locale === "pt" ? " — Currículo" : " — Resume" : ""}`,
+        name: personName,
         inLanguage: languageTag(locale), isPartOf: { "@id": `${siteUrl}/#website` },
         mainEntity: { "@id": `${siteUrl}/#person` },
       },

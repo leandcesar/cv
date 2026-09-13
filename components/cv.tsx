@@ -75,10 +75,10 @@ function ResumeSection({ section, ui }: { section: Section; ui: UI }) {
   </section>;
 }
 
-export default function Resume({ content, ui }: { content: Content; ui: UI }) {
+export default function Resume({ content, ui, id = "content" }: { content: Content; ui: UI; id?: string }) {
   const order: Section["id"][] = ["about", "experience", "education", "languages", "projects", "skills", "volunteering"];
   const sections = order.flatMap((id) => content.sections.filter((section) => section.id === id));
-  return <main id="content" tabIndex={-1} className="shell resume">
+  return <main id={id} tabIndex={-1} className="shell resume">
     <header className="resume-header">
       <h1>{content.header?.title}</h1>
       <address className="resume-contact">

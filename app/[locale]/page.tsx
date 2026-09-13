@@ -1,4 +1,4 @@
-import { ArrowRight, Github, Linkedin } from "lucide-react";
+import { ArrowDown, Github, Linkedin } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getContent } from "@/locales";
 import { isLocale } from "@/lib/i18n";
@@ -7,6 +7,8 @@ import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { Portrait } from "@/components/portrait";
 import { StructuredData } from "@/components/structured-data";
 import { CopyEmail } from "@/components/copy-email";
+import Resume from "@/components/cv";
+import { ScrollToResume } from "@/components/scroll-to-resume";
 
 type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
@@ -21,32 +23,39 @@ export default async function Home({ params }: Props) {
   const content = await getContent(locale);
   const ui = content.ui;
   const profileActions = content.actions.filter((action) => ["Email", "Linkedin", "Github"].includes(action.type) && action.url);
-  return <>
+  return <div className="home-page scroll-fade-y">
     <StructuredData locale={locale} content={content} />
-    <SiteHeader locale={locale} ui={ui} content={content} />
-    <main id="content" tabIndex={-1} className="shell home">
-      <section className="hero" aria-labelledby="intro-title">
-        <Portrait label={ui.photo} title={ui.photoTitle} closeLabel={ui.close} />
-        <div className="hero-copy">
-          <h1 id="intro-title">{content.header?.title}</h1>
-          <p className="headline">{ui.headline}</p>
-          <div className="hero-actions">
-            <a className="button button-primary" href={`/${locale}/cv`}>{content.resumeButton}<ArrowRight size={17} aria-hidden="true" /></a>
-            {profileActions.map((action) => {
-              const label = action.type === "Email" ? "E-mail" : action.type === "Github" ? "GitHub" : "LinkedIn";
-              if (action.type === "Email" && action.url) return <CopyEmail key={action.type}
-                email={action.url.replace(/^mailto:/, "")} copyLabel={label} copiedLabel={ui.emailCopied}
-                errorLabel={ui.emailCopyError} iconOnly className="button button-secondary social-button" />;
-              const ProfileIcon = action.type === "Github" ? Github : Linkedin;
-              return <a className="button button-secondary social-button" key={action.type} href={action.url}
-                aria-label={label} title={label}>
-                <ProfileIcon size={17} aria-hidden="true" />
-              </a>;
-            })}
+    <div className="home-stage">
+      <SiteHeader locale={locale} ui={ui} content={content} />
+      <main id="content" tabIndex={-1} className="shell home">
+        <section className="hero" aria-labelledby="intro-title">
+          <Portrait label={ui.photo} title={ui.photoTitle} closeLabel={ui.close} />
+          <div className="hero-copy">
+            <h1 id="intro-title">{content.header?.title}</h1>
+            <p className="headline">{ui.headline}</p>
+            <div className="hero-actions">
+              <ScrollToResume label={content.resumeButton}>
+                {content.resumeButton}<ArrowDown size={17} aria-hidden="true" />
+              </ScrollToResume>
+              {profileActions.map((action) => {
+                const label = action.type === "Email" ? "E-mail" : action.type === "Github" ? "GitHub" : "LinkedIn";
+                if (action.type === "Email" && action.url) return <CopyEmail key={action.type}
+                  email={action.url.replace(/^mailto:/, "")} copyLabel={label} copiedLabel={ui.emailCopied}
+                  errorLabel={ui.emailCopyError} iconOnly className="button button-secondary social-button" />;
+                const ProfileIcon = action.type === "Github" ? Github : Linkedin;
+                return <a className="button button-secondary social-button" key={action.type} href={action.url}
+                  aria-label={label} title={label}>
+                  <ProfileIcon size={17} aria-hidden="true" />
+                </a>;
+              })}
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+    </div>
+    <section id="resume" className="home-resume" aria-label={ui.resume}>
+      <Resume content={content} ui={ui} id="resume-content" />
+    </section>
     <SiteFooter content={content} ui={ui} />
-  </>;
+  </div>;
 }

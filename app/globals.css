@@ -52,11 +52,19 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .resume-page {
+  .home-page {
     min-height: 0;
     height: 100dvh;
     overflow-y: auto;
     overscroll-behavior: contain;
+  }
+
+  .home-stage {
+    min-height: 100dvh;
+  }
+
+  .home-resume {
+    scroll-margin-top: 0;
   }
 
   ::selection {
@@ -378,13 +386,6 @@ kbd {
   padding-inline: .75rem;
 }
 
-.profile-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .2rem 1.25rem;
-}
-
-.profile-links a,
 .site-footer a {
   display: inline-flex;
   gap: .3rem;
@@ -396,7 +397,6 @@ kbd {
   text-decoration: none;
 }
 
-.profile-links a:hover,
 .site-footer a:hover {
   text-decoration: underline;
 }
@@ -438,11 +438,6 @@ kbd {
 .skills-grid .inline-list,
 .period {
   font-family: Geist Mono, monospace;
-}
-
-.focus-technologies {
-  max-width: 36ch;
-  color: var(--foreground);
 }
 
 .projects-grid {
@@ -1005,23 +1000,10 @@ kbd {
     margin-top: 1.5rem;
   }
 
-  .work-summary,
   .projects-grid,
   .skills-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-
-  .work-summary {
-    padding-block: 1.5rem;
-  }
-
-  .home-projects {
-    padding-block: 2rem;
-  }
-
-  .section-heading {
-    margin-bottom: 1rem;
   }
 
   .resume {
@@ -1105,9 +1087,15 @@ kbd {
     padding: 0;
   }
 
-  .resume-page {
+  .home-page {
     height: auto;
     overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .home-stage {
+    display: none;
   }
 
   body {

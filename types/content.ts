@@ -2,10 +2,8 @@ import type { Action } from "./action";
 import type { Section } from "./section";
 
 export interface Content {
-  header?: { title: string; subtitle: string };
+  header?: { title: string };
   resumeButton: string;
-  homeButton: string;
-  shortcutAlternativeLabel: string;
   sections: Section[];
   footer?: { text: string; url: string };
   actions: Action[];
@@ -21,7 +19,6 @@ export interface UI {
   theme: string;
   light: string;
   dark: string;
-  system: string;
   commands: string;
   search: string;
   searchLabel: string;
@@ -35,13 +32,6 @@ export interface UI {
   settingsGroup: string;
   profilesGroup: string;
   headline: string;
-  current: string;
-  at: string;
-  focus: string;
-  selectedProjects: string;
-  allProjects: string;
-  contact: string;
-  profiles: string;
   source: string;
   photo: string;
   photoTitle: string;
