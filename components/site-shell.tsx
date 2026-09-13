@@ -9,7 +9,6 @@ export function SiteHeader({ locale, ui, content }: { locale: Locale; ui: UI; co
     <a href="#content" className="skip-link">{ui.skip}</a>
     <header className="site-header shell no-print" id="top">
       <nav aria-label={ui.navigation} className="primary-nav">
-        <a href={`/${locale}`} aria-current="page">{ui.home}</a>
         <a href="#resume">{ui.resume}</a>
       </nav>
       <SiteControls locale={locale} ui={ui} profiles={content.actions.filter((action) => Boolean(action.url))} />

@@ -1,13 +1,13 @@
-import { ArrowUpRight } from "lucide-react";
 import { PDFDownloadButton } from "@/components/pdf";
 import { CopyEmail } from "@/components/copy-email";
+import { InlineLink } from "@/components/inline-link";
 import type { Content } from "@/types/content";
 import type { Paragraph, Section } from "@/types/section";
 import type { UI } from "@/types/content";
 
 export function Project({ project }: { project: Paragraph }) {
   return <article className="project">
-    <h3><a href={project.titleUrl}>{project.title}<ArrowUpRight size={16} aria-hidden="true" /></a></h3>
+    <h3><InlineLink href={project.titleUrl} brand={project.brand}>{project.title}</InlineLink></h3>
     <p className="muted">{project.description}</p>
   </article>;
 }
@@ -29,7 +29,7 @@ function Experience({ section }: { section: Section }) {
   }, []);
   return <ol className="experience-list">
     {groups.map(({ company, roles }) => <li key={company.title} className="employer">
-      <h3 className="company-name"><a href={company.titleUrl}>{company.title}<ArrowUpRight size={14} aria-hidden="true" /></a></h3>
+      <h3 className="company-name"><InlineLink href={company.titleUrl} brand={company.brand}>{company.title}</InlineLink></h3>
       <ol className="role-list">
         {roles.map((role) => <li key={`${role.subtitle}-${role.period}`} className="role">
           <div className="entry-heading"><h4>{role.subtitle}</h4><Period paragraph={role} /></div>
@@ -65,7 +65,7 @@ function ResumeSection({ section, ui }: { section: Section; ui: UI }) {
         : section.id === "skills" ? <Skills section={section} ui={ui} />
           : section.id === "projects" ? <div className="projects-grid">{section.paragraph.map((project) => <Project key={project.title} project={project} />)}</div>
             : section.paragraph.map((paragraph, index) => <div className="entry" key={paragraph.title ?? index}>
-              {paragraph.title && <h3>{paragraph.titleUrl ? <a href={paragraph.titleUrl}>{paragraph.title}<ArrowUpRight size={14} aria-hidden="true" /></a> : paragraph.title}</h3>}
+              {paragraph.title && <h3>{paragraph.titleUrl ? <InlineLink href={paragraph.titleUrl} brand={paragraph.brand}>{paragraph.title}</InlineLink> : paragraph.title}</h3>}
               {paragraph.subtitle && <p className="entry-subtitle">{paragraph.subtitle}</p>}
               <Period paragraph={paragraph} />
               {paragraph.description && <p className="description">{paragraph.description}</p>}
@@ -87,7 +87,7 @@ export default function Resume({ content, ui, id = "content" }: { content: Conte
             <CopyEmail email={action.url.replace(/^mailto:/, "")}
               copyLabel={ui.copyEmail} copiedLabel={ui.emailCopied} errorLabel={ui.emailCopyError} />
           </span>
-            : <a key={action.type} href={action.url}>{action.url?.replace(/^https:\/\//, "")}<ArrowUpRight size={14} aria-hidden="true" /></a>)}
+            : <InlineLink key={action.type} href={action.url}>{action.url?.replace(/^https:\/\//, "")}</InlineLink>)}
       </address>
       <PDFDownloadButton label={ui.pdf} fallback={ui.printFallback} />
     </header>

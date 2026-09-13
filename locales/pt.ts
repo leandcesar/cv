@@ -27,6 +27,7 @@ export const pt: LocalizedContent = {
       paragraph: [
         {
           title: "Cloudia",
+          brand: "cloudia",
           subtitle: "Tech Lead",
           titleUrl: "https://www.cloudia.com.br/",
           description:
@@ -48,6 +49,7 @@ export const pt: LocalizedContent = {
         },
         {
           title: "BASF",
+          brand: "basf",
           subtitle: "Consultor (Aprendiz)",
           titleUrl: "https://www.basf.com/br/pt",
           period: "Ago de 2019 - Nov de 2019",
@@ -56,6 +58,7 @@ export const pt: LocalizedContent = {
         },
         {
           title: "UNIFEI (Universidade Federal de Itajubá)",
+          brand: "unifei",
           subtitle: "Bolsista de Pesquisa (Laboratório de Física)",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jul de 2019 - Nov de 2019",
@@ -64,6 +67,7 @@ export const pt: LocalizedContent = {
         },
         {
           title: "Ball Corporation",
+          brand: "ball-corporation",
           subtitle: "Consultor (Aprendiz)",
           titleUrl: "https://www.ball.com/sa",
           period: "Mar de 2019 - Jun de 2019",
@@ -72,6 +76,7 @@ export const pt: LocalizedContent = {
         },
         {
           title: "Ex Machina",
+          brand: "ex-machina",
           subtitle: "Diretor Técnico",
           titleUrl:
             "https://proex.unifei.edu.br/extensao-tecnologica-e-empresarial/competicao-tecnologica/ex-machina/",
@@ -99,6 +104,7 @@ export const pt: LocalizedContent = {
       paragraph: [
         {
           title: "UNIFEI (Universidade Federal de Itajubá)",
+          brand: "unifei",
           subtitle: "Graduação em Engenharia de Controle e Automação",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jan de 2016 - Dez de 2020",
@@ -118,24 +124,28 @@ export const pt: LocalizedContent = {
       paragraph: [
         {
           title: "PeakDetection",
+          brand: "peak-detection",
           titleUrl: "https://github.com/leandcesar/PeakDetection",
           description:
             "Uma biblioteca de Arduino para detecção de picos em tempo real em dados, utilizando análise estatística baseada em z-score e otimizada para processamento em sistemas embarcados com recursos limitados.",
         },
         {
           title: "Enhancer for Letterboxd",
+          brand: "enhancer-for-letterboxd",
           titleUrl: "https://enhancer-for-letterboxd.vercel.app/",
           description:
             "Uma extensão de navegador que amplia o Letterboxd com filtros avançados, análises de avaliações, estatísticas de filmes, ferramentas de descoberta e outros recursos para usuários avançados e cinéfilos.",
         },
         {
           title: "themoviedb",
+          brand: "themoviedb",
           titleUrl: "https://pypi.org/project/themoviedb",
           description:
             "Uma biblioteca cliente em Python para a API v3 do TMDb, que oferece uma interface estruturada para acesso a dados de filmes e séries, com suporte a operações síncronas e assíncronas.",
         },
         {
           title: "onthisday.watch",
+          brand: "onthisday-watch",
           titleUrl: "https://onthisday.watch/",
           description: "Uma plataforma de descoberta de filmes baseada na pergunta “O que devo assistir hoje?”, que combina dados relacionados à data com recursos de descoberta para recomendar filmes relevantes para cada dia.",
         },
@@ -147,12 +157,14 @@ export const pt: LocalizedContent = {
       paragraph: [
         {
           title: "Bota Pra Fazer UNIFEI 2018",
+          brand: "unifei",
           titleUrl: "https://www.instagram.com/botaprafazerunifei/",
           description:
             "Criação de uma horta orgânica no Lar da Providência de Itajubá para auxiliar a instituição no cultivo de alimentos para os idosos.",
         },
         {
           title: "Bota Pra Fazer UNIFEI 2017",
+          brand: "unifei",
           titleUrl: "https://www.instagram.com/botaprafazerunifei/",
           description:
             "Desenvolvimento de um jogo matemático para crianças da APAE de Itajubá, facilitando o aprendizado do sistema de numeração decimal-posicional. A iniciativa foi premiada em 1º lugar na categoria Inovação e Criatividade.",
@@ -272,7 +284,6 @@ export const pt: LocalizedContent = {
     },
   ],
   ui: {
-    home: "Início",
     resume: "Currículo",
     viewResume: "Currículo",
     skip: "Pular para o conteúdo",

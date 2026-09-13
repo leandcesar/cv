@@ -6,12 +6,11 @@ export function ScrollToResume({ children, label }: { children: ReactNode; label
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
     const target = document.getElementById("resume");
-    const scroller = target?.closest<HTMLElement>(".home-page");
-    if (!target || !scroller) return;
+    if (!target) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.history.pushState(null, "", "#resume");
-    scroller.scrollTo({ top: scroller.clientHeight, behavior: reducedMotion ? "auto" : "smooth" });
+    target.scrollIntoView({ block: "start", behavior: reducedMotion ? "auto" : "smooth" });
     document.getElementById("resume-content")?.focus({ preventScroll: true });
   }
 

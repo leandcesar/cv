@@ -1,6 +1,9 @@
+import type { Brand } from "@/lib/brands";
+
 export type Paragraph = {
   title?: string;
   titleUrl?: string;
+  brand?: Brand;
   subtitle?: string;
   description?: string;
   list?: string[];

@@ -10,7 +10,6 @@ export interface Content {
 }
 
 export interface UI {
-  home: string;
   resume: string;
   viewResume: string;
   skip: string;

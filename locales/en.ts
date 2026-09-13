@@ -27,6 +27,7 @@ export const en: LocalizedContent = {
       paragraph: [
         {
           title: "Cloudia",
+          brand: "cloudia",
           subtitle: "Tech Lead",
           titleUrl: "https://www.cloudia.com.br/",
           description:
@@ -48,6 +49,7 @@ export const en: LocalizedContent = {
         },
         {
           title: "BASF",
+          brand: "basf",
           subtitle: "Consultant (Apprentice)",
           titleUrl: "https://www.basf.com/br/pt",
           period: "Aug 2019 - Nov 2019",
@@ -56,6 +58,7 @@ export const en: LocalizedContent = {
         },
         {
           title: "UNIFEI (Federal University of Itajubá)",
+          brand: "unifei",
           subtitle: "Research Scholarship (Physics Laboratory)",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jul 2019 - Nov 2019",
@@ -64,6 +67,7 @@ export const en: LocalizedContent = {
         },
         {
           title: "Ball Corporation",
+          brand: "ball-corporation",
           subtitle: "Consultant (Apprentice)",
           titleUrl: "https://www.ball.com/sa",
           period: "Mar 2019 - Jun 2019",
@@ -72,6 +76,7 @@ export const en: LocalizedContent = {
         },
         {
           title: "Ex Machina",
+          brand: "ex-machina",
           subtitle: "Technical Director",
           titleUrl:
             "https://proex.unifei.edu.br/extensao-tecnologica-e-empresarial/competicao-tecnologica/ex-machina/",
@@ -99,6 +104,7 @@ export const en: LocalizedContent = {
       paragraph: [
         {
           title: "UNIFEI (Federal University of Itajubá)",
+          brand: "unifei",
           subtitle: "Degree in Control and Automation Engineering",
           titleUrl: "https://www.unifei.edu.br/",
           period: "Jan 2016 - Dec 2020",
@@ -118,24 +124,28 @@ export const en: LocalizedContent = {
       paragraph: [
         {
           title: "PeakDetection",
+          brand: "peak-detection",
           titleUrl: "https://github.com/leandcesar/PeakDetection",
           description:
             "An Arduino library for real-time peak detection in noisy data using statistical z-score analysis, designed for efficient signal processing on resource-constrained embedded systems.",
         },
         {
           title: "Enhancer for Letterboxd",
+          brand: "enhancer-for-letterboxd",
           titleUrl: "https://enhancer-for-letterboxd.vercel.app/",
           description:
             "A browser extension that extends Letterboxd with advanced filtering, rating analytics, viewing statistics, film discovery tools, and additional insights, improving the experience for power users and movie enthusiasts.",
         },
         {
           title: "themoviedb",
+          brand: "themoviedb",
           titleUrl: "https://pypi.org/project/themoviedb",
           description:
             "A Python client library for the TMDb API v3, providing a structured interface for accessing movie and TV metadata, with support for both synchronous and asynchronous workflows.",
         },
         {
           title: "onthisday.watch",
+          brand: "onthisday-watch",
           titleUrl: "https://onthisday.watch/",
           description: "A movie discovery platform built around the question “What should I watch today?”, combining date-based film data and personalized discovery to surface relevant movies based on the current day.",
         },
@@ -147,12 +157,14 @@ export const en: LocalizedContent = {
       paragraph: [
         {
           title: "Bota Pra Fazer UNIFEI 2018",
+          brand: "unifei",
           titleUrl: "https://www.instagram.com/botaprafazerunifei/",
           description:
             "Co-created an organic garden at Lar da Providência de Itajubá to support the institution in growing food for older residents.",
         },
         {
           title: "Bota Pra Fazer UNIFEI 2017",
+          brand: "unifei",
           titleUrl: "https://www.instagram.com/botaprafazerunifei/",
           description:
             "Developed a math game for children at APAE de Itajubá to support learning of the positional decimal number system. The initiative won 1st place in the Innovation and Creativity category.",
@@ -272,7 +284,6 @@ export const en: LocalizedContent = {
     },
   ],
   ui: {
-    home: "Home",
     resume: "Resume",
     viewResume: "Resume",
     skip: "Skip to content",

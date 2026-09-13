@@ -37,7 +37,6 @@ export function SiteControls({ locale, ui, profiles }: { locale: Locale; ui: UI;
   }, [languageHref, resolvedTheme, setTheme]);
 
   const actions: CommandAction[] = [
-    { id: "home", name: ui.home, section: ui.navigationGroup, href: `/${locale}`, keywords: "home inicio" },
     { id: "resume", name: ui.viewResume, section: ui.navigationGroup, href: "#resume", keywords: "cv curriculum currículo resume" },
     {
       id: "pdf", name: ui.pdf, section: ui.navigationGroup, keywords: "pdf download imprimir print",
