@@ -37,6 +37,7 @@
 
   html {
     scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -423,6 +424,18 @@ kbd {
   white-space: nowrap;
   pointer-events: none;
   transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 .2rem;
+  scale: .96;
+  transition: opacity 140ms ease, visibility 140ms ease, translate 140ms ease, scale 140ms ease;
+}
+
+.tooltip-content[data-state="open"] {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+  scale: 1;
 }
 
 .site-footer a {
@@ -617,6 +630,11 @@ kbd {
   display: grid !important;
   grid-template-columns: 1fr auto;
   position: relative;
+  transition: color 180ms ease;
+}
+
+.copy-email[data-status="copied"] {
+  color: var(--accent);
 }
 
 .copy-email-text,
@@ -635,15 +653,45 @@ kbd {
   visibility: hidden;
 }
 
-.copy-email>svg {
+.copy-email-icon-swap {
+  position: relative;
+  display: inline-grid;
+  width: 1.0625rem;
+  height: 1.0625rem;
+  place-items: center;
   grid-column: 2;
   grid-row: 1;
+}
+
+.copy-email-icon-swap>svg {
+  grid-area: 1 / 1;
+  transition: opacity 160ms ease, transform 240ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.copy-email-icon-check {
+  opacity: 0;
+  transform: scale(.55) rotate(-35deg);
+}
+
+.copy-email-icon-swap[data-state="copied"] .copy-email-icon-copy {
+  opacity: 0;
+  transform: scale(.55) rotate(35deg);
+}
+
+.copy-email-icon-swap[data-state="copied"] .copy-email-icon-check {
+  opacity: 1;
+  transform: scale(1.12) rotate(0);
 }
 
 .copy-email.copy-email-icon-only {
   display: inline-flex !important;
   grid-template-columns: none;
   padding-block: .65rem;
+}
+
+.copy-email.copy-email-icon-only .copy-email-icon-swap {
+  grid-column: auto;
+  grid-row: auto;
 }
 
 .resume-contact button:hover {
@@ -866,6 +914,11 @@ kbd {
   min-height: 44px;
   font-size: .8125rem;
   margin-block: 1.5rem 3rem;
+  transition: color 140ms ease, transform 180ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.back-top:hover {
+  transform: translateY(-2px);
 }
 
 .dialog {

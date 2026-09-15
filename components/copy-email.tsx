@@ -45,13 +45,18 @@ export function CopyEmail({ email, copyLabel, copiedLabel, errorLabel, className
     };
 
     const label = status === "copied" ? copiedLabel : status === "error" ? errorLabel : copyLabel;
-    const Icon = status === "copied" ? Check : iconOnly ? Mail : Copy;
     const text = status === "copied" ? copiedLabel : status === "error" ? errorLabel : email;
-    const button = <button type="button" className={`copy-email${iconOnly ? " copy-email-icon-only" : ""}${className ? ` ${className}` : ""}`} onClick={handleCopy} aria-label={label}>
-        {iconOnly ? <Icon size={17} aria-hidden="true" /> : <>
+    const button = <button type="button" className={`copy-email${iconOnly ? " copy-email-icon-only" : ""}${className ? ` ${className}` : ""}`} data-status={status} onClick={handleCopy} aria-label={label}>
+        {iconOnly ? <span className="copy-email-icon-swap" aria-hidden="true" data-state={status}>
+            <Mail className="copy-email-icon-copy" size={17} />
+            <Check className="copy-email-icon-check" size={17} />
+        </span> : <>
             <span className="copy-email-text" aria-live="polite">{text}</span>
             <span className="copy-email-width" aria-hidden="true">{email}</span>
-            <Icon size={14} aria-hidden="true" />
+            <span className="copy-email-icon-swap" aria-hidden="true" data-state={status}>
+                <Copy className="copy-email-icon-copy" size={14} />
+                <Check className="copy-email-icon-check" size={14} />
+            </span>
         </>}
     </button>;
     return iconOnly ? <Tooltip label={label}>{button}</Tooltip> : button;

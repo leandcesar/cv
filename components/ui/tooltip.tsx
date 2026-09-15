@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useId, useState, type ReactNode } from "react";
+import { cloneElement, useEffect, useId, useState, type ReactElement } from "react";
 
-export function Tooltip({ label, children }: { label: string; children: ReactNode }) {
+export function Tooltip({ label, children }: { label: string; children: ReactElement }) {
   const [visible, setVisible] = useState(false);
   const [pointerInside, setPointerInside] = useState(false);
   const id = useId();
@@ -13,10 +13,14 @@ export function Tooltip({ label, children }: { label: string; children: ReactNod
     return () => window.clearTimeout(timer);
   }, [pointerInside, visible]);
 
+  const trigger = cloneElement(children, { "aria-describedby": id });
+
   return <span className="tooltip" onPointerEnter={() => { setPointerInside(true); setVisible(true); }}
     onPointerLeave={() => { setPointerInside(false); setVisible(false); }}
     onFocus={() => setVisible(true)} onBlur={() => setVisible(false)}>
-    {children}
-    <span id={id} role="tooltip" className="tooltip-content" hidden={!visible}>{label}</span>
+    {trigger}
+    <span id={id} role="tooltip" className="tooltip-content" data-state={visible ? "open" : "closed"}>
+      {label}
+    </span>
   </span>;
 }
