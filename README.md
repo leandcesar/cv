@@ -1,6 +1,6 @@
 # CV
 
-A responsive, accessible, and minimalist website for my professional profile.
+A responsive, accessible, and minimalist online resume.
 
 ## Features
 
