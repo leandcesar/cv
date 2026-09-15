@@ -7,7 +7,7 @@ A responsive, accessible, and minimalist online resume.
 * Responsive and accessible UI
 * Localized pages in Portuguese and English
 * Light and dark themes
-* Command palette (`Ctrl/⌘ + K`) with [k-bar](https://kbar.vercel.app/)
+* Custom command menu (`Ctrl/⌘ + K`)
 * Print-ready CV
 * SEO with metadata, sitemap, Open Graph, and JSON-LD
 
@@ -25,3 +25,12 @@ npm run dev
 ```
 
 Open http://localhost:3000.
+
+## Checks
+
+```bash
+npm run typecheck
+npm run lint
+npm run build
+npm run test:e2e
+```

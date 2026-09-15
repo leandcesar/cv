@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Languages, Moon, Sun } from "lucide-react";
-import { CommandPalette, type CommandAction } from "@/components/kbar";
+import { Download, FileText, Github, Instagram, Languages, Linkedin, Mail, Moon, Sun, Twitter } from "lucide-react";
+import { CommandMenu, type CommandMenuAction } from "@/components/command-menu";
 import type { Action } from "@/types/action";
 import type { Locale } from "@/lib/i18n";
 import type { UI } from "@/types/content";
@@ -36,19 +36,20 @@ export function SiteControls({ locale, ui, profiles }: { locale: Locale; ui: UI;
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [languageHref, resolvedTheme, setTheme]);
 
-  const actions: CommandAction[] = [
-    { id: "resume", name: ui.viewResume, section: ui.navigationGroup, href: "#resume", keywords: "cv curriculum currículo resume" },
+  const actions: CommandMenuAction[] = [
+    { id: "resume", name: ui.viewResume, section: ui.navigationGroup, icon: <FileText size={16} aria-hidden="true" />, href: "#resume", keywords: "cv curriculum currículo resume" },
     {
-      id: "pdf", name: ui.pdf, section: ui.navigationGroup, keywords: "pdf download imprimir print",
+      id: "pdf", name: ui.pdf, section: ui.navigationGroup, icon: <Download size={16} aria-hidden="true" />, keywords: "pdf download imprimir print",
       perform: () => requestAnimationFrame(() => window.print())
     },
     ...profiles.map((action) => ({
-      id: action.type, name: action.type === "Email" ? "E-mail" : action.type === "Github" ? "GitHub" : action.type === "Linkedin" ? "LinkedIn" : action.type,
+      id: action.type, name: action.type === "Email" ? "E-mail" : action.type === "Github" ? "GitHub" : action.type === "Linkedin" ? "LinkedIn" : action.type === "X" ? "X / Twitter" : action.type,
+      icon: action.type === "Email" ? <Mail size={16} aria-hidden="true" /> : action.type === "Github" ? <Github size={16} aria-hidden="true" /> : action.type === "Linkedin" ? <Linkedin size={16} aria-hidden="true" /> : action.type === "Instagram" ? <Instagram size={16} aria-hidden="true" /> : action.type === "X" ? <Twitter size={16} aria-hidden="true" /> : undefined,
       section: ui.profilesGroup, href: action.url, keywords: action.keywords
     })),
-    { id: "language", name: languageName, section: ui.settingsGroup, href: languageHref, keywords: "idioma language ingles portugues english" },
-    { id: "light", name: ui.light, section: ui.settingsGroup, perform: () => setTheme("light"), keywords: "theme tema light claro" },
-    { id: "dark", name: ui.dark, section: ui.settingsGroup, perform: () => setTheme("dark"), keywords: "theme tema dark escuro" },
+    { id: "language", name: languageName, section: ui.settingsGroup, icon: <Languages size={16} aria-hidden="true" />, href: languageHref, keywords: "idioma language ingles portugues english" },
+    { id: "light", name: ui.light, section: ui.settingsGroup, icon: <Sun size={16} aria-hidden="true" />, perform: () => setTheme("light"), keywords: "theme tema light claro" },
+    { id: "dark", name: ui.dark, section: ui.settingsGroup, icon: <Moon size={16} aria-hidden="true" />, perform: () => setTheme("dark"), keywords: "theme tema dark escuro" },
   ];
   return <div className="site-controls no-print" role="group" aria-label={ui.preferences}>
     <a className="utility-button language-link" href={languageHref} hrefLang={otherLocale === "pt" ? "pt-BR" : "en"} lang={otherLocale === "pt" ? "pt-BR" : "en"} aria-keyshortcuts="Shift+l" aria-describedby="language-shortcut">
@@ -63,6 +64,6 @@ export function SiteControls({ locale, ui, profiles }: { locale: Locale; ui: UI;
       <kbd aria-hidden="true">Shift T</kbd>
     </button>
     <span id="theme-shortcut" className="sr-only">Shift + T</span>
-    <CommandPalette actions={actions} ui={ui} />
+    <CommandMenu actions={actions} ui={ui} />
   </div>;
 }

@@ -15,6 +15,15 @@
     --accent: #496faa;
     --accent-foreground: #fff7e4;
     --focus: #79a9f1;
+    /* Sans is the reading/UI voice; mono is reserved for metadata and shortcuts. */
+    --font-sans: "Geist Sans", sans-serif;
+    --font-mono: "Geist Mono", monospace;
+    --text-xs: .75rem;
+    --text-sm: .875rem;
+    --text-meta: .8125rem;
+    --text-reading: .9375rem;
+    --text-body: 1rem;
+    --text-lead: 1.125rem;
   }
 
   .dark {
@@ -47,14 +56,15 @@
     flex-direction: column;
     background: var(--background);
     color: var(--foreground);
-    font-family: Geist Sans, sans-serif;
-    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
 
   .home-page {
     min-height: 100dvh;
+    overflow-x: clip;
   }
 
   .home-stage {
@@ -139,7 +149,7 @@
   }
 
   h2 {
-    font-size: 1.125rem;
+    font-size: var(--text-lead);
     font-weight: 550;
     letter-spacing: -.015em;
     line-height: 1.4;
@@ -147,7 +157,7 @@
 
   h3,
   h4 {
-    font-size: 1rem;
+    font-size: var(--text-body);
     font-weight: 550;
     letter-spacing: -.01em;
     line-height: 1.5;
@@ -168,7 +178,7 @@
 }
 
 .small {
-  font-size: .8125rem;
+  font-size: var(--text-meta);
   line-height: 1.6;
 }
 
@@ -209,7 +219,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font-size: .875rem;
+  font-size: var(--text-sm);
   text-decoration: none;
   color: var(--muted-foreground);
 }
@@ -245,7 +255,7 @@
   border-radius: .3rem;
   color: var(--muted-foreground);
   text-decoration: none;
-  font-size: .875rem;
+  font-size: var(--text-sm);
 }
 
 .utility-button:hover,
@@ -259,7 +269,7 @@
 }
 
 kbd {
-  font-family: Geist Mono, monospace;
+  font-family: var(--font-mono);
   font-size: .6875rem;
   border: 1px solid var(--border);
   border-radius: .2rem;
@@ -277,7 +287,7 @@ kbd {
 }
 
 .section-label {
-  font-size: .75rem;
+  font-size: var(--text-xs);
   letter-spacing: .075em;
   font-weight: 600;
   line-height: 1.5;
@@ -295,9 +305,15 @@ kbd {
 .specialization {
   margin-top: .35rem;
   color: var(--muted-foreground);
-  font-family: Geist Mono, monospace;
-  font-size: .8125rem;
-  letter-spacing: .02em;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.specialization > span:not(:last-child)::after {
+  display: inline-block;
+  margin-inline: .6rem;
+  color: var(--control-border);
+  content: "·";
 }
 
 .hero {
@@ -313,6 +329,8 @@ kbd {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .hero-actions {
@@ -332,7 +350,7 @@ kbd {
   gap: .7rem;
   border-radius: .3rem;
   padding: .65rem 1rem;
-  font-size: .875rem;
+  font-size: var(--text-sm);
   font-weight: 500;
   line-height: 1.4;
   text-decoration: none;
@@ -419,7 +437,7 @@ kbd {
   border-radius: .25rem;
   background: var(--foreground);
   color: var(--background);
-  font-size: .75rem;
+  font-size: var(--text-xs);
   line-height: 1.3;
   white-space: nowrap;
   pointer-events: none;
@@ -445,7 +463,7 @@ kbd {
   min-height: 44px;
   padding-block: .45rem;
   padding-inline: .2rem;
-  font-size: .875rem;
+  font-size: inherit;
   text-decoration: none;
 }
 
@@ -477,7 +495,7 @@ kbd {
   padding: 0;
   list-style: none;
   color: var(--muted-foreground);
-  font-size: .875rem;
+  font-size: var(--text-sm);
 }
 
 .inline-list li:not(:last-child)::after {
@@ -489,7 +507,7 @@ kbd {
 
 .skills-grid .inline-list,
 .period {
-  font-family: Geist Mono, monospace;
+  font-family: var(--font-mono);
 }
 
 .skills-grid .inline-list li:not(:last-child)::after {
@@ -553,7 +571,7 @@ kbd {
 
 .project p {
   max-width: 43ch;
-  font-size: .875rem;
+  font-size: var(--text-sm);
   color: var(--foreground);
 }
 
@@ -567,7 +585,7 @@ kbd {
   padding-block: 1rem;
   border-top: 1px solid var(--border);
   color: var(--muted-foreground);
-  font-size: .75rem;
+  font-size: var(--text-sm);
 }
 
 .resume {
@@ -591,8 +609,8 @@ kbd {
   gap: .25rem 1.25rem;
   margin-top: 1.25rem;
   font-style: normal;
-  font-family: Geist Mono, monospace;
-  font-size: .875rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
 }
 
 .resume-contact a {
@@ -602,6 +620,7 @@ kbd {
   min-height: 44px;
   padding-block: .45rem;
   overflow-wrap: anywhere;
+  max-width: 100%;
 }
 
 .resume-contact button {
@@ -630,6 +649,8 @@ kbd {
   display: grid !important;
   grid-template-columns: 1fr auto;
   position: relative;
+  max-width: 100%;
+  min-width: 0;
   transition: color 180ms ease;
 }
 
@@ -642,6 +663,7 @@ kbd {
   grid-column: 1;
   grid-row: 1;
   white-space: nowrap;
+  min-width: 0;
 }
 
 .copy-email-text {
@@ -795,7 +817,7 @@ kbd {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  font-size: .875rem;
+  font-size: var(--text-sm);
   text-decoration: none;
   color: var(--muted-foreground);
 }
@@ -822,7 +844,7 @@ kbd {
 }
 
 .description {
-  font-size: .9375rem;
+  font-size: var(--text-reading);
   line-height: 1.75;
   max-width: 72ch;
 }
@@ -841,7 +863,7 @@ kbd {
 
 .company-name {
   margin-bottom: .75rem;
-  font-size: 1.0625rem;
+  font-size: var(--text-lead);
   font-weight: 600;
 }
 
@@ -858,12 +880,12 @@ kbd {
 }
 
 .entry-heading h4 {
-  font-size: .9375rem;
+  font-size: var(--text-sm);
   font-weight: 500;
 }
 
 .period {
-  font-size: .8125rem;
+  font-size: var(--text-meta);
   color: var(--muted-foreground);
   font-weight: 400;
   letter-spacing: .01em;
@@ -883,7 +905,7 @@ kbd {
 }
 
 .entry-subtitle {
-  font-size: .9375rem;
+  font-size: var(--text-sm);
   font-weight: 500;
   margin-bottom: .25rem;
 }
@@ -895,7 +917,7 @@ kbd {
 }
 
 .skill-group h3 {
-  font-size: 1rem;
+  font-size: var(--text-body);
   font-weight: 600;
   margin-bottom: .4rem;
 }
@@ -905,14 +927,14 @@ kbd {
   flex-wrap: wrap;
   gap: .5rem 2.5rem;
   color: var(--muted-foreground);
-  font-size: .9375rem;
+  font-size: var(--text-sm);
 }
 
 .back-top {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font-size: .8125rem;
+  font-size: var(--text-meta);
   margin-block: 1.5rem 3rem;
   transition: color 140ms ease, transform 180ms cubic-bezier(.2, .8, .2, 1);
 }
@@ -950,90 +972,8 @@ kbd {
 }
 
 .dialog-heading h2 {
-  font-size: .875rem;
+  font-size: var(--text-sm);
   font-weight: 500;
-}
-
-.command-search {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  padding: .75rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.command-search svg {
-  color: var(--muted-foreground);
-}
-
-.command-search input {
-  width: 100%;
-  min-width: 0;
-  min-height: 44px;
-  background: transparent;
-  border: 0;
-  border-radius: .125rem;
-  font-size: 1rem;
-  color: var(--foreground);
-}
-
-.command-search input::placeholder {
-  color: var(--muted-foreground);
-}
-
-.command-search input:focus-visible {
-  outline-offset: 2px;
-}
-
-.command-results {
-  max-height: min(24rem, 48dvh);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: .5rem;
-  scroll-padding-block: .5rem;
-}
-
-.command-group {
-  padding: .75rem .75rem .35rem;
-  font-size: .6875rem;
-  letter-spacing: .07em;
-  color: var(--muted-foreground);
-}
-
-.command-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 44px;
-  padding: .55rem .75rem;
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  font-size: .875rem;
-  cursor: pointer;
-}
-
-.command-option:hover {
-  background: var(--hover);
-}
-
-.command-option[aria-selected="true"] {
-  background: var(--hover);
-  border-color: var(--control-border);
-}
-
-.command-help {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem 1rem;
-  padding: 1rem 1.25rem;
-  border-top: 1px solid var(--border);
-}
-
-.command-empty {
-  padding: 1rem 1.25rem 1.5rem;
-  color: var(--muted-foreground);
-  font-size: .875rem;
 }
 
 .photo-dialog {
@@ -1082,7 +1022,7 @@ kbd {
   }
 
   .resume-section>h2 {
-    font-size: .875rem;
+    font-size: var(--text-xs);
     letter-spacing: .035em;
   }
 }
@@ -1166,9 +1106,6 @@ kbd {
     max-height: calc(100dvh - 1.25rem);
   }
 
-  .command-search {
-    padding-inline: 1rem;
-  }
 }
 
 @supports (padding: env(safe-area-inset-bottom)) {
@@ -1267,7 +1204,7 @@ kbd {
 
   .specialization {
     margin-top: 1mm;
-    font-size: 8pt;
+    font-size: 8.5pt;
   }
 
   .resume-contact {

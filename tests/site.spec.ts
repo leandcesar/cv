@@ -13,7 +13,7 @@ for (const locale of ["pt", "en"]) {
       expect(html).toContain(`rel="canonical" href="https://leandcesar.vercel.app${path}"`);
       expect(html).toContain(`hrefLang="x-default" href="https://leandcesar.vercel.app/pt"`);
       await page.goto(path);
-      await expect(page.locator("h1")).toHaveText("Leandro César");
+      await expect(page.locator("#intro-title")).toHaveText("Leandro César");
       const structured = await page.locator('script[type="application/ld+json"]').textContent();
       const graph = JSON.parse(structured!)["@graph"];
       expect(graph.map((entity: { "@type": string }) => entity["@type"])).toEqual(["Person", "WebSite", "ProfilePage"]);
@@ -38,7 +38,7 @@ for (const locale of ["pt", "en"]) {
       const context = await browser.newContext({ javaScriptEnabled: false });
       const staticPage = await context.newPage();
       await staticPage.goto(new URL(path, page.url()).href);
-      await expect(staticPage.getByRole("heading", { name: "Leandro César", exact: true })).toBeVisible();
+      await expect(staticPage.locator("#intro-title")).toHaveText("Leandro César");
       for (const name of ["Cloudia", "BASF", "PeakDetection", "themoviedb"]) {
         await expect(staticPage.getByRole("heading", { name, exact: true })).toBeVisible();
       }
@@ -54,7 +54,7 @@ test("keyboard navigation, palette search, modal containment and focus restorati
   await page.keyboard.press("Tab");
   await expect(page.getByRole("link", { name: "Pular para o conteúdo" })).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(page.locator("main")).toBeFocused();
+  await expect(page.locator("#content")).toBeFocused();
   const trigger = page.getByRole("button", { name: "Comandos" });
   await trigger.focus();
   await page.keyboard.press("Enter");
@@ -85,6 +85,7 @@ test("keyboard navigation, palette search, modal containment and focus restorati
   await page.keyboard.press("Meta+k");
   await expect(input).toBeFocused();
   await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
   const portrait = page.getByRole("button", { name: "Ampliar foto de Leandro César" });
   await portrait.focus();
   await page.keyboard.press("Enter");
@@ -117,7 +118,7 @@ test("portrait follows the pointer direction", async ({ page }) => {
   }
 
   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-  await expect.poll(async () => portrait.locator("img").getAttribute("src")).toContain(encodeURIComponent("/favicon-2560x2560.png"));
+  await expect.poll(async () => portrait.locator("img").getAttribute("src")).toContain(encodeURIComponent("/360.webp"));
 });
 
 test("language equivalents, theme persistence, print action and valid links", async ({ page, request }) => {
