@@ -161,6 +161,6 @@ test("language equivalents, theme persistence, print action and valid links", as
   for (const locale of ["pt", "en"]) {
     const social = await request.get(`/${locale}/opengraph-image`);
     expect(social.status()).toBe(200);
-    expect(social.headers()["content-type"]).toContain("image/png");
+    expect(social.headers()["content-type"]).toContain("image/webp");
   }
 });

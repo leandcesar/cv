@@ -86,7 +86,7 @@
   }
 
   .home-stage::before {
-    background: url("/background.png") center / cover no-repeat;
+    background: url("/background.webp") center / cover no-repeat;
     filter: blur(20px);
     opacity: .2;
   }

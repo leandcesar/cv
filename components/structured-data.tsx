@@ -10,7 +10,7 @@ export function StructuredData({ content, locale }: { content: Content; locale: 
     "@graph": [
       {
         "@type": "Person", "@id": `${siteUrl}/#person`, name: personName, url: `${siteUrl}/${locale}`,
-        image: `${siteUrl}/favicon-2560x2560.png`, jobTitle: currentRole?.subtitle,
+        image: `${siteUrl}/favicon-2560x2560.webp`, jobTitle: currentRole?.subtitle,
         description: content.sections.find((section) => section.id === "about")?.paragraph[0].description,
         sameAs: content.actions.filter((action) => action.url?.startsWith("https://")).map((action) => action.url),
       },

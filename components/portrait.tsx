@@ -6,7 +6,7 @@ import { Dialog } from "@/components/ui/dialog";
 
 const portraitAngles = [0, 45, 90, 135, 180, 225, 270, 315] as const;
 const frontPortrait = "/360.webp";
-const expandedPortrait = "/favicon-2560x2560.png";
+const expandedPortrait = "/favicon-2560x2560.webp";
 
 export function Portrait({ label, title, closeLabel }: { label: string; title: string; closeLabel: string }) {
   const [open, setOpen] = useState(false);

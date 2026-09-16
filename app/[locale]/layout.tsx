@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Leandro César", url: siteUrl }],
   creator: "Leandro César",
   icons: {
-    icon: [{ url: "/favicon.ico" }, { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    icon: [{ url: "/favicon.ico" }, { url: "/favicon-32x32.webp", sizes: "32x32", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.webp", sizes: "180x180", type: "image/png" }],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
