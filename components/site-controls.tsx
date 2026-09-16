@@ -1,12 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
 import { Download, FileText, Github, Instagram, Languages, Linkedin, Mail, Moon, Sun, Twitter } from "lucide-react";
-import { CommandMenu, type CommandMenuAction } from "@/components/command-menu";
+import type { CommandMenuAction } from "@/components/command-menu";
 import type { Action } from "@/types/action";
 import type { Locale } from "@/lib/i18n";
 import type { UI } from "@/types/content";
+
+const CommandMenu = dynamic(
+  () => import("@/components/command-menu").then((module) => module.CommandMenu),
+  {
+    ssr: false,
+    loading: () => <span className="utility-button command-trigger command-trigger-placeholder" aria-hidden="true" />,
+  },
+);
 
 export function SiteControls({ locale, ui, profiles }: { locale: Locale; ui: UI; profiles: Action[] }) {
   const { resolvedTheme, setTheme } = useTheme();

@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const config: NextConfig = {
   distDir: process.env.NEXT_OUTPUT_DIR || ".next",
   poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
   async headers() {
     return [{ source: "/:path*", headers: [
       { key: "X-Content-Type-Options", value: "nosniff" },

@@ -14,12 +14,6 @@ export function Portrait({ label, title, closeLabel }: { label: string; title: s
   const portraitRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const imageSources = portraitAngles.map((angle) => `/${angle}.webp`);
-    imageSources.forEach((source) => {
-      const image = new window.Image();
-      image.src = source;
-    });
-
     const updatePortrait = (event: PointerEvent) => {
       const element = portraitRef.current;
       if (!element) return;

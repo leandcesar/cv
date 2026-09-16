@@ -294,6 +294,10 @@
   font-size: var(--text-sm);
 }
 
+.command-trigger-placeholder {
+  width: 6.5rem;
+}
+
 .utility-button:hover,
 .icon-button:hover {
   background: var(--hover);
