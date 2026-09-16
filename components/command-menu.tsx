@@ -2,6 +2,7 @@
 
 import { ChevronRight, Command, Search } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
 export type CommandMenuAction = {
@@ -113,7 +114,7 @@ export function CommandMenu({ actions, ui, className }: { actions: CommandMenuAc
   return <>
     <button ref={triggerRef} type="button" className="utility-button command-trigger" onClick={() => show()} aria-haspopup="dialog" aria-keyshortcuts="Control+k Meta+k" aria-describedby="command-shortcut"><Command size={16} aria-hidden="true" /><span>{ui.commands}</span><kbd aria-hidden="true">{isMac ? "⌘" : "Ctrl"} K</kbd></button>
     <span id="command-shortcut" className="sr-only">Ctrl + K {ui.or} ⌘ + K</span>
-    {open ? <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-4 pt-[12vh]" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
+    {open ? createPortal(<div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-4 pt-[12vh]" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
       <div ref={dialogRef} role="dialog" aria-modal="true" aria-label={ui.commands} className={cn("w-full max-w-xl overflow-hidden rounded-lg border border-[var(--control-border)] bg-[var(--surface)] text-[var(--foreground)] shadow-2xl", className)} onKeyDown={(event) => {
         if (event.key === "Escape") { event.preventDefault(); close(); }
         if (event.key === "Backspace" && !query && scope) { event.preventDefault(); setScope(null); }
@@ -126,6 +127,6 @@ export function CommandMenu({ actions, ui, className }: { actions: CommandMenuAc
         <div ref={resultsRef} id="command-results" role="listbox" aria-label={ui.results} className="max-h-[min(24rem,48dvh)] overflow-y-auto p-2">{groups.map((group) => <div key={group} role="group" aria-label={group}><div className="px-3 pb-1 pt-3 text-[var(--text-xs)] uppercase tracking-widest text-[var(--muted-foreground)]">{group}</div>{filtered.filter((action) => action.section === group).map(renderAction)}</div>)}{filtered.filter((action) => !action.section).map(renderAction)}{!filtered.length ? <p role="status" className="px-3 py-6 text-sm text-[var(--muted-foreground)]">{ui.noResults}</p> : null}</div>
         <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-[var(--border)] px-4 py-3 text-xs text-[var(--muted-foreground)]"><span><kbd>↑ ↓</kbd> {ui.navigate}</span><span><kbd>↵</kbd> {ui.open}</span><span><kbd>Esc</kbd> {ui.close}</span></div>
       </div>
-    </div> : null}
+    </div>, document.body) : null}
   </>;
 }
