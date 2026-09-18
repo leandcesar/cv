@@ -38,9 +38,6 @@ export default async function Home({ params }: Props) {
               {ui.specialization.split(" · ").map((item) => <span key={item}>{item}</span>)}
             </p>
             <div className="hero-actions">
-              <ScrollToResume label={content.resumeButton}>
-                {content.resumeButton}<ArrowDown size={17} aria-hidden="true" />
-              </ScrollToResume>
               {profileActions.map((action) => {
                 const label = action.type === "Email" ? ui.copyEmail : action.type === "Github" ? "GitHub" : "LinkedIn";
                 if (action.type === "Email" && action.url) return <CopyEmail key={action.type}
@@ -52,6 +49,9 @@ export default async function Home({ params }: Props) {
                   <ProfileIcon size={17} aria-hidden="true" />
                 </a></Tooltip>;
               })}
+              <ScrollToResume label={content.resumeButton}>
+                {content.resumeButton}<ArrowDown size={17} aria-hidden="true" />
+              </ScrollToResume>
             </div>
           </div>
         </section>

@@ -75,7 +75,7 @@ function ResumeSection({ section }: { section: Section }) {
 export default function Resume({ content, ui, id = "content" }: { content: Content; ui: UI; id?: string }) {
   const order: Section["id"][] = ["about", "experience", "education", "languages", "projects", "skills", "volunteering"];
   const sections = order.flatMap((id) => content.sections.filter((section) => section.id === id));
-  return <main id={id} tabIndex={-1} className="shell resume">
+  return <div id={id} tabIndex={-1} className="shell resume">
     <header className="resume-header">
       <h1>{content.header?.title}</h1>
       <address className="resume-contact">
@@ -92,6 +92,5 @@ export default function Resume({ content, ui, id = "content" }: { content: Conte
       {sections.filter((section) => section.id !== "about").map((section) => <a href={`#${section.id}`} key={section.id}>{section.section}</a>)}
     </nav>
     <div id="cv">{sections.map((section) => <ResumeSection key={section.id} section={section} />)}</div>
-    <a href="#top" className="back-top no-print">{ui.backTop} ↑</a>
-  </main>;
+  </div>;
 }

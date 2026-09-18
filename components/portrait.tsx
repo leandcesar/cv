@@ -12,18 +12,26 @@ export function Portrait({ label, title, closeLabel }: { label: string; title: s
   const [open, setOpen] = useState(false);
   const [portraitSource, setPortraitSource] = useState(frontPortrait);
   const portraitRef = useRef<HTMLButtonElement>(null);
+  const portraitSourceRef = useRef(frontPortrait);
+  const pointerRef = useRef<PointerEvent | null>(null);
+  const frameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const updatePortrait = (event: PointerEvent) => {
+    const updatePortrait = () => {
+      frameRef.current = null;
+      const event = pointerRef.current;
       const element = portraitRef.current;
-      if (!element) return;
+      if (!event || !element) return;
 
       const bounds = element.getBoundingClientRect();
       const isPointerInside = event.clientX >= bounds.left && event.clientX <= bounds.right
         && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
 
       if (isPointerInside) {
-        setPortraitSource(frontPortrait);
+        if (portraitSourceRef.current !== frontPortrait) {
+          portraitSourceRef.current = frontPortrait;
+          setPortraitSource(frontPortrait);
+        }
         return;
       }
 
@@ -37,11 +45,23 @@ export function Portrait({ label, title, closeLabel }: { label: string; title: s
         return wrappedDistance < nearestDistance ? candidate : nearest;
       }, portraitAngles[0]);
 
-      setPortraitSource(`/${nearestAngle}.webp`);
+      const nextSource = `/${nearestAngle}.webp`;
+      if (portraitSourceRef.current !== nextSource) {
+        portraitSourceRef.current = nextSource;
+        setPortraitSource(nextSource);
+      }
     };
 
-    window.addEventListener("pointermove", updatePortrait);
-    return () => window.removeEventListener("pointermove", updatePortrait);
+    const onPointerMove = (event: PointerEvent) => {
+      pointerRef.current = event;
+      if (frameRef.current === null) frameRef.current = requestAnimationFrame(updatePortrait);
+    };
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    };
   }, []);
 
   return <>

@@ -1,14 +1,7 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
 import type { BrandIconSources } from "@/lib/brands";
 
 export function BrandIcon({ src }: { src: BrandIconSources }) {
-  const [available, setAvailable] = useState(true);
-
-  if (!available) return null;
-
   return <>
     <Image
       src={src.light}
@@ -18,7 +11,6 @@ export function BrandIcon({ src }: { src: BrandIconSources }) {
       height={18}
       unoptimized
       className="inline-link-brand inline-link-brand-light"
-      onError={() => setAvailable(false)}
     />
     <Image
       src={src.dark}
@@ -28,7 +20,6 @@ export function BrandIcon({ src }: { src: BrandIconSources }) {
       height={18}
       unoptimized
       className="inline-link-brand inline-link-brand-dark"
-      onError={() => setAvailable(false)}
     />
   </>;
 }

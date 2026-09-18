@@ -1,18 +1,17 @@
 "use client";
 
-import { useEffect, useId, useRef, type KeyboardEvent, type ReactNode, type RefObject } from "react";
+import { useEffect, useId, useRef, type KeyboardEvent, type ReactNode } from "react";
 import { X } from "lucide-react";
 import { Tooltip } from "@/components/ui/tooltip";
 
 // Native modal dialogs make the background inert and provide focus containment.
-export function Dialog({ open, onClose, title, closeLabel, children, className = "", initialFocus }: {
+export function Dialog({ open, onClose, title, closeLabel, children, className = "" }: {
   open: boolean;
   onClose: () => void;
   title: string;
   closeLabel: string;
   children: ReactNode;
   className?: string;
-  initialFocus?: RefObject<HTMLElement>;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
@@ -24,13 +23,12 @@ export function Dialog({ open, onClose, title, closeLabel, children, className =
     const previousOverflow = document.body.style.overflow;
     dialog.showModal();
     document.body.style.overflow = "hidden";
-    initialFocus?.current?.focus();
     return () => {
       dialog.close();
       document.body.style.overflow = previousOverflow;
       if (trigger?.isConnected) trigger.focus({ preventScroll: true });
     };
-  }, [open, initialFocus]);
+  }, [open]);
 
   function containFocus(event: KeyboardEvent<HTMLDialogElement>) {
     if (event.key !== "Tab" || !ref.current) return;

@@ -224,8 +224,7 @@ export const pt: LocalizedContent = {
     },
   ],
   footer: {
-    text: `${new Date().getFullYear()} © Leandro César`,
-    url: "https://github.com/leandcesar/cv",
+    text: `${new Date().getFullYear()} Leandro César`,
   },
   actions: [
     {
@@ -276,18 +275,18 @@ export const pt: LocalizedContent = {
       keywords: "social media instagram ig",
       url: "https://instagram.com/leandcesar",
     },
-    // {
-    //   type: "Facebook",
-    //   section: "Redes Sociais",
-    //   keywords: "social media facebook fb",
-    //   url: "https://facebook.com/leandcesar",
-    // },
-    // {
-    //   type: "Threads",
-    //   section: "Redes Sociais",
-    //   keywords: "social media threads th",
-    //   url: "https://threads.com/@leandcesar",
-    // },
+    {
+      type: "Facebook",
+      section: "Redes Sociais",
+      keywords: "social media facebook fb",
+      url: "https://facebook.com/leandcesar",
+    },
+    {
+      type: "Threads",
+      section: "Redes Sociais",
+      keywords: "social media threads th",
+      url: "https://threads.com/@leandcesar",
+    },
     {
       type: "X",
       section: "Redes Sociais",
@@ -318,7 +317,6 @@ export const pt: LocalizedContent = {
     profilesGroup: "Contato e perfis",
     headline: "Tech Lead e Engenheiro",
     specialization: "Backend · IA · Automações",
-    source: "Código fonte",
     photo: "Ampliar foto de Leandro César",
     photoTitle: "Foto de Leandro César",
     pdf: "Salvar PDF",
@@ -327,7 +325,6 @@ export const pt: LocalizedContent = {
     emailCopied: "E-mail copiado",
     emailCopyError: "Não foi possível copiar o e-mail",
     contents: "Neste currículo",
-    backTop: "Voltar ao topo",
   },
 };
 

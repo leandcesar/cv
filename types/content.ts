@@ -5,7 +5,7 @@ export interface Content {
   header?: { title: string };
   resumeButton: string;
   sections: Section[];
-  footer?: { text: string; url: string };
+  footer?: { text: string };
   actions: Action[];
 }
 
@@ -32,7 +32,6 @@ export interface UI {
   profilesGroup: string;
   headline: string;
   specialization: string;
-  source: string;
   photo: string;
   photoTitle: string;
   pdf: string;
@@ -41,7 +40,6 @@ export interface UI {
   emailCopied: string;
   emailCopyError: string;
   contents: string;
-  backTop: string;
 }
 
 export interface LocalizedContent extends Content {

@@ -22,18 +22,7 @@ export type CommandMenuAction = {
   children?: CommandMenuAction[];
 };
 
-const OPEN_EVENT = "kobra:open-command-menu";
 const normalize = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-
-export function openCommandMenu(scope?: string) {
-  window.dispatchEvent(new CustomEvent(OPEN_EVENT, { detail: { scope } }));
-}
-
-declare global {
-  interface WindowEventMap {
-    [OPEN_EVENT]: CustomEvent<{ scope?: string }>;
-  }
-}
 
 function flatten(actions: CommandMenuAction[], query: string) {
   const words = normalize(query).trim().split(/\s+/).filter(Boolean);
@@ -86,10 +75,8 @@ export function CommandMenu({ actions, ui, className }: { actions: CommandMenuAc
       event.preventDefault();
       if (open) close(); else show();
     };
-    const onOpen = (event: WindowEventMap[typeof OPEN_EVENT]) => show(event.detail?.scope);
     document.addEventListener("keydown", onKeyDown);
-    window.addEventListener(OPEN_EVENT, onOpen);
-    return () => { document.removeEventListener("keydown", onKeyDown); window.removeEventListener(OPEN_EVENT, onOpen); };
+    return () => document.removeEventListener("keydown", onKeyDown);
   }, [close, open, show]);
 
   useEffect(() => { if (open) requestAnimationFrame(() => inputRef.current?.focus()); }, [open, scope]);
