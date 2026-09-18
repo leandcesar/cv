@@ -106,10 +106,10 @@ test("portrait follows the pointer direction", async ({ page }) => {
   if (!box) return;
 
   const points = [
-    [box.x + box.width / 2, box.y - 120, "/0.webp"],
-    [box.x + box.width + 120, box.y + box.height / 2, "/90.webp"],
-    [box.x + box.width / 2, box.y + box.height + 120, "/180.webp"],
-    [box.x - 120, box.y + box.height / 2, "/270.webp"],
+    [box.x + box.width / 2, box.y - 120, "/portrait/0.webp"],
+    [box.x + box.width + 120, box.y + box.height / 2, "/portrait/90.webp"],
+    [box.x + box.width / 2, box.y + box.height + 120, "/portrait/180.webp"],
+    [box.x - 120, box.y + box.height / 2, "/portrait/270.webp"],
   ] as const;
 
   for (const [x, y, source] of points) {
@@ -118,7 +118,7 @@ test("portrait follows the pointer direction", async ({ page }) => {
   }
 
   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-  await expect.poll(async () => portrait.locator("img").getAttribute("src")).toContain(encodeURIComponent("/360.webp"));
+  await expect.poll(async () => portrait.locator("img").getAttribute("src")).toContain(encodeURIComponent("/portrait/360.webp"));
 });
 
 test("language equivalents, theme persistence, print action and valid links", async ({ page, request }) => {

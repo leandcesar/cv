@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Dialog } from "@/components/ui/dialog";
 
 const portraitAngles = [0, 45, 90, 135, 180, 225, 270, 315] as const;
-const frontPortrait = "/360.webp";
+const frontPortrait = "/portrait/360.webp";
 const expandedPortrait = "/favicon-2560x2560.webp";
 
 export function Portrait({ label, title, closeLabel }: { label: string; title: string; closeLabel: string }) {
@@ -45,7 +45,7 @@ export function Portrait({ label, title, closeLabel }: { label: string; title: s
         return wrappedDistance < nearestDistance ? candidate : nearest;
       }, portraitAngles[0]);
 
-      const nextSource = `/${nearestAngle}.webp`;
+      const nextSource = `/portrait/${nearestAngle}.webp`;
       if (portraitSourceRef.current !== nextSource) {
         portraitSourceRef.current = nextSource;
         setPortraitSource(nextSource);
