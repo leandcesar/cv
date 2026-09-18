@@ -74,7 +74,6 @@
     overflow: hidden;
   }
 
-  .home-stage::before,
   .home-stage::after {
     content: "";
     position: absolute;
@@ -83,12 +82,6 @@
     inset: -5px;
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 50%, transparent 90%);
     mask-image: linear-gradient(to bottom, #000 0%, #000 50%, transparent 90%);
-  }
-
-  .home-stage::before {
-    background: url("/background.webp") center / cover no-repeat;
-    filter: blur(20px);
-    opacity: .2;
   }
 
   .home-stage::after {
@@ -357,26 +350,39 @@ kbd {
 }
 
 .hero {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas: "copy portrait";
+  grid-template-columns: minmax(0, 1fr) minmax(225px, .78fr);
   align-items: center;
-  gap: 2rem;
-  padding-block: 10rem 6rem;
-  text-align: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  padding-block: clamp(7rem, 16vh, 10rem) 6rem;
+  text-align: left;
+}
+
+.home {
+  max-width: 60rem;
 }
 
 .hero-copy {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   min-width: 0;
   max-width: 100%;
+  grid-area: copy;
+}
+
+.hero > .portrait {
+  grid-area: portrait;
+  justify-self: end;
+  width: clamp(225px, 27vw, 320px);
+  height: clamp(225px, 27vw, 320px);
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: .75rem;
   margin-top: 2rem;
@@ -1051,8 +1057,25 @@ kbd {
   }
 
   .hero {
+    grid-template-areas: "portrait" "copy";
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     padding-block: 3.5rem;
+    text-align: center;
+  }
+
+  .hero-copy {
+    align-items: center;
+  }
+
+  .hero > .portrait {
+    justify-self: center;
+    width: 150px;
+    height: 150px;
+  }
+
+  .hero-actions {
+    justify-content: center;
   }
 
   .resume-section {
@@ -1094,7 +1117,6 @@ kbd {
   }
 
   .hero {
-    grid-template-columns: 1fr;
     gap: 1.5rem;
     padding-block: 2.5rem;
   }
